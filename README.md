@@ -1,13 +1,42 @@
-# webhook-messenger
+# Defect Close-Declined change
 
-This is a reflector that updates a number of attributes.
-* Portfolio Item Investment Category - Automatically updated to match the Investment Category of the parent
-* User Story Release - Automatically updated to match the release of the parent Feature
-* Portfolio Item c_SendEpictoSNOWIndicatorDSEONLY - Automatically cleared if set on newly created items
-* Portfolio Item c_SNOWStatusDontTouchAdminONLY - Automatically cleared if set on newly created items
+The problem we’re trying to solve is when a defect is set to `State = ‘Closed Declined’`, the Closed Date field is not automatically populated.  
+The Closed Date field is only populated when a defect is set to `State = ‘Closed’`.  
+We have a Defect Arrival/Kill chart that needs to include ‘Closed Declined’ defects, and right now we can’t include them because there is no Closed Date.
 
-It uses Agile Central webhooks to be notified of changes, and is designed to be deployed using AWS Lambda
-(however it can easily be run as a stand-alone Node.js application).
+The solution is to populate the Closed Date field on a defect when the State is set to ‘Closed Declined’.
+
+On Defects:
+
+If the State is set to ‘Closed Declined’ AND the Closed Date is blank (not populated), take the following actions:
+
+1. Set the State to ‘Closed’
+2. Then Set the State back to ‘Closed Declined’
+ 
+We can walk through the steps needed to test the webhook when you’re ready to start testing.  You will basically create defects in the Cox Training environment and update the defect with the various states that will trigger or not trigger the webhook
+
+## Testing
+**Scenario 1:  The state is changed to ‘Closed Declined’ and the Closed Date is blank.**
+
+1.  In Rally – create a new defect in the "!ift & Shift - DRS" project and click the ‘Create’ button.  State defaults to ‘Submitted’, and Creation Date is populated with today’s date.
+2. In Rally – change the State to ‘Closed Declined’, and click the ‘Save’ button. 
+3. This will trigger the Webhook to fire.
+4. Validate that the Webhook fired and updated the State and Closed Date.
+5. Validate In Rally – The Closed Date is populated with today’s date.  The State = ‘Closed Declined”.
+ 
+
+**Scenario 2:  The state is changed to ‘Closed Declined’ and the Closed Date already has a date value in it.**
+
+1. In Rally – create a new defect in the "!ift & Shift - DRS" project and click the ‘Create’ button.  State defaults to ‘Submitted’, and Creation Date is populated with today’s date.
+2. In Rally – change the State to ‘Closed, and click the ‘Save’ button.
+
+*Result:*  This will populate the Closed Date with today’s date.  Note the Last Updated date/time.
+In Rally – change the State to ‘Closed Declined”.
+*Result:*  The Webhook fires and exits the operation.  The Late Updated date/time remains unchanged from step #2 above.
+ 
+
+Test these 2 scenarios with multiple defects in multiple projects.:w
+
 
 ## Serverless Deployment
 
