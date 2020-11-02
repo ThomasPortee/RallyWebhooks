@@ -1,0 +1,57 @@
+{
+  "name": "@catechservices/webhook-messenger",
+  "version": "1.1.3",
+  "description": "Catches packages fired by webhook, processes against rules",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "node app/index.js webhook-catcher",
+    "stop": "killall -SIGINT webhook-catcher",
+    "deploy": "serverless deploy",
+    "info": "serverless info",
+    "update": "serverless deploy function -f app",
+    "undeploy": "serverless remove",
+    "deploy:offline": "serverless offline",
+    "create-webhooks": "npm run create-webhooks:investment; npm run create-webhooks:newInvestment; npm run create-webhooks:newStory; npm run create-webhooks:clearSnowFields; npm run create-webhooks:businessValue;",
+    "create-webhooks:investment": "node scripts/createPortfolioItemInvestmentCategoryWebhook.js",
+    "create-webhooks:businessValue": "node scripts/createPortfolioItemBusinessValueWebhook.js",
+    "create-webhooks:newInvestment": "node scripts/createUpdateNewPortfolioItemInvestmentCategoryWebhook.js",
+    "create-webhooks:newStory": "node scripts/createUpdateNewStoryReleaseWebhook.js",
+    "create-webhooks:clearSnowFields": "node scripts/createUpdateNewPortfolioItemSnowFieldsWebhook.js",
+    "list-webhooks": "node scripts/listWebhooks.js",
+    "delete-webhooks": "node scripts/deleteWebhooks.js",
+    "postversion": "npm run dist",
+    "build": "showdown makehtml --completeHTMLDocument --tables -i README.md -o dist/README_${npm_package_version}.html",
+    "clean": "rm dist/*",
+    "package": "zip -r ./dist/cox-webhook-reflector_${npm_package_version}.zip app scripts package.json serverless.yml setup.sh.example yarn.lock README.md dist/README_${npm_package_version}.html",
+    "dist": "npm run clean; node scripts/updateServerlessServiceVersion.js; npm run build; npm run package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RallyTechServices/ac-integrations.git"
+  },
+  "author": "Tyr Johanson",
+  "license": "MIT",
+  "homepage": "https://github.com/RallyTechServices/ac-integrations",
+  "dependencies": {
+    "@agile-central-technical-services/utils-attribute-uuid": "^0.0.2",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "lodash.foreach": "^4.5.0",
+    "lodash.get": "^4.4.2",
+    "lodash.map": "^4.6.0",
+    "log4js": "^2.4.1",
+    "rally": "2.1.2",
+    "request": "^2.87.0",
+    "serverless-http": "^1.5.2"
+  },
+  "devDependencies": {
+    "node-fetch-json": "^0.0.3",
+    "qs": "^6.7.0",
+    "serverless": "^1.24.1",
+    "serverless-offline": "^3.16.0",
+    "showdown": "^1.8.5",
+    "yamljs": "^0.3.0",
+    "yarn": "^1.3.2"
+  }
+}

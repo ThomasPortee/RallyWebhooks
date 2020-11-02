@@ -1,0 +1,22 @@
+service: cox-webhook-messenger-1-1-3
+provider:
+    name: aws
+    role: arn:aws:iam::668377966255:role/acct-managed/Rally-role
+    runtime: nodejs8.10
+    stage: dev
+    region: us-east-1
+    environment:
+        SERVERLESS: 'true'
+functions:
+    app:
+        handler: app/index.handler
+        timeout: 30
+        environment:
+            RALLY_API_KEY: '${env:RALLY_API_KEY}'
+            RALLY_SUBSCRIPTION_ID: '${env:RALLY_SUBSCRIPTION_ID}'
+            WEBHOOK_LISTENER_PATH: '${env:WEBHOOK_LISTENER_PATH}'
+        events:
+            - {http: {path: '${env:WEBHOOK_LISTENER_PATH}/${file(./package.json):version}', method: post}}
+            - {http: {path: '${env:WEBHOOK_LISTENER_PATH}/${file(./package.json):version}', method: get}}
+plugins:
+    - serverless-offline

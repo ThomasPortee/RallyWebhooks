@@ -1,0 +1,29 @@
+{
+  "appenders": {
+    "out": {
+      "type": "console"
+    }
+  },
+  "categories": {
+    "default": {
+      "appenders": ["out"],
+      "level": "error"
+    },
+    "rally_utils": {
+      "appenders": ["out"],
+      "level": "error"
+    },
+    "investment_category_changed_rule": {
+      "appenders": ["out"],
+      "level": "error"
+    },
+    "business_value_changed_rule": {
+      "appenders": ["out"],
+      "level": "error"
+    },
+    "update_new_investment_category_rule": {
+      "appenders": ["out"],
+      "level": "error"
+    }
+  }
+}

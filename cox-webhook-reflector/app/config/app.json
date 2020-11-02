@@ -1,0 +1,52 @@
+{
+	"webhook_requests": {
+		"Portfolio Item Investment Category Changed": {
+			"rules": [{
+				"Name": "Investment Category Changed Rule",
+				"Path": "./rules/investment_category_changed_rule",
+				"Enabled": true,
+				"Description": "Update child Portfolio Items' Investment Category to match the updated parent"
+			}]
+		},
+		"Portfolio Item Business Value Changed": {
+			"rules": [{
+				"Name": "Business Value Changed Rule",
+				"Path": "./rules/business_value_changed_rule",
+				"Enabled": true,
+				"Description": "Update child Portfolio Items' Business Value to match the updated parent"
+			}]
+		},
+		"Update New Portfolio Item Investment Category": {
+			"rules": [{
+				"Name": "Update New Portfolio Item Investment Category Rule",
+				"Path": "./rules/update_new_investment_category_rule",
+				"Enabled": true,
+				"Description": "Update new Portfolio Items' Investment Category to match the parent"
+			}]
+		},
+		"Update New Story Release": {
+			"rules": [{
+				"Name": "Update New Story Release Rule",
+				"Path": "./rules/update_new_story_release_rule",
+				"Enabled": true,
+				"Description": "When a user story is created and has a blank Release set it to the parent Feature's Release value"
+			}]
+		},
+		"Update New Portfolio Item c_SendtoSNOWIndicatorDSEONLY": {
+			"rules": [{
+				"Name": "Update New Portfolio Item c_SendtoSNOWIndicatorDSEONLY",
+				"Path": "./rules/update_new_snow_fields_rule",
+				"Enabled": true,
+				"Description": "Update new Portfolio Items' c_SendtoSNOWIndicatorDSEONLY field to blank on item create"
+			}]
+		},
+		"Update New Portfolio Item c_SNOWStatusDontTouchAdminONLY": {
+			"rules": [{
+				"Name": "Update New Portfolio Item c_SNOWStatusDontTouchAdminONLY",
+				"Path": "./rules/update_new_snow_fields_rule",
+				"Enabled": true,
+				"Description": "Update new Portfolio Items' c_SNOWStatusDontTouchAdminONLY field to blank on item create"
+			}]
+		}
+	}
+}
