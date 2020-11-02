@@ -16,6 +16,14 @@
 				"Description": "Update child Portfolio Items' Business Value to match the updated parent"
 			}]
 		},
+		"Defects Change Closed Declined": {
+			"rules": [{
+				"Name": "Defects Change Closed Declined",
+				"Path": "./rules/defect_close_declined_changed_rule",
+				"Enabled": true,
+				"Description": "Update child Portfolio Items' Business Value to match the updated parent"
+			}]
+		},
 		"Update New Portfolio Item Investment Category": {
 			"rules": [{
 				"Name": "Update New Portfolio Item Investment Category Rule",
