@@ -20,7 +20,20 @@ var options = {
         "AttributeName": "State", // Business Value - For prod use 4283471c-75a8-43f6-9a09-e3e0bb45bb02
         "Operator": "=",
         "Value":"Close Declined"
-      },
+      },      
+        {
+          "AttributeID": "291043d3-d000-4a57-9621-b5501406723f", // Defects
+          "Operator": "changed"
+        },
+        {
+          "AttributeID": "e0caf6dd-304b-447e-9d61-09ac9c96e85a", // State
+          "Operator": "changed"
+        },
+        {
+          "AttributeID": "24a49498-e2d6-4ded-b200-313933da132e", // Closed Date
+          "Operator": "changed"
+        },
+
       {
         "AttributeName": "Workspace",
         "Operator": "=",

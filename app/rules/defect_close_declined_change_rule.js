@@ -53,6 +53,11 @@ module.exports.run = (message) => {
               this.printObj(message);
         // Get the State
         // Validat if object has closed date
+        // if there is no closed date and the state is Closed Declined
+          // Update the Defect identified by the ID:
+          // * Change the State to closed
+          // * Confirm this filled the Closed Date
+          // * Change the State Again to Closed Declined
 
       }
       
