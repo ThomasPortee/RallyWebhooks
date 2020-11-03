@@ -3,22 +3,15 @@ const utils = require("../app/utils.js");
 const targetUrl = utils.getTargetUrl();
 var options = {
   "method": "POST",
-  "url": "https://rally1.rallydev.com/apps/pigeon/api/v2/webhook",
+  "url": "https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/73fa2964-2e9c-4daa-8b83-842d4f0e425c",
   "headers": {
     "content-type": "application/json",
     "cookie": `ZSESSIONID=${process.env.WEBHOOK_RALLY_API_KEY}`
   },
   "body": {
-    "AppName": "Reflector",
-    "AppUrl": targetUrl,
-    // TODO Constant for the name
-    "Name": "Defects Change Closed Declined",
-    "CreatedBy": utils.getAppId(),
-    "TargetUrl": targetUrl,
-    "ObjectTypes": ["Defect"],
     "Expressions": [{
         "AttibuteID":"e0caf6dd-304b-447e-9d61-09ac9c96e85a",
-        "AttributeName": "State", // Business Value - For prod use 4283471c-75a8-43f6-9a09-e3e0bb45bb02
+        "AttributeName": "State", 
         "Operator": "=",
         "Value":"Closed Declined"
       },      -
