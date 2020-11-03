@@ -17,6 +17,7 @@
     "create-webhooks:newInvestment": "node scripts/createUpdateNewPortfolioItemInvestmentCategoryWebhook.js",
     "create-webhooks:newStory": "node scripts/createUpdateNewStoryReleaseWebhook.js",
     "create-webhooks:clearSnowFields": "node scripts/createUpdateNewPortfolioItemSnowFieldsWebhook.js",
+    "create-webhooks:defectCloseDeclined": "node scripts/createDefectClosedDeclinedChange",
     "list-webhooks": "node scripts/listWebhooks.js",
     "delete-webhooks": "node scripts/deleteWebhooks.js",
     "postversion": "npm run dist",
