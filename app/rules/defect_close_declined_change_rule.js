@@ -33,7 +33,7 @@ module.exports.doesRuleApply = (message) => {
     this.printObj(message);
     result = true;
   } else {
-    console.log("business_value_changed_rule does NOT apply");
+    console.log("defect_close_declined_change_rule does NOT apply");
     this.printObj(message);
   }
 
@@ -48,9 +48,8 @@ module.exports.run = (message) => {
 
       
       // Validate if the object type is a Defect
-      if(message.object_type == "Defect"){
-
-              this.printObj(message);
+      //this.printObj(message);
+      console.log(message)
         // Get the State
         // Validat if object has closed date
         // if there is no closed date and the state is Closed Declined
@@ -58,107 +57,9 @@ module.exports.run = (message) => {
           // * Change the State to closed
           // * Confirm this filled the Closed Date
           // * Change the State Again to Closed Declined
-
-      }
+    
+      resolve("Defect Resolved")
       
-      
-      /*
-      let currentBusinessValue = get(message, ['stateByField', 'c_BusinessValuePrimary', 'value']);
-      let desiredBusinessValue = currentBusinessValue;
-      let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
-      let workspaceRef = `/workspace/${workspaceId}`;
-
-      var promise;
-      // First, if the Portfolio Item is not an Investment, get the parent's Business Value. If the PI is an Investment, ignore the parent Business Initiative
-      // as the Business value is explicitly ignored on Business Initiatives.
-      let parentRef = get(message, ['stateByField', 'Parent', 'value', 'ref']);
-      if (parentRef && (message.object_type != "Investment")) {
-        // Return the parent artifact Business value
-        console.log("With parent - Not Investment");
-        promise = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_BusinessValuePrimary'])
-          .then((response) => {
-            return get(response, ['c_BusinessValuePrimary']);
-          });
-      }
-      else {
-        if((message.object_type != "Investment")) {
-          promise = Promise.resolve(null);
-          console.log("No parent - Not Investment");
-        } else {
-          promise = Promise.resolve(INVESTMENT);
-          console.log("No parent - but Investment");
-        }
-      }
-
-      // Build the list of objects to update.
-      promise
-        .then((parentBusinessValue) => {
-          console.log("Entering promise, parentBusinessValue value is"+parentBusinessValue);
-          if ( parentBusinessValue != INVESTMENT && parentBusinessValue != currentBusinessValue) {
-            // Update only this item. The portfolio item has been changed to have a Business value
-            // that doesn't match the parent. Change it back.
-
-            console.log("Setting desiredBusinessValue to "+parentBusinessValue);
-            desiredBusinessValue = parentBusinessValue;
-            return [{
-              _ref: message.ref,
-              c_BusinessValuePrimary: currentBusinessValue
-            }];
-          }
-          else {
-            // Collect this items children for update.
-            // To minimize conflict from concurrent webhooks, don't attempt to update all descendents. Update only immediate children
-            // and rely on the webhook callback for those updates to allow us to update their children.
-            // Otherwise you may get Concurrency Exceptions from Agile Central.
-            console.log("Finding all first level children and updating those");
-            let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
-            if (childrenRef) {
-              console.log("childrenRef value");
-              this.printObj(childrenRef);
-              return rally_utils
-                .getArtifactByRef(childrenRef, workspaceRef, ['c_BusinessValuePrimary'])
-                .then(response => {
-                  console.log("Result of updating the children");
-                  this.printObj(response);
-                  return response.Results;
-                });
-            }
-            else {
-              console.log("No children found");
-              return []; // No children (example Features have no portfolio item children, only ChildStories)
-            }
-          }
-        })
-
-        // Update the list of OIDs (either reverting the 1 item, or updating all its children)
-        .then((itemsToUpdate) => {
-          log.info("Items to update: ", itemsToUpdate);
-          console.log("Items to update: ", itemsToUpdate);
-          return bluebird.map(itemsToUpdate, (item) => {
-
-            console.log("Item");
-            this.printObj(item);
-
-            if (item.c_BusinessValuePrimary != desiredBusinessValue) {
-              console.log("Updating item to " + desiredBusinessValue);
-              return rally_utils.updateArtifact(
-                item._ref,
-                workspaceRef, ['FormattedID', 'Name', 'c_BusinessValuePrimary'], {
-                  c_BusinessValuePrimary: desiredBusinessValue
-                }
-              );
-            }
-            else {
-              console.log("No update needed for this item as "+item.c_BusinessValuePrimary+" is equal to "+desiredBusinessValue);
-              // No update needed for this item
-              return;
-            }
-          });
-        })
-        .then((updates) => {
-          console.log("Resolving all updates");
-          resolve(updates);
-        })*/
     }
     else {
       reject("No message in webhook");
