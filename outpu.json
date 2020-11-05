@@ -1,0 +1,2176 @@
+2020-11-05T22:53:19.241Z	7684563b-f21c-4421-9df0-e4ed0f80a85a	INFO	{
+  object_id: '2c6ba96a-4551-4550-b828-fe247685c465',
+  ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/defect/2c6ba96a-4551-4550-b828-fe247685c465',
+  object_type: 'Defect',
+  transaction: {
+    trace_id: 'b5e81b88-0d79-44fb-adc8-ac45dc480fa9',
+    timestamp: 1604616797591,
+    user: {
+      uuid: '4b44597c-348b-4874-a4b5-e634c0152a80',
+      username: 'jose.munoz2@coxautoinc.com',
+      email: 'jose.munoz2@coxautoinc.com'
+    },
+    message_id: '871c37e6-8b87-4ad7-971e-d6ac7bc0d0bb',
+    parent_span_id: '1f820387-f7f7-416a-a3a8-07f97f4b3594',
+    span_id: '61049ccb-bf2f-4fce-88ce-19ab7e097919',
+    message_lag: 75
+  },
+  state: {
+    'a1bfb906-7208-4e04-a6b7-dcff3e1b8f5b': {
+      value: null,
+      type: 'String',
+      name: 'c_oldDeliveredinBuild',
+      display_name: '[old]_Delivered in Build',
+      ref: null
+    },
+    'f4add131-da6b-4e1c-b796-3cc52368f7d8': {
+      value: null,
+      type: 'Date',
+      name: 'c_EnteredDate',
+      display_name: 'Entered Date',
+      ref: null
+    },
+    'c3d4f057-0781-4660-8ce7-bc8514bf0945': {
+      value: '2c6ba96a-4551-4550-b828-fe247685c465',
+      type: 'Raw',
+      name: 'ObjectUUID',
+      display_name: 'ObjectUUID',
+      ref: null
+    },
+    '67e727b5-c09a-4605-b81a-df371b569e6f': {
+      value: `P!"B>j'Z;J,gO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`,
+      type: 'String',
+      name: 'DragAndDropRank',
+      display_name: 'Drag And Drop Rank',
+      ref: null
+    },
+    '4bb6a415-6257-4ae1-b6d8-881893b36e33': {
+      value: null,
+      type: 'String',
+      name: 'c_ArchiveDeliveryStream',
+      display_name: 'Archive Delivery Stream',
+      ref: null
+    },
+    '5c06613a-b0bf-42c6-93a5-651c1879aa59': {
+      value: 'NONE',
+      type: 'String',
+      name: 'TestCaseStatus',
+      display_name: 'Test Case Status',
+      ref: null
+    },
+    'ea7a7216-eef9-4f70-ab4c-b306ad8eb30d': {
+      value: null,
+      type: 'String',
+      name: 'c_CopadoID',
+      display_name: 'Copado ID',
+      ref: null
+    },
+    'e4a9773f-ca38-4eb0-99fb-981ff4c9188f': {
+      value: null,
+      type: 'Date',
+      name: 'c_ReleaseDate',
+      display_name: 'Release Date',
+      ref: null
+    },
+    '301c3b83-a1f8-408c-883a-634d51493e60': {
+      value: [Object],
+      type: 'Rating',
+      name: 'Resolution',
+      display_name: 'Resolution',
+      ref: null
+    },
+    'b1ea5e6d-61ad-4488-b1e0-50936180df45': {
+      value: null,
+      type: 'String',
+      name: 'c_EscapedtoProduction',
+      display_name: 'Escaped to Production',
+      ref: null
+    },
+    'b0778de0-a927-11e2-9e96-0800200c9a66': {
+      value: '#f9a814',
+      type: 'String',
+      name: 'DisplayColor',
+      display_name: 'Display Color',
+      ref: null
+    },
+    '500a0d67-9c48-4145-920c-821033e4a832': {
+      value: 'Carlos Test',
+      type: 'String',
+      name: 'Name',
+      display_name: 'Name',
+      ref: null
+    },
+    '2b20421f-5b8f-47fb-9703-027ad6ac5fb9': {
+      value: null,
+      type: 'String',
+      name: 'c_BranchName',
+      display_name: 'Branch Name',
+      ref: null
+    },
+    'f8b767f9-b4e8-4e0e-beea-284526a55faf': {
+      value: null,
+      type: 'Collection',
+      name: 'Attachments',
+      display_name: 'Attachments',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Attachments'
+    },
+    'bc19e2ba-64f3-4859-b2ca-3159edc55142': {
+      value: [Object],
+      type: 'Quantity',
+      name: 'TaskRemainingTotal',
+      display_name: 'Task Remaining Total',
+      ref: null
+    },
+    '474b2c0e-92a0-4da3-ad01-32e4fa4bf845': {
+      value: null,
+      type: 'String',
+      name: 'VerifiedInBuild',
+      display_name: 'Verified In Build',
+      ref: null
+    },
+    'fcbb7a25-7180-406e-8fdb-84527a006c17': {
+      value: '2020-11-05T17:32:21.512Z',
+      type: 'Date',
+      name: 'FlowStateChangedDate',
+      display_name: 'Flow State Changed Date',
+      ref: null
+    },
+    '55c5512a-1518-4944-8597-3eb91875e8d1': {
+      value: 'DE37198',
+      type: 'String',
+      name: 'FormattedID',
+      display_name: 'Formatted ID',
+      ref: null
+    },
+    'fd9e708c-402d-c1c8-9a4c-6c7802432ae5': {
+      value: 'DE',
+      type: 'String',
+      name: 'FormattedIDPrefix',
+      display_name: 'Formatted ID Prefix',
+      ref: null
+    },
+    'aad205e0-2fbe-11e4-8c21-0800200c9a66': {
+      value: [Object],
+      type: 'State',
+      name: 'ScheduleState',
+      display_name: 'Schedule State',
+      ref: null
+    },
+    '446e6d8a-0721-4a1f-9c8b-1de2e12ff1e5': {
+      value: null,
+      type: 'String',
+      name: 'c_FunctionalArea',
+      display_name: 'Functional Area',
+      ref: null
+    },
+    '2f377f86-b448-4587-9688-c19640228e85': {
+      value: null,
+      type: 'Text',
+      name: 'c_ResolutionDetails',
+      display_name: 'Resolution Details',
+      ref: null
+    },
+    '3b184937-a2ac-48cf-9b5a-33d73430c546': {
+      value: null,
+      type: 'Text',
+      name: 'c_DeploymentInstructions',
+      display_name: 'Deployment Instructions',
+      ref: null
+    },
+    '17f72ea6-04fd-449e-925c-89ac079c0668': {
+      value: [Object],
+      type: 'Workspace',
+      name: 'Workspace',
+      display_name: 'Workspace',
+      ref: null
+    },
+    'ba12d602-22b1-4960-be92-8b453791dfe7': {
+      value: null,
+      type: 'Date',
+      name: 'AcceptedDate',
+      display_name: 'Accepted Date',
+      ref: null
+    },
+    '1160ddd6-86cf-4cce-883b-2465e993832a': {
+      value: '2020-11-05T22:53:17.591Z',
+      type: 'Date',
+      name: 'LastUpdateDate',
+      display_name: 'Last Update Date',
+      ref: null
+    },
+    'b234afec-cbf0-48ef-a2e9-1e0293a393fb': {
+      value: null,
+      type: 'String',
+      name: 'c_TEST1ComponentDRFISSans',
+      display_name: 'TEST1_Component - DR.FIS (Sans)',
+      ref: null
+    },
+    '8a893977-e4a3-453c-9b13-7d8e93a600e1': {
+      value: 0,
+      type: 'Integer',
+      name: 'PassingTestCaseCount',
+      display_name: 'Passing Test Case Count',
+      ref: null
+    },
+    '31798fa2-71c4-45e3-bc29-e673faa84308': {
+      value: null,
+      type: 'Text',
+      name: 'c_oldArchiveNotes',
+      display_name: '[old]_Archive Notes',
+      ref: null
+    },
+    '3a8d3343-33a7-4518-92fb-8b9b13cd8ea3': {
+      value: null,
+      type: 'String',
+      name: 'c_ReleaseAvailability',
+      display_name: 'Release Availability',
+      ref: null
+    },
+    'a01a503c-e565-422d-918b-9789e082f60a': {
+      value: null,
+      type: 'String',
+      name: 'c_ScopeofCustomers',
+      display_name: 'Scope of Customers',
+      ref: null
+    },
+    '8c8c68ac-0893-499b-ae66-a419e32695a4': {
+      value: null,
+      type: 'Integer',
+      name: 'c_NumberofChildCases',
+      display_name: 'Number of Child Cases',
+      ref: null
+    },
+    'b8748c86-785e-46c0-9b60-277226659a36': {
+      value: null,
+      type: 'String',
+      name: 'c_ALMID',
+      display_name: 'ALMID',
+      ref: null
+    },
+    '5c7ae494-0d3c-494f-ba22-f3ef09145a11': {
+      value: null,
+      type: 'String',
+      name: 'c_XtimeEnvironment',
+      display_name: 'Xtime Environment',
+      ref: null
+    },
+    '4cf22de5-6a26-490e-b03f-3df5a951eff8': {
+      value: null,
+      type: 'String',
+      name: 'c_RootCauseCategory',
+      display_name: 'Root Cause Category',
+      ref: null
+    },
+    '2d2a5283-000f-45c7-93fc-7d02d0086919': {
+      value: null,
+      type: 'User',
+      name: 'c_DEVOwner',
+      display_name: 'DEV Owner',
+      ref: null
+    },
+    '6776da91-9729-42c7-bab1-395b596013f2': {
+      value: null,
+      type: 'Collection',
+      name: 'Tags',
+      display_name: 'Tags',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Tags'
+    },
+    '3a3d1a0b-8d3c-43a0-aedc-72b2b1a24cf4': {
+      value: null,
+      type: 'Boolean',
+      name: 'c_ConnecttoSalesforceCase',
+      display_name: 'Connect to Salesforce Case',
+      ref: null
+    },
+    '85d5d854-13b0-4bf3-88f3-a912038e728a': {
+      value: null,
+      type: 'Collection',
+      name: 'Milestones',
+      display_name: 'Milestones',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Milestones'
+    },
+    '1e5f3885-19c3-4619-a45d-bd2fce503a05': {
+      value: null,
+      type: 'Integer',
+      name: 'c_BacklogScoreNumber',
+      display_name: 'Backlog Score Number',
+      ref: null
+    },
+    '278cb3d9-a87f-4b84-9610-24688da919c8': {
+      value: null,
+      type: 'String',
+      name: 'c_TraxCode',
+      display_name: 'Trax Code',
+      ref: null
+    },
+    '876609af-0303-445d-9826-eb5ac8aa9afb': {
+      value: null,
+      type: 'Date',
+      name: 'c_LenderUATStartDate',
+      display_name: 'Lender UAT Start Date',
+      ref: null
+    },
+    '66f042ab-3a77-4c2b-81ec-13cbc0bd631e': {
+      value: null,
+      type: 'String',
+      name: 'c_QualityImprovement',
+      display_name: 'Quality Improvement',
+      ref: null
+    },
+    '4a48b1f4-87e4-4eeb-bafa-55d341ddb0fd': {
+      value: null,
+      type: 'String',
+      name: 'c_CRSProduct',
+      display_name: 'CRS Product',
+      ref: null
+    },
+    'deb10d79-956f-4552-a8b9-f3a729a8fb11': {
+      value: null,
+      type: 'String',
+      name: 'c_ArchitectReview',
+      display_name: 'Architect Review',
+      ref: null
+    },
+    'd958b461-4379-459e-3074-9cff3ce63a05': {
+      value: 'I',
+      type: 'String',
+      name: 'ScheduleStatePrefix',
+      display_name: 'Schedule State Prefix',
+      ref: null
+    },
+    'f005ba11-f005-ba11-f005-ba11f005ba11': {
+      value: [Object],
+      type: 'User',
+      name: 'CreatedBy',
+      display_name: 'Created By',
+      ref: null
+    },
+    '2b852624-f815-4fdf-a803-3e3aa3de3d02': {
+      value: null,
+      type: 'String',
+      name: 'c_SFCaseProductDONOTTOUCH',
+      display_name: 'SF Case Product (DO NOT TOUCH)',
+      ref: null
+    },
+    '1190ee62-a61f-4dd9-81d5-808a04073e9e': {
+      value: null,
+      type: 'String',
+      name: 'c_SFDCCaseRequestor',
+      display_name: 'SFDC Case Requestor',
+      ref: null
+    },
+    '3bc2f79f-d354-462b-b5df-861eed3b7967': {
+      value: null,
+      type: 'String',
+      name: 'c_EscalatedAccount',
+      display_name: 'Escalated Account',
+      ref: null
+    },
+    '3929a106-2b65-4d68-ab11-f7eb16ee83c5': {
+      value: null,
+      type: 'Blocker',
+      name: 'Blocker',
+      display_name: 'Blocker',
+      ref: null
+    },
+    '7e7d5ce5-c053-4428-af10-bafa0c542768': {
+      value: null,
+      type: 'String',
+      name: 'c_FIDefectType',
+      display_name: 'F&I Defect Type',
+      ref: null
+    },
+    '52385f59-ec96-4fdc-802c-330afa1bac77': {
+      value: 'NONE',
+      type: 'String',
+      name: 'TaskStatus',
+      display_name: 'Task Status',
+      ref: null
+    },
+    'ade2844a-b3e6-4de7-ae9e-ca3a66feea54': {
+      value: null,
+      type: 'Collection',
+      name: 'c_RTSProduct',
+      display_name: 'RTS Product',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/c_RTSProduct'
+    },
+    'a8e36ee8-57cb-41d1-9ac2-eaa630556aa4': {
+      value: null,
+      type: 'String',
+      name: 'c_DDCState',
+      display_name: 'DDCState',
+      ref: null
+    },
+    '2e292de6-504e-4a15-beae-806270dbcf58': {
+      value: null,
+      type: 'String',
+      name: 'c_ArchiveProject',
+      display_name: 'Archive Project',
+      ref: null
+    },
+    'd87b50dd-af41-4475-a9f0-5a2f670f2b38': {
+      value: null,
+      type: 'Integer',
+      name: 'c_BacklogScore',
+      display_name: 'Backlog Score',
+      ref: null
+    },
+    '2d254382-fca8-45c8-9760-e77c7ab7f8e6': {
+      value: null,
+      type: 'String',
+      name: 'c_TicketID',
+      display_name: 'Ticket ID',
+      ref: null
+    },
+    '5e005889-3891-4b29-b387-79b24ec299ab': {
+      value: null,
+      type: 'Collection',
+      name: 'Duplicates',
+      display_name: 'Duplicates',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Duplicates'
+    },
+    '85f5ee6a-21b4-4fb0-8247-262e9adbc5c6': {
+      value: false,
+      type: 'Boolean',
+      name: 'Recycled',
+      display_name: 'Recycled',
+      ref: null
+    },
+    'dad0782f-ad2b-4c6b-ab73-18ee3b68c03e': {
+      value: null,
+      type: 'User',
+      name: 'c_CoOwner',
+      display_name: 'Co-Owner',
+      ref: null
+    },
+    '7226736a-2f28-4fd6-bcd2-b4164291a330': {
+      value: null,
+      type: 'String',
+      name: 'Package',
+      display_name: 'Package',
+      ref: null
+    },
+    '741ca006-3900-418c-9eb4-71746659e4ba': {
+      value: null,
+      type: 'Collection',
+      name: 'c_CMSProduct',
+      display_name: 'CMS Product',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/c_CMSProduct'
+    },
+    '700bb729-ae30-4a6b-9dd7-7033f3791ec5': {
+      value: null,
+      type: 'Collection',
+      name: 'c_ComponentDRFISSans',
+      display_name: 'Component - DR.FIS (Sans)',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/c_ComponentDRFISSans'
+    },
+    '55db6690-c214-4fd8-99fc-de25d4ef322e': {
+      value: null,
+      type: 'String',
+      name: 'c_Component',
+      display_name: 'Component',
+      ref: null
+    },
+    'a3db5756-217e-4299-b7a7-4afd18e880c3': {
+      value: null,
+      type: 'String',
+      name: 'c_Entity',
+      display_name: 'Entity',
+      ref: null
+    },
+    'afe00021-d180-473d-98b1-692b0c8ff110': {
+      value: null,
+      type: 'Date',
+      name: 'c_TeamUATStartDate',
+      display_name: 'Team UAT Start Date',
+      ref: null
+    },
+    'f705ed17-9239-427e-8f34-10bbe088297e': {
+      value: [Object],
+      type: 'Subscription',
+      name: 'Subscription',
+      display_name: 'Subscription',
+      ref: null
+    },
+    '70de157b-7681-490b-81b4-b1df5a78e807': {
+      value: null,
+      type: 'String',
+      name: 'SalesforceCaseNumber',
+      display_name: 'Salesforce Case Number',
+      ref: null
+    },
+    '400d3fc5-1929-4163-b3ef-d52c6b00733e': {
+      value: [Object],
+      type: 'Quantity',
+      name: 'TaskEstimateTotal',
+      display_name: 'Task Estimate Total',
+      ref: null
+    },
+    'a87f604e-8eba-4f0f-8605-06acc4c8bc80': {
+      value: null,
+      type: 'String',
+      name: 'FoundInBuild',
+      display_name: 'Found In Build',
+      ref: null
+    },
+    '759dedb6-9856-4402-b381-72507f18ea43': {
+      value: null,
+      type: 'String',
+      name: 'c_ServiceNowID',
+      display_name: 'ServiceNow ID',
+      ref: null
+    },
+    'b8af45bb-3da4-468d-9e11-3c52817fc0d6': {
+      value: null,
+      type: 'Integer',
+      name: 'c_BugPriority',
+      display_name: 'Bug Priority',
+      ref: null
+    },
+    '00dc1d10-e981-4115-b96b-2a6f8b5c2bf4': {
+      value: null,
+      type: 'Web Link',
+      name: 'c_SFCaseLink',
+      display_name: 'SF Case Link',
+      ref: null
+    },
+    '95ac2b13-e4ee-413e-af83-42aaf4b53626': {
+      value: '2020-11-05T17:32:21.512Z',
+      type: 'Date',
+      name: 'CreationDate',
+      display_name: 'Creation Date',
+      ref: null
+    },
+    '557393c4-131b-4df7-b01e-5319b11edd24': {
+      value: null,
+      type: 'User',
+      name: 'Owner',
+      display_name: 'Owner',
+      ref: null
+    },
+    '614a8d98-4637-4ab6-919b-12942de1a17a': {
+      value: null,
+      type: 'Test Case',
+      name: 'TestCase',
+      display_name: 'Test Case',
+      ref: null
+    },
+    '2143d16f-1183-43dc-94a1-f97192c240c1': {
+      value: null,
+      type: 'Collection',
+      name: 'TestCases',
+      display_name: 'Test Cases',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/TestCases'
+    },
+    '04d9df3c-470e-4100-bb3f-71988a8c8620': {
+      value: null,
+      type: 'String',
+      name: 'c_ImpactDMS',
+      display_name: 'Impact (DMS)',
+      ref: null
+    },
+    '2ba0a4e6-e8a5-45a5-b055-e041e6db5c04': {
+      value: null,
+      type: 'Boolean',
+      name: 'c_SynctoQC',
+      display_name: 'Sync to QC?',
+      ref: null
+    },
+    '536aabd4-014d-41ee-84d4-a73f12c7f65d': {
+      value: null,
+      type: 'String',
+      name: 'c_Tester',
+      display_name: 'Tester',
+      ref: null
+    },
+    'ffe682a5-d636-4c1e-b883-ea6f8e99cb58': {
+      value: null,
+      type: 'String',
+      name: 'c_ApplicationArea',
+      display_name: 'Application Area',
+      ref: null
+    },
+    'f46996bb-f128-4865-a058-2624afb84df4': {
+      value: null,
+      type: 'Collection',
+      name: 'Discussion',
+      display_name: 'Discussion',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Discussion'
+    },
+    '567440cb-6364-4aaa-a135-ebf0a06f5638': {
+      value: null,
+      type: 'String',
+      name: 'c_oldDMSPriority',
+      display_name: '[old]_DMS Priority',
+      ref: null
+    },
+    'b6b2b31e-6218-4a40-a61b-8d2e6f34954d': {
+      value: null,
+      type: 'User',
+      name: 'c_QAOwner',
+      display_name: 'QA Owner',
+      ref: null
+    },
+    'd3e4464d-2aa0-4727-903a-57a2af5316ba': {
+      value: [Object],
+      type: 'Rating',
+      name: 'Priority',
+      display_name: 'Priority',
+      ref: null
+    },
+    '1641c41c-0248-fdf1-946a-bf41b4dd6279': {
+      value: null,
+      type: 'Collection',
+      name: 'Connections',
+      display_name: 'Connections',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Connections'
+    },
+    'bffa9ac1-d341-40f3-88da-2c262239a87e': {
+      value: null,
+      type: 'String',
+      name: 'c_DeploymentStatus',
+      display_name: 'Deployment Status',
+      ref: null
+    },
+    'e6a10c1a-6e2a-4380-8e94-8b33c2748066': {
+      value: null,
+      type: 'Integer',
+      name: 'c_CallCount',
+      display_name: 'Call Count',
+      ref: null
+    },
+    '300ea523-b5ee-4153-9896-ccfe613f9b19': {
+      value: null,
+      type: 'Collection',
+      name: 'Tasks',
+      display_name: 'Tasks',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Tasks'
+    },
+    'd9fca64c-6ebf-4a71-98a8-7d933503b0eb': {
+      value: false,
+      type: 'Boolean',
+      name: 'ReleaseNote',
+      display_name: 'Release Note',
+      ref: null
+    },
+    'f5b1fb22-6c15-44b5-a592-19189fafe5f2': {
+      value: 59,
+      type: 'Integer',
+      name: 'VersionId',
+      display_name: 'VersionId',
+      ref: null
+    },
+    '6a1045e7-3d05-41bb-a27e-5964515e3f6a': {
+      value: false,
+      type: 'Boolean',
+      name: 'Expedite',
+      display_name: 'Expedite',
+      ref: null
+    },
+    '727a8977-f3a5-4713-9415-ac97471cc736': {
+      value: false,
+      type: 'Boolean',
+      name: 'Ready',
+      display_name: 'Ready',
+      ref: null
+    },
+    'b6380b48-9e98-4f29-b0e9-4fc3fcf60e69': {
+      value: [Object],
+      type: 'Flow State',
+      name: 'FlowState',
+      display_name: 'Flow State',
+      ref: null
+    },
+    '9ace02ab-aab1-4aee-9cc6-a4016032e07e': {
+      value: null,
+      type: 'Text',
+      name: 'c_ClientOutcome',
+      display_name: 'Client Outcome',
+      ref: null
+    },
+    '2c36fd0e-eb83-48cb-8e1d-25b6123b0003': {
+      value: null,
+      type: 'String',
+      name: 'LastBuild',
+      display_name: 'Last Build',
+      ref: null
+    },
+    '24a49498-e2d6-4ded-b200-313933da132e': {
+      value: null,
+      type: 'Date',
+      name: 'ClosedDate',
+      display_name: 'Closed Date',
+      ref: null
+    },
+    'e67bf292-28ff-4f6f-87a8-ef466a9c0635': {
+      value: null,
+      type: 'String',
+      name: 'c_Team',
+      display_name: 'Team',
+      ref: null
+    },
+    'cbb5095f-fa47-43f3-a728-ed6326ccd665': {
+      value: null,
+      type: 'Release',
+      name: 'Release',
+      display_name: 'Release',
+      ref: null
+    },
+    '24aa2a9e-8b98-4028-a999-ea6ae4d47150': {
+      value: false,
+      type: 'Boolean',
+      name: 'Blocked',
+      display_name: 'Blocked',
+      ref: null
+    },
+    'b410f23d-0aec-4721-b83a-350ab7cc4da2': {
+      value: null,
+      type: 'String',
+      name: 'c_Product',
+      display_name: 'Product',
+      ref: null
+    },
+    'a74eabc3-68dc-4cd3-b18d-02b4d646e5fa': {
+      value: null,
+      type: 'String',
+      name: 'c_AWSAccount',
+      display_name: 'AWS Account',
+      ref: null
+    },
+    '4af1fd56-729d-4776-9d3d-3fee1ddae095': {
+      value: null,
+      type: 'String',
+      name: 'c_BusinessPriority',
+      display_name: 'Business Priority',
+      ref: null
+    },
+    'daaf5ab9-4f8c-4bf3-94e4-25fa27e2faa2': {
+      value: null,
+      type: 'Date',
+      name: 'c_DueDate',
+      display_name: 'Due Date',
+      ref: null
+    },
+    'ae8ecc9f-b9a0-42a4-a6e3-c83d7f8a7070': {
+      value: [Object],
+      type: 'Project',
+      name: 'Project',
+      display_name: 'Project',
+      ref: null
+    },
+    '917c6428-9b32-408c-b1d4-410bdc4274de': {
+      value: null,
+      type: 'String',
+      name: 'c_ArchiveNotes',
+      display_name: 'Archive Notes',
+      ref: null
+    },
+    '639d9d96-b69b-41fa-9087-6379053fe091': {
+      value: null,
+      type: 'Iteration',
+      name: 'Iteration',
+      display_name: 'Iteration',
+      ref: null
+    },
+    '74ce3e33-8c51-43ca-a72e-4c6bdf95b387': {
+      value: null,
+      type: 'String',
+      name: 'FixedInBuild',
+      display_name: 'Fixed In Build',
+      ref: null
+    },
+    '8d0fbd6b-2cb4-4a52-a1b3-cf06ad0bc1ad': {
+      value: null,
+      type: 'String',
+      name: 'c_ArchivePortfolio',
+      display_name: 'Archive Portfolio',
+      ref: null
+    },
+    '70f4603e-8bb2-4307-a9ff-06ccfbd972ae': {
+      value: null,
+      type: 'Date',
+      name: 'TargetDate',
+      display_name: 'Target Date',
+      ref: null
+    },
+    'f6d58321-4699-417d-8ae1-c102666321e7': {
+      value: null,
+      type: 'Integer',
+      name: 'LatestDiscussionAgeInMinutes',
+      display_name: 'Latest Discussion Age In Minutes',
+      ref: null
+    },
+    '0bb01d62-2d0d-4f08-964e-a2510a9f7650': {
+      value: 0,
+      type: 'Integer',
+      name: 'TestCaseCount',
+      display_name: 'Test Case Count',
+      ref: null
+    },
+    '3c358996-adbd-48bc-bd6e-22e1338c8d57': {
+      value: null,
+      type: 'String',
+      name: 'BlockedReason',
+      display_name: 'Blocked Reason',
+      ref: null
+    },
+    '7f25a8ae-6948-49a9-92f5-b437ca213251': {
+      value: null,
+      type: 'Quantity',
+      name: 'PlanEstimate',
+      display_name: 'Plan Estimate',
+      ref: null
+    },
+    '09877ea1-2678-4e62-83e9-748d851913fc': {
+      value: [Object],
+      type: 'Revision History',
+      name: 'RevisionHistory',
+      display_name: 'Revision History',
+      ref: null
+    },
+    '27da8882-92a0-4c0d-b663-29692a7a2a82': {
+      value: null,
+      type: 'Collection',
+      name: 'c_Applications',
+      display_name: 'Applications',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/c_Applications'
+    },
+    'b8deb4b7-8b43-442f-8026-6c0dfa795093': {
+      value: '2020-11-05T22:52:57.576Z',
+      type: 'Date',
+      name: 'OpenedDate',
+      display_name: 'Opened Date',
+      ref: null
+    },
+    '50d6cae3-e2be-417a-93c9-2b952db23617': {
+      value: [Object],
+      type: 'User',
+      name: 'SubmittedBy',
+      display_name: 'Submitted By',
+      ref: null
+    },
+    'b5bae981-bfe6-4980-844a-b5ecf3e9a156': {
+      value: '<p>Test</p>\n',
+      type: 'Text',
+      name: 'Description',
+      display_name: 'Description',
+      ref: null
+    },
+    '9e551791-752d-4963-9c44-7df5f9bcab16': {
+      value: null,
+      type: 'Collection',
+      name: 'DefectSuites',
+      display_name: 'Defect Suites',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/DefectSuites'
+    },
+    '1f4c4957-73af-4ad5-96d0-8482395bd06b': {
+      value: null,
+      type: 'Hierarchical Requirement',
+      name: 'Requirement',
+      display_name: 'Requirement',
+      ref: null
+    },
+    'd60e121d-eccd-4452-949c-b1ea76065346': {
+      value: null,
+      type: 'String',
+      name: 'c_FIRootCauseREQforFixedorClosed',
+      display_name: 'F&I Root Cause - REQ for Fixed or Closed',
+      ref: null
+    },
+    '817f7011-f514-4136-a1e0-871805c82e6d': {
+      value: false,
+      type: 'Boolean',
+      name: 'AffectsDoc',
+      display_name: 'Affects Doc',
+      ref: null
+    },
+    'e1b3b90f-7ceb-41af-9714-194c794d2ea4': {
+      value: null,
+      type: 'Text',
+      name: 'c_Testerold',
+      display_name: 'Tester_old',
+      ref: null
+    },
+    'e0caf6dd-304b-447e-9d61-09ac9c96e85a': {
+      value: [Object],
+      type: 'Rating',
+      name: 'State',
+      display_name: 'State',
+      ref: null
+    },
+    '2910ca71-9779-4e7b-8fcf-d718c919aff8': {
+      value: 453171419216,
+      type: 'Integer',
+      name: 'ObjectID',
+      display_name: 'Object ID',
+      ref: null
+    },
+    '193e2943-6d07-4b14-8f66-e9033ee65685': {
+      value: null,
+      type: 'Date',
+      name: 'LastRun',
+      display_name: 'Last Run',
+      ref: null
+    },
+    '9cce670e-9470-4356-9cda-4f45a0e00215': {
+      value: null,
+      type: 'String',
+      name: 'c_Source',
+      display_name: 'Source',
+      ref: null
+    },
+    '80cf4d42-2355-43ce-a34c-9a2204b585b6': {
+      value: [Object],
+      type: 'Quantity',
+      name: 'TaskActualTotal',
+      display_name: 'Task Actual Total',
+      ref: null
+    },
+    'd4268c7d-7a43-4991-a8b3-28b07a389689': {
+      value: null,
+      type: 'String',
+      name: 'c_AffectsVersion',
+      display_name: 'Affects Version',
+      ref: null
+    },
+    'c14d0722-3842-7c4c-57cc-fcbf9aa4cbb5': {
+      value: 37198,
+      type: 'Integer',
+      name: 'FormattedIDID',
+      display_name: 'Formatted ID ID',
+      ref: null
+    },
+    '627194cd-4169-4918-ad70-3d927dd126bb': {
+      value: null,
+      type: 'Collection',
+      name: 'Changesets',
+      display_name: 'Changesets',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Changesets'
+    },
+    '4fab0b61-ba80-4a73-9675-8b6c9d30797d': {
+      value: null,
+      type: 'String',
+      name: 'SalesforceCaseID',
+      display_name: 'Salesforce Case ID',
+      ref: null
+    },
+    'a6b8dfa8-3370-4232-9ad4-4bd7b5b0f4de': {
+      value: null,
+      type: 'Date',
+      name: 'c_ArchiveDate',
+      display_name: 'Archive Date',
+      ref: null
+    },
+    '132f4604-7855-4de7-8179-652e05f02fe5': {
+      value: null,
+      type: 'Date',
+      name: 'InProgressDate',
+      display_name: 'In Progress Date',
+      ref: null
+    },
+    '9b9a0e89-e73d-43b9-a1a8-3ef18eacef3f': {
+      value: null,
+      type: 'Test Case Result',
+      name: 'TestCaseResult',
+      display_name: 'Test Case Result',
+      ref: null
+    },
+    'cd303adc-0d99-46e0-966a-03e5804e1268': {
+      value: null,
+      type: 'String',
+      name: 'c_SourceFIN',
+      display_name: 'Source - FIN',
+      ref: null
+    },
+    '40300197-111f-43fe-9f64-0cbe38da9f2c': {
+      value: null,
+      type: 'String',
+      name: 'c_ServiceNowObjectID',
+      display_name: 'ServiceNow Object ID',
+      ref: null
+    },
+    '2f537510-66bb-4275-9103-15ed29a5aac7': {
+      value: null,
+      type: 'String',
+      name: 'TargetBuild',
+      display_name: 'Target Build',
+      ref: null
+    },
+    'f125a26c-41e8-46d1-bcbd-c02e3f26b00b': {
+      value: null,
+      type: 'String',
+      name: 'c_ReportedbyPQA',
+      display_name: 'Reported by PQA',
+      ref: null
+    },
+    '69d951f8-a2a5-4199-9d1f-260cde7db768': {
+      value: [Object],
+      type: 'Rating',
+      name: 'Environment',
+      display_name: 'Environment',
+      ref: null
+    },
+    '51637947-1dd6-4814-956f-ffd063a76b2a': {
+      value: null,
+      type: 'String',
+      name: 'c_Client',
+      display_name: 'Client',
+      ref: null
+    },
+    '44d54cf9-12fc-4fd9-9652-639608bdfca6': {
+      value: null,
+      type: 'String',
+      name: 'c_DTProduct',
+      display_name: 'DT Product',
+      ref: null
+    },
+    '88b3c6a7-6f6d-4711-b794-1a016f3f6911': {
+      value: null,
+      type: 'Collection',
+      name: 'c_oldApplications',
+      display_name: 'old_Applications',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/c_oldApplications'
+    },
+    '9dda1df5-d905-4984-92a3-f0b0ec509b97': {
+      value: null,
+      type: 'Text',
+      name: 'c_ReleaseNotesTechnicalWriterContent',
+      display_name: 'Release Notes (Technical Writer Content)',
+      ref: null
+    },
+    '5896a3dc-e41d-441f-8403-92827f502071': {
+      value: null,
+      type: 'Integer',
+      name: 'c_ActEst',
+      display_name: 'Act Est',
+      ref: null
+    },
+    '6a612101-7a49-4a58-ac19-243c2c8c3c8a': {
+      value: null,
+      type: 'Collection',
+      name: 'MixedChildren',
+      display_name: 'Mixed Children',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/MixedChildren'
+    },
+    'abb5af67-e70a-4a98-ad21-26f71bf4fe83': {
+      value: '',
+      type: 'Text',
+      name: 'Notes',
+      display_name: 'Notes',
+      ref: null
+    },
+    '244502f5-6bad-4a39-88d4-86446f43c399': {
+      value: [Object],
+      type: 'Rating',
+      name: 'Severity',
+      display_name: 'Severity',
+      ref: null
+    }
+  },
+  subscription_id: 59351,
+  message_id: '871c37e6-8b87-4ad7-971e-d6ac7bc0d0bb',
+  project: {
+    uuid: '8fba8dc4-4e15-4cfe-8835-8b26e66cf894',
+    name: '!ift & Shift - DRS'
+  },
+  id: '2c6ba96a-4551-4550-b828-fe247685c465',
+  detail_link: 'https://rally1.rallydev.com/slm/#/detail/defect/453171419216',
+  message_version: 2,
+  changes: {
+    'f5b1fb22-6c15-44b5-a592-19189fafe5f2': {
+      value: 59,
+      old_value: 58,
+      added: null,
+      removed: null,
+      type: 'Integer',
+      name: 'VersionId',
+      display_name: 'VersionId',
+      ref: null
+    },
+    'e0caf6dd-304b-447e-9d61-09ac9c96e85a': {
+      value: [Object],
+      old_value: [Object],
+      added: null,
+      removed: null,
+      type: 'Rating',
+      name: 'State',
+      display_name: 'State',
+      ref: null
+    }
+  },
+  action: 'Updated',
+  changesByField: {
+    VersionId: {
+      value: 59,
+      old_value: 58,
+      added: null,
+      removed: null,
+      type: 'Integer',
+      name: 'VersionId',
+      display_name: 'VersionId',
+      ref: null
+    },
+    State: {
+      value: [Object],
+      old_value: [Object],
+      added: null,
+      removed: null,
+      type: 'Rating',
+      name: 'State',
+      display_name: 'State',
+      ref: null
+    }
+  },
+  stateByField: {
+    c_oldDeliveredinBuild: {
+      value: null,
+      type: 'String',
+      name: 'c_oldDeliveredinBuild',
+      display_name: '[old]_Delivered in Build',
+      ref: null
+    },
+    c_EnteredDate: {
+      value: null,
+      type: 'Date',
+      name: 'c_EnteredDate',
+      display_name: 'Entered Date',
+      ref: null
+    },
+    ObjectUUID: {
+      value: '2c6ba96a-4551-4550-b828-fe247685c465',
+      type: 'Raw',
+      name: 'ObjectUUID',
+      display_name: 'ObjectUUID',
+      ref: null
+    },
+    DragAndDropRank: {
+      value: `P!"B>j'Z;J,gO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`,
+      type: 'String',
+      name: 'DragAndDropRank',
+      display_name: 'Drag And Drop Rank',
+      ref: null
+    },
+    c_ArchiveDeliveryStream: {
+      value: null,
+      type: 'String',
+      name: 'c_ArchiveDeliveryStream',
+      display_name: 'Archive Delivery Stream',
+      ref: null
+    },
+    TestCaseStatus: {
+      value: 'NONE',
+      type: 'String',
+      name: 'TestCaseStatus',
+      display_name: 'Test Case Status',
+      ref: null
+    },
+    c_CopadoID: {
+      value: null,
+      type: 'String',
+      name: 'c_CopadoID',
+      display_name: 'Copado ID',
+      ref: null
+    },
+    c_ReleaseDate: {
+      value: null,
+      type: 'Date',
+      name: 'c_ReleaseDate',
+      display_name: 'Release Date',
+      ref: null
+    },
+    Resolution: {
+      value: [Object],
+      type: 'Rating',
+      name: 'Resolution',
+      display_name: 'Resolution',
+      ref: null
+    },
+    c_EscapedtoProduction: {
+      value: null,
+      type: 'String',
+      name: 'c_EscapedtoProduction',
+      display_name: 'Escaped to Production',
+      ref: null
+    },
+    DisplayColor: {
+      value: '#f9a814',
+      type: 'String',
+      name: 'DisplayColor',
+      display_name: 'Display Color',
+      ref: null
+    },
+    Name: {
+      value: 'Carlos Test',
+      type: 'String',
+      name: 'Name',
+      display_name: 'Name',
+      ref: null
+    },
+    c_BranchName: {
+      value: null,
+      type: 'String',
+      name: 'c_BranchName',
+      display_name: 'Branch Name',
+      ref: null
+    },
+    Attachments: {
+      value: null,
+      type: 'Collection',
+      name: 'Attachments',
+      display_name: 'Attachments',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Attachments'
+    },
+    TaskRemainingTotal: {
+      value: [Object],
+      type: 'Quantity',
+      name: 'TaskRemainingTotal',
+      display_name: 'Task Remaining Total',
+      ref: null
+    },
+    VerifiedInBuild: {
+      value: null,
+      type: 'String',
+      name: 'VerifiedInBuild',
+      display_name: 'Verified In Build',
+      ref: null
+    },
+    FlowStateChangedDate: {
+      value: '2020-11-05T17:32:21.512Z',
+      type: 'Date',
+      name: 'FlowStateChangedDate',
+      display_name: 'Flow State Changed Date',
+      ref: null
+    },
+    FormattedID: {
+      value: 'DE37198',
+      type: 'String',
+      name: 'FormattedID',
+      display_name: 'Formatted ID',
+      ref: null
+    },
+    FormattedIDPrefix: {
+      value: 'DE',
+      type: 'String',
+      name: 'FormattedIDPrefix',
+      display_name: 'Formatted ID Prefix',
+      ref: null
+    },
+    ScheduleState: {
+      value: [Object],
+      type: 'State',
+      name: 'ScheduleState',
+      display_name: 'Schedule State',
+      ref: null
+    },
+    c_FunctionalArea: {
+      value: null,
+      type: 'String',
+      name: 'c_FunctionalArea',
+      display_name: 'Functional Area',
+      ref: null
+    },
+    c_ResolutionDetails: {
+      value: null,
+      type: 'Text',
+      name: 'c_ResolutionDetails',
+      display_name: 'Resolution Details',
+      ref: null
+    },
+    c_DeploymentInstructions: {
+      value: null,
+      type: 'Text',
+      name: 'c_DeploymentInstructions',
+      display_name: 'Deployment Instructions',
+      ref: null
+    },
+    Workspace: {
+      value: [Object],
+      type: 'Workspace',
+      name: 'Workspace',
+      display_name: 'Workspace',
+      ref: null
+    },
+    AcceptedDate: {
+      value: null,
+      type: 'Date',
+      name: 'AcceptedDate',
+      display_name: 'Accepted Date',
+      ref: null
+    },
+    LastUpdateDate: {
+      value: '2020-11-05T22:53:17.591Z',
+      type: 'Date',
+      name: 'LastUpdateDate',
+      display_name: 'Last Update Date',
+      ref: null
+    },
+    c_TEST1ComponentDRFISSans: {
+      value: null,
+      type: 'String',
+      name: 'c_TEST1ComponentDRFISSans',
+      display_name: 'TEST1_Component - DR.FIS (Sans)',
+      ref: null
+    },
+    PassingTestCaseCount: {
+      value: 0,
+      type: 'Integer',
+      name: 'PassingTestCaseCount',
+      display_name: 'Passing Test Case Count',
+      ref: null
+    },
+    c_oldArchiveNotes: {
+      value: null,
+      type: 'Text',
+      name: 'c_oldArchiveNotes',
+      display_name: '[old]_Archive Notes',
+      ref: null
+    },
+    c_ReleaseAvailability: {
+      value: null,
+      type: 'String',
+      name: 'c_ReleaseAvailability',
+      display_name: 'Release Availability',
+      ref: null
+    },
+    c_ScopeofCustomers: {
+      value: null,
+      type: 'String',
+      name: 'c_ScopeofCustomers',
+      display_name: 'Scope of Customers',
+      ref: null
+    },
+    c_NumberofChildCases: {
+      value: null,
+      type: 'Integer',
+      name: 'c_NumberofChildCases',
+      display_name: 'Number of Child Cases',
+      ref: null
+    },
+    c_ALMID: {
+      value: null,
+      type: 'String',
+      name: 'c_ALMID',
+      display_name: 'ALMID',
+      ref: null
+    },
+    c_XtimeEnvironment: {
+      value: null,
+      type: 'String',
+      name: 'c_XtimeEnvironment',
+      display_name: 'Xtime Environment',
+      ref: null
+    },
+    c_RootCauseCategory: {
+      value: null,
+      type: 'String',
+      name: 'c_RootCauseCategory',
+      display_name: 'Root Cause Category',
+      ref: null
+    },
+    c_DEVOwner: {
+      value: null,
+      type: 'User',
+      name: 'c_DEVOwner',
+      display_name: 'DEV Owner',
+      ref: null
+    },
+    Tags: {
+      value: null,
+      type: 'Collection',
+      name: 'Tags',
+      display_name: 'Tags',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Tags'
+    },
+    c_ConnecttoSalesforceCase: {
+      value: null,
+      type: 'Boolean',
+      name: 'c_ConnecttoSalesforceCase',
+      display_name: 'Connect to Salesforce Case',
+      ref: null
+    },
+    Milestones: {
+      value: null,
+      type: 'Collection',
+      name: 'Milestones',
+      display_name: 'Milestones',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Milestones'
+    },
+    c_BacklogScoreNumber: {
+      value: null,
+      type: 'Integer',
+      name: 'c_BacklogScoreNumber',
+      display_name: 'Backlog Score Number',
+      ref: null
+    },
+    c_TraxCode: {
+      value: null,
+      type: 'String',
+      name: 'c_TraxCode',
+      display_name: 'Trax Code',
+      ref: null
+    },
+    c_LenderUATStartDate: {
+      value: null,
+      type: 'Date',
+      name: 'c_LenderUATStartDate',
+      display_name: 'Lender UAT Start Date',
+      ref: null
+    },
+    c_QualityImprovement: {
+      value: null,
+      type: 'String',
+      name: 'c_QualityImprovement',
+      display_name: 'Quality Improvement',
+      ref: null
+    },
+    c_CRSProduct: {
+      value: null,
+      type: 'String',
+      name: 'c_CRSProduct',
+      display_name: 'CRS Product',
+      ref: null
+    },
+    c_ArchitectReview: {
+      value: null,
+      type: 'String',
+      name: 'c_ArchitectReview',
+      display_name: 'Architect Review',
+      ref: null
+    },
+    ScheduleStatePrefix: {
+      value: 'I',
+      type: 'String',
+      name: 'ScheduleStatePrefix',
+      display_name: 'Schedule State Prefix',
+      ref: null
+    },
+    CreatedBy: {
+      value: [Object],
+      type: 'User',
+      name: 'CreatedBy',
+      display_name: 'Created By',
+      ref: null
+    },
+    c_SFCaseProductDONOTTOUCH: {
+      value: null,
+      type: 'String',
+      name: 'c_SFCaseProductDONOTTOUCH',
+      display_name: 'SF Case Product (DO NOT TOUCH)',
+      ref: null
+    },
+    c_SFDCCaseRequestor: {
+      value: null,
+      type: 'String',
+      name: 'c_SFDCCaseRequestor',
+      display_name: 'SFDC Case Requestor',
+      ref: null
+    },
+    c_EscalatedAccount: {
+      value: null,
+      type: 'String',
+      name: 'c_EscalatedAccount',
+      display_name: 'Escalated Account',
+      ref: null
+    },
+    Blocker: {
+      value: null,
+      type: 'Blocker',
+      name: 'Blocker',
+      display_name: 'Blocker',
+      ref: null
+    },
+    c_FIDefectType: {
+      value: null,
+      type: 'String',
+      name: 'c_FIDefectType',
+      display_name: 'F&I Defect Type',
+      ref: null
+    },
+    TaskStatus: {
+      value: 'NONE',
+      type: 'String',
+      name: 'TaskStatus',
+      display_name: 'Task Status',
+      ref: null
+    },
+    c_RTSProduct: {
+      value: null,
+      type: 'Collection',
+      name: 'c_RTSProduct',
+      display_name: 'RTS Product',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/c_RTSProduct'
+    },
+    c_DDCState: {
+      value: null,
+      type: 'String',
+      name: 'c_DDCState',
+      display_name: 'DDCState',
+      ref: null
+    },
+    c_ArchiveProject: {
+      value: null,
+      type: 'String',
+      name: 'c_ArchiveProject',
+      display_name: 'Archive Project',
+      ref: null
+    },
+    c_BacklogScore: {
+      value: null,
+      type: 'Integer',
+      name: 'c_BacklogScore',
+      display_name: 'Backlog Score',
+      ref: null
+    },
+    c_TicketID: {
+      value: null,
+      type: 'String',
+      name: 'c_TicketID',
+      display_name: 'Ticket ID',
+      ref: null
+    },
+    Duplicates: {
+      value: null,
+      type: 'Collection',
+      name: 'Duplicates',
+      display_name: 'Duplicates',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Duplicates'
+    },
+    Recycled: {
+      value: false,
+      type: 'Boolean',
+      name: 'Recycled',
+      display_name: 'Recycled',
+      ref: null
+    },
+    c_CoOwner: {
+      value: null,
+      type: 'User',
+      name: 'c_CoOwner',
+      display_name: 'Co-Owner',
+      ref: null
+    },
+    Package: {
+      value: null,
+      type: 'String',
+      name: 'Package',
+      display_name: 'Package',
+      ref: null
+    },
+    c_CMSProduct: {
+      value: null,
+      type: 'Collection',
+      name: 'c_CMSProduct',
+      display_name: 'CMS Product',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/c_CMSProduct'
+    },
+    c_ComponentDRFISSans: {
+      value: null,
+      type: 'Collection',
+      name: 'c_ComponentDRFISSans',
+      display_name: 'Component - DR.FIS (Sans)',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/c_ComponentDRFISSans'
+    },
+    c_Component: {
+      value: null,
+      type: 'String',
+      name: 'c_Component',
+      display_name: 'Component',
+      ref: null
+    },
+    c_Entity: {
+      value: null,
+      type: 'String',
+      name: 'c_Entity',
+      display_name: 'Entity',
+      ref: null
+    },
+    c_TeamUATStartDate: {
+      value: null,
+      type: 'Date',
+      name: 'c_TeamUATStartDate',
+      display_name: 'Team UAT Start Date',
+      ref: null
+    },
+    Subscription: {
+      value: [Object],
+      type: 'Subscription',
+      name: 'Subscription',
+      display_name: 'Subscription',
+      ref: null
+    },
+    SalesforceCaseNumber: {
+      value: null,
+      type: 'String',
+      name: 'SalesforceCaseNumber',
+      display_name: 'Salesforce Case Number',
+      ref: null
+    },
+    TaskEstimateTotal: {
+      value: [Object],
+      type: 'Quantity',
+      name: 'TaskEstimateTotal',
+      display_name: 'Task Estimate Total',
+      ref: null
+    },
+    FoundInBuild: {
+      value: null,
+      type: 'String',
+      name: 'FoundInBuild',
+      display_name: 'Found In Build',
+      ref: null
+    },
+    c_ServiceNowID: {
+      value: null,
+      type: 'String',
+      name: 'c_ServiceNowID',
+      display_name: 'ServiceNow ID',
+      ref: null
+    },
+    c_BugPriority: {
+      value: null,
+      type: 'Integer',
+      name: 'c_BugPriority',
+      display_name: 'Bug Priority',
+      ref: null
+    },
+    c_SFCaseLink: {
+      value: null,
+      type: 'Web Link',
+      name: 'c_SFCaseLink',
+      display_name: 'SF Case Link',
+      ref: null
+    },
+    CreationDate: {
+      value: '2020-11-05T17:32:21.512Z',
+      type: 'Date',
+      name: 'CreationDate',
+      display_name: 'Creation Date',
+      ref: null
+    },
+    Owner: {
+      value: null,
+      type: 'User',
+      name: 'Owner',
+      display_name: 'Owner',
+      ref: null
+    },
+    TestCase: {
+      value: null,
+      type: 'Test Case',
+      name: 'TestCase',
+      display_name: 'Test Case',
+      ref: null
+    },
+    TestCases: {
+      value: null,
+      type: 'Collection',
+      name: 'TestCases',
+      display_name: 'Test Cases',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/TestCases'
+    },
+    c_ImpactDMS: {
+      value: null,
+      type: 'String',
+      name: 'c_ImpactDMS',
+      display_name: 'Impact (DMS)',
+      ref: null
+    },
+    c_SynctoQC: {
+      value: null,
+      type: 'Boolean',
+      name: 'c_SynctoQC',
+      display_name: 'Sync to QC?',
+      ref: null
+    },
+    c_Tester: {
+      value: null,
+      type: 'String',
+      name: 'c_Tester',
+      display_name: 'Tester',
+      ref: null
+    },
+    c_ApplicationArea: {
+      value: null,
+      type: 'String',
+      name: 'c_ApplicationArea',
+      display_name: 'Application Area',
+      ref: null
+    },
+    Discussion: {
+      value: null,
+      type: 'Collection',
+      name: 'Discussion',
+      display_name: 'Discussion',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Discussion'
+    },
+    c_oldDMSPriority: {
+      value: null,
+      type: 'String',
+      name: 'c_oldDMSPriority',
+      display_name: '[old]_DMS Priority',
+      ref: null
+    },
+    c_QAOwner: {
+      value: null,
+      type: 'User',
+      name: 'c_QAOwner',
+      display_name: 'QA Owner',
+      ref: null
+    },
+    Priority: {
+      value: [Object],
+      type: 'Rating',
+      name: 'Priority',
+      display_name: 'Priority',
+      ref: null
+    },
+    Connections: {
+      value: null,
+      type: 'Collection',
+      name: 'Connections',
+      display_name: 'Connections',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Connections'
+    },
+    c_DeploymentStatus: {
+      value: null,
+      type: 'String',
+      name: 'c_DeploymentStatus',
+      display_name: 'Deployment Status',
+      ref: null
+    },
+    c_CallCount: {
+      value: null,
+      type: 'Integer',
+      name: 'c_CallCount',
+      display_name: 'Call Count',
+      ref: null
+    },
+    Tasks: {
+      value: null,
+      type: 'Collection',
+      name: 'Tasks',
+      display_name: 'Tasks',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Tasks'
+    },
+    ReleaseNote: {
+      value: false,
+      type: 'Boolean',
+      name: 'ReleaseNote',
+      display_name: 'Release Note',
+      ref: null
+    },
+    VersionId: {
+      value: 59,
+      type: 'Integer',
+      name: 'VersionId',
+      display_name: 'VersionId',
+      ref: null
+    },
+    Expedite: {
+      value: false,
+      type: 'Boolean',
+      name: 'Expedite',
+      display_name: 'Expedite',
+      ref: null
+    },
+    Ready: {
+      value: false,
+      type: 'Boolean',
+      name: 'Ready',
+      display_name: 'Ready',
+      ref: null
+    },
+    FlowState: {
+      value: [Object],
+      type: 'Flow State',
+      name: 'FlowState',
+      display_name: 'Flow State',
+      ref: null
+    },
+    c_ClientOutcome: {
+      value: null,
+      type: 'Text',
+      name: 'c_ClientOutcome',
+      display_name: 'Client Outcome',
+      ref: null
+    },
+    LastBuild: {
+      value: null,
+      type: 'String',
+      name: 'LastBuild',
+      display_name: 'Last Build',
+      ref: null
+    },
+    ClosedDate: {
+      value: null,
+      type: 'Date',
+      name: 'ClosedDate',
+      display_name: 'Closed Date',
+      ref: null
+    },
+    c_Team: {
+      value: null,
+      type: 'String',
+      name: 'c_Team',
+      display_name: 'Team',
+      ref: null
+    },
+    Release: {
+      value: null,
+      type: 'Release',
+      name: 'Release',
+      display_name: 'Release',
+      ref: null
+    },
+    Blocked: {
+      value: false,
+      type: 'Boolean',
+      name: 'Blocked',
+      display_name: 'Blocked',
+      ref: null
+    },
+    c_Product: {
+      value: null,
+      type: 'String',
+      name: 'c_Product',
+      display_name: 'Product',
+      ref: null
+    },
+    c_AWSAccount: {
+      value: null,
+      type: 'String',
+      name: 'c_AWSAccount',
+      display_name: 'AWS Account',
+      ref: null
+    },
+    c_BusinessPriority: {
+      value: null,
+      type: 'String',
+      name: 'c_BusinessPriority',
+      display_name: 'Business Priority',
+      ref: null
+    },
+    c_DueDate: {
+      value: null,
+      type: 'Date',
+      name: 'c_DueDate',
+      display_name: 'Due Date',
+      ref: null
+    },
+    Project: {
+      value: [Object],
+      type: 'Project',
+      name: 'Project',
+      display_name: 'Project',
+      ref: null
+    },
+    c_ArchiveNotes: {
+      value: null,
+      type: 'String',
+      name: 'c_ArchiveNotes',
+      display_name: 'Archive Notes',
+      ref: null
+    },
+    Iteration: {
+      value: null,
+      type: 'Iteration',
+      name: 'Iteration',
+      display_name: 'Iteration',
+      ref: null
+    },
+    FixedInBuild: {
+      value: null,
+      type: 'String',
+      name: 'FixedInBuild',
+      display_name: 'Fixed In Build',
+      ref: null
+    },
+    c_ArchivePortfolio: {
+      value: null,
+      type: 'String',
+      name: 'c_ArchivePortfolio',
+      display_name: 'Archive Portfolio',
+      ref: null
+    },
+    TargetDate: {
+      value: null,
+      type: 'Date',
+      name: 'TargetDate',
+      display_name: 'Target Date',
+      ref: null
+    },
+    LatestDiscussionAgeInMinutes: {
+      value: null,
+      type: 'Integer',
+      name: 'LatestDiscussionAgeInMinutes',
+      display_name: 'Latest Discussion Age In Minutes',
+      ref: null
+    },
+    TestCaseCount: {
+      value: 0,
+      type: 'Integer',
+      name: 'TestCaseCount',
+      display_name: 'Test Case Count',
+      ref: null
+    },
+    BlockedReason: {
+      value: null,
+      type: 'String',
+      name: 'BlockedReason',
+      display_name: 'Blocked Reason',
+      ref: null
+    },
+    PlanEstimate: {
+      value: null,
+      type: 'Quantity',
+      name: 'PlanEstimate',
+      display_name: 'Plan Estimate',
+      ref: null
+    },
+    RevisionHistory: {
+      value: [Object],
+      type: 'Revision History',
+      name: 'RevisionHistory',
+      display_name: 'Revision History',
+      ref: null
+    },
+    c_Applications: {
+      value: null,
+      type: 'Collection',
+      name: 'c_Applications',
+      display_name: 'Applications',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/c_Applications'
+    },
+    OpenedDate: {
+      value: '2020-11-05T22:52:57.576Z',
+      type: 'Date',
+      name: 'OpenedDate',
+      display_name: 'Opened Date',
+      ref: null
+    },
+    SubmittedBy: {
+      value: [Object],
+      type: 'User',
+      name: 'SubmittedBy',
+      display_name: 'Submitted By',
+      ref: null
+    },
+    Description: {
+      value: '<p>Test</p>\n',
+      type: 'Text',
+      name: 'Description',
+      display_name: 'Description',
+      ref: null
+    },
+    DefectSuites: {
+      value: null,
+      type: 'Collection',
+      name: 'DefectSuites',
+      display_name: 'Defect Suites',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/DefectSuites'
+    },
+    Requirement: {
+      value: null,
+      type: 'Hierarchical Requirement',
+      name: 'Requirement',
+      display_name: 'Requirement',
+      ref: null
+    },
+    c_FIRootCauseREQforFixedorClosed: {
+      value: null,
+      type: 'String',
+      name: 'c_FIRootCauseREQforFixedorClosed',
+      display_name: 'F&I Root Cause - REQ for Fixed or Closed',
+      ref: null
+    },
+    AffectsDoc: {
+      value: false,
+      type: 'Boolean',
+      name: 'AffectsDoc',
+      display_name: 'Affects Doc',
+      ref: null
+    },
+    c_Testerold: {
+      value: null,
+      type: 'Text',
+      name: 'c_Testerold',
+      display_name: 'Tester_old',
+      ref: null
+    },
+    State: {
+      value: [Object],
+      type: 'Rating',
+      name: 'State',
+      display_name: 'State',
+      ref: null
+    },
+    ObjectID: {
+      value: 453171419216,
+      type: 'Integer',
+      name: 'ObjectID',
+      display_name: 'Object ID',
+      ref: null
+    },
+    LastRun: {
+      value: null,
+      type: 'Date',
+      name: 'LastRun',
+      display_name: 'Last Run',
+      ref: null
+    },
+    c_Source: {
+      value: null,
+      type: 'String',
+      name: 'c_Source',
+      display_name: 'Source',
+      ref: null
+    },
+    TaskActualTotal: {
+      value: [Object],
+      type: 'Quantity',
+      name: 'TaskActualTotal',
+      display_name: 'Task Actual Total',
+      ref: null
+    },
+    c_AffectsVersion: {
+      value: null,
+      type: 'String',
+      name: 'c_AffectsVersion',
+      display_name: 'Affects Version',
+      ref: null
+    },
+    FormattedIDID: {
+      value: 37198,
+      type: 'Integer',
+      name: 'FormattedIDID',
+      display_name: 'Formatted ID ID',
+      ref: null
+    },
+    Changesets: {
+      value: null,
+      type: 'Collection',
+      name: 'Changesets',
+      display_name: 'Changesets',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/Changesets'
+    },
+    SalesforceCaseID: {
+      value: null,
+      type: 'String',
+      name: 'SalesforceCaseID',
+      display_name: 'Salesforce Case ID',
+      ref: null
+    },
+    c_ArchiveDate: {
+      value: null,
+      type: 'Date',
+      name: 'c_ArchiveDate',
+      display_name: 'Archive Date',
+      ref: null
+    },
+    InProgressDate: {
+      value: null,
+      type: 'Date',
+      name: 'InProgressDate',
+      display_name: 'In Progress Date',
+      ref: null
+    },
+    TestCaseResult: {
+      value: null,
+      type: 'Test Case Result',
+      name: 'TestCaseResult',
+      display_name: 'Test Case Result',
+      ref: null
+    },
+    c_SourceFIN: {
+      value: null,
+      type: 'String',
+      name: 'c_SourceFIN',
+      display_name: 'Source - FIN',
+      ref: null
+    },
+    c_ServiceNowObjectID: {
+      value: null,
+      type: 'String',
+      name: 'c_ServiceNowObjectID',
+      display_name: 'ServiceNow Object ID',
+      ref: null
+    },
+    TargetBuild: {
+      value: null,
+      type: 'String',
+      name: 'TargetBuild',
+      display_name: 'Target Build',
+      ref: null
+    },
+    c_ReportedbyPQA: {
+      value: null,
+      type: 'String',
+      name: 'c_ReportedbyPQA',
+      display_name: 'Reported by PQA',
+      ref: null
+    },
+    Environment: {
+      value: [Object],
+      type: 'Rating',
+      name: 'Environment',
+      display_name: 'Environment',
+      ref: null
+    },
+    c_Client: {
+      value: null,
+      type: 'String',
+      name: 'c_Client',
+      display_name: 'Client',
+      ref: null
+    },
+    c_DTProduct: {
+      value: null,
+      type: 'String',
+      name: 'c_DTProduct',
+      display_name: 'DT Product',
+      ref: null
+    },
+    c_oldApplications: {
+      value: null,
+      type: 'Collection',
+      name: 'c_oldApplications',
+      display_name: 'old_Applications',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/c_oldApplications'
+    },
+    c_ReleaseNotesTechnicalWriterContent: {
+      value: null,
+      type: 'Text',
+      name: 'c_ReleaseNotesTechnicalWriterContent',
+      display_name: 'Release Notes (Technical Writer Content)',
+      ref: null
+    },
+    c_ActEst: {
+      value: null,
+      type: 'Integer',
+      name: 'c_ActEst',
+      display_name: 'Act Est',
+      ref: null
+    },
+    MixedChildren: {
+      value: null,
+      type: 'Collection',
+      name: 'MixedChildren',
+      display_name: 'Mixed Children',
+      ref: 'https://rally1.rallydev.com/slm/webservice/v2.x/Defect/453171419216/MixedChildren'
+    },
+    Notes: {
+      value: '',
+      type: 'Text',
+      name: 'Notes',
+      display_name: 'Notes',
+      ref: null
+    },
+    Severity: {
+      value: [Object],
+      type: 'Rating',
+      name: 'Severity',
+      display_name: 'Severity',
+      ref: null
+    }
+  }
+}

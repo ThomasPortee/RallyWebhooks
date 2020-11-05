@@ -8,6 +8,7 @@
     "stop": "killall -SIGINT webhook-catcher",
     "deploy": "serverless deploy",
     "info": "serverless info",
+    "login": "serverless login",
     "update": "serverless deploy function -f app",
     "undeploy": "serverless remove",
     "deploy:offline": "serverless offline",
@@ -35,6 +36,7 @@
   "homepage": "https://github.com/RallyTechServices/ac-integrations",
   "dependencies": {
     "@agile-central-technical-services/utils-attribute-uuid": "^0.0.2",
+    "aws-xray-sdk": "^3.2.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",

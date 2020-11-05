@@ -40,3 +40,7 @@ export WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com
 
 # If NOT running in Cloud9, uncomment below and add your AWS access key value
 #export AWS_SECRET_ACCESS_KEY=
+
+export AWS_ACCESS_KEY=AKIASZL36YI2M2SXLSPQ
+export AWS_SECRET_ACCESS_KEY=ltSVLWhgtn6++mWR6/piFNb5ubVLD6f9yvxNepdE
+export AWS_ROLE_LAMBDA_DEV=arn:aws:iam::191922881076:role/deployLambdaTerminal
