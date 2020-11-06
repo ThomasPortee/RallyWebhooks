@@ -5,10 +5,13 @@ const utils = require("../app/utils.js");
 //const targetUrl ="https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3" // AWS Cox environemnt
 // const targetUrl = "https://2p316jv2tk.execute-api.us-east-2.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3"; // JCM  environment for testing
 
+const wh_ref = "73fa2964-2e9c-4daa-8b83-842d4f0e425c"; // This is the webhook _ref or ID for Rally Training environment
+
+const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/${wh_ref}`;
+
 var options = {
 	method: "PATCH",
-	url:
-		"https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/73fa2964-2e9c-4daa-8b83-842d4f0e425c", // The URL for the Defect Closed Declined Change Webhook on Training environemnt
+	url: webhookUrl, // The URL for the Defect Closed Declined Change Webhook on Training environemnt
 	headers: {
 		"content-type": "application/json",
 		cookie: `ZSESSIONID=${process.env.WEBHOOK_RALLY_API_KEY}`
