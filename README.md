@@ -255,3 +255,33 @@ Same tests as Feature but at Business Initiative level
 ## Developer Information
 
 See [DEVELOPER_README](./DEVELOPER_README.md)
+
+# How to find the ID of a field?
+
+This example is for getting the c_Strategy field from PortfolioItem/Investment.
+
+For PortfolioItem/Investment, locate the ID ath the end of the request on the Rally App in this case: 
+Portfolio > Portfolio Items 
+
+For this example we will use this URL:
+`https://rally1.rallydev.com/#/367462670832d/portfolioitemstreegrid?detail=%2Fportfolioitem%2Finvestment%2F601152697484`
+
+The ID we need is the: **601152697484**
+
+We need to find out the the Attribute elements this object for that we need to access the URL:
+`https://rally1.rallydev.com/slm/webservice/v2.0/portfolioitem/investment/601152697484`
+
+For the Portfolio Item we should look for PortfolioItemType to get the *Type Definition*, we get the following link:
+
+`https://rally1.rallydev.com/slm/webservice/v2.0/PortfolioItem/Investment/601152697484/Investments`
+
+Then we have to look for the _Attributes_ definiton, this is in:
+
+`https://rally1.rallydev.com/slm/webservice/v2.0/TypeDefinition/73208213512/Attributes`
+
+**NOTE:** _If we click the link directly the attributes will have a maximum of 20 attributes to show, to the last link we need to add:_
+
+`?query=&fetch=true&start=1&pagesize=2000` at the end of the URL. 
+
+After that we are going to be able all of the attributes, we will need to find the attribute, in this case c_Strategy, and get the **_refObjectUUID**
+

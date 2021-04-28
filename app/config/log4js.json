@@ -28,6 +28,10 @@
     "update_new_investment_category_rule": {
       "appenders": ["out"],
       "level": "error"
+    },
+    "strategy_value_changed_rule": {
+      "appenders": ["out"],
+      "level": "error"
     }
   }
 }

@@ -55,6 +55,14 @@
 				"Enabled": true,
 				"Description": "Update new Portfolio Items' c_SNOWStatusDontTouchAdminONLY field to blank on item create"
 			}]
+		},
+		"Portfolio Item Strategy Value Changed": { 
+			"rules": [{
+				"Name": "Strategy Value Changed Rule",
+				"Path": "./rules/strategy_value_changed_rule",
+				"Enabled": true,
+				"Description": "Update child Portfolio Items' Strategy Value to match the updated parent"
+			}]
 		}
 	}
 }
