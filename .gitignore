@@ -1,4 +1,7 @@
 node_modules
 *.zip
 dist/
-terraform/*
+**/terraform/.terraform/*
+**/terraform/*.tfstate**
+**/terraform/*.terraform
+terraform/*.terraform*

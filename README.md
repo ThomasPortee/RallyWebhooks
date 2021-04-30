@@ -285,3 +285,11 @@ Then we have to look for the _Attributes_ definiton, this is in:
 
 After that we are going to be able all of the attributes, we will need to find the attribute, in this case c_Strategy, and get the **_refObjectUUID**
 
+## Steps to publish
+1. `npm run package` - This will create a zip file
+2. `npm run push` - This will push the new code as a zip file to an S3 bucket
+3. Access AWS:
+  * Access the lambda
+  * Update the code with the s3 URL
+  * Validate
+4. `node ./scripts/{name of the new webhook}` - to deploy the new webhook
