@@ -1,6 +1,7 @@
 const utils = require("../app/utils.js");
 const request = require("request");
-const targetUrl = utils.getTargetUrl();
+//const targetUrl = utils.getTargetUrl();
+const targetUrl = "https://jdy3dk37sf.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3";
 var options = {
   "method": "POST",
   "url": "https://rally1.rallydev.com/apps/pigeon/api/v2/webhook",
