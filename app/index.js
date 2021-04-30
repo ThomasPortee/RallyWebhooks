@@ -54,6 +54,7 @@ app.post(path, (request, response) => {
 
 if (process.env.SERVERLESS) {
 	// Running as Serverless function
+	console.log("Debugging");
 	module.exports.handler = serverless(app);
 }
 else {

@@ -1,10 +1,10 @@
-service: defectTest
+service: dev-cox-webhook-messenger-1-1-4
 provider:
     name: aws
-    role: arn:aws:iam::191922881076:role/deployLambdaTerminal
+    role: arn:aws:iam::047632847397:role/acct-managed/lambdarole
     runtime: nodejs12.x
     stage: dev
-    region: us-east-2
+    region: us-east-1
     environment:
         SERVERLESS: 'true'
 functions:

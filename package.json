@@ -24,7 +24,8 @@
     "postversion": "npm run dist",
     "build": "showdown makehtml --completeHTMLDocument --tables -i README.md -o dist/README_${npm_package_version}.html",
     "clean": "rm dist/*",
-    "package": "zip -r ./dist/cox-webhook-reflector_${npm_package_version}.zip app scripts package.json serverless.yml setup.sh.example yarn.lock README.md dist/README_${npm_package_version}.html",
+    "package": "npm run clean && zip -r ./dist/cox-webhook-reflector_${npm_package_version}.zip app node_modules scripts package.json serverless.yml setup.sh.example yarn.lock README.md dist/README_${npm_package_version}.html",
+    "push": "aws s3 cp ./dist/cox-webhook-reflector_${npm_package_version}.zip s3://cox-terraform-test/v.1.1.4/cox-webhook-reflector-114.zip",
     "dist": "npm run clean; node scripts/updateServerlessServiceVersion.js; npm run build; npm run package"
   },
   "repository": {
@@ -55,6 +56,6 @@
     "serverless-offline": "^3.16.0",
     "showdown": "^1.8.5",
     "yamljs": "^0.3.0",
-    "yarn": "^1.3.2"
+    "yarn": "^1.22.10"
   }
 }

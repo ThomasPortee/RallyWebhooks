@@ -12,6 +12,7 @@ provider "aws"{
 
 resource "aws_lambda_function" "cox-webhook-reflector-114"{
     function_name = "cox-webhook-reflector-114"
+    description = "Cox Reflector for webhook changes"
 
     # The bucket created earlier
     s3_bucket = "cox-terraform-test"
@@ -20,10 +21,18 @@ resource "aws_lambda_function" "cox-webhook-reflector-114"{
     # main is the filename within the zipfile main.js
     # and "handler" is the name of the property under the handler function was
     # exported in that file
-    handler = "app/index.handler"
+    handler = "/app/index.handler"
     runtime = "nodejs12.x"
 
     role = "arn:aws:iam::047632847397:role/acct-managed/lambdarole"
+
+    environment {
+      variables ={
+            RALLY_API_KEY= var.RALLY_API_KEY
+            RALLY_SUBSCRIPTION_ID= var.RALLY_SUBSCRIPTION_ID
+            WEBHOOK_LISTENER_PATH= var.WEBHOOK_LISTENER_PATH
+      }
+    }
 }
 
 resource "aws_api_gateway_resource" "proxy" {
@@ -50,14 +59,14 @@ resource "aws_api_gateway_integration" "lambda" {
 }
 
 resource "aws_api_gateway_method" "proxy_root" {
-   rest_api_id   = aws_api_gateway_rest_api.dev-cox-webhook-api.id
-   resource_id   = aws_api_gateway_rest_api.dev-cox-webhook-api.root_resource_id
+   rest_api_id   = aws_api_gateway_rest_api.cox-webhook-api.id
+   resource_id   = aws_api_gateway_rest_api.cox-webhook-api.root_resource_id
    http_method   = "ANY"
    authorization = "NONE"
 }
 
 resource "aws_api_gateway_integration" "lambda_root" {
-   rest_api_id = aws_api_gateway_rest_api.dev-cox-webhook-api.id
+   rest_api_id = aws_api_gateway_rest_api.cox-webhook-api.id
    resource_id = aws_api_gateway_method.proxy_root.resource_id
    http_method = aws_api_gateway_method.proxy_root.http_method
 
@@ -68,7 +77,7 @@ resource "aws_api_gateway_integration" "lambda_root" {
 
 
 
-resource "aws_api_gateway_deployment" "dev-cox-webhook-api-gateway" {
+resource "aws_api_gateway_deployment" "cox-webhook-api-gateway" {
     depends_on = [
       aws_api_gateway_integration.lambda,
       aws_api_gateway_integration.lambda_root,

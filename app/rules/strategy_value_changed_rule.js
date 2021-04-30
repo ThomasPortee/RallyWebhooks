@@ -18,11 +18,12 @@ var log = require('log4js').getLogger("strategy_value_changed_rule");
 const rally_utils = require('../common/rally_utils')
 
 module.exports.doesRuleApply = (message) => {
+  console.log("Validate if the Rule applies")
   let result = false;
 
   if (message && message.changesByField['c_Strategy']) { // For investment and cascade down.
-    log.info("rule applies");
-    console.log("strategy_value_changed_rule applies");
+    console.log("rule applies");
+    console.log(message);
     this.printObj(message);
     result = true;
   } else {

@@ -5,7 +5,8 @@
 # Enter your subscription ID.
 # Available from Agile Central. Login as a subscription admin.
 # Click `Setup` icon, then `Subscription` tab. Example: `12345`
-export RALLY_SUBSCRIPTION_ID=59351
+# export RALLY_SUBSCRIPTION_ID=59351
+export TF_VAR_RALLY_SUBSCRIPTION_ID=59351
 
 # UUID of the workspace to monitor using the webhook. To get this from Agile Central:
 # 1. System Administration -> Workspaces & Projects
@@ -17,33 +18,34 @@ export RALLY_SUBSCRIPTION_ID=59351
 # This is the production UUID
 #export WEBHOOK_RALLY_WORKSPACE_UUID=b475cff6-a00b-4cec-9a29-ca2eaba81e04
 # This is the Training UUID
-export WEBHOOK_RALLY_WORKSPACE_UUID=8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2
+export TF_VAR_WEBHOOK_RALLY_WORKSPACE_UUID=8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2
 # DO NOT LEAVE BOTH UNCOMMENTED
 
 # Enter an API key for a user that has edit access to all projects in the workspace
-export RALLY_API_KEY=_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs
-#export RALLY_API_KEY=XMLcizA9QhqBzLhP8QiWHp1eNJnEEEll4dJDaAcEs
+export TF_VAR_RALLY_API_KEY=_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs
 
 # Enter an API key for a user that has workspace admin
-export WEBHOOK_RALLY_API_KEY=_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs
-#export WEBHOOK_RALLY_API_KEY=XMLcizA9QhqBzLhP8QiWHp1eNJnEEEll4dJDaAcEs
-
+export TF_VAR_WEBHOOK_RALLY_API_KEY=_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs
 
 # Set this to any random alpha-numerical value. Webhooks will listen for requests that include
 # this value as part of the URL.
 # Only the webhooks created by this package will know this path value. No on else is
 # likely to be able to guess this URL and abuse the webhook listeners.
-export WEBHOOK_LISTENER_PATH="3277c954-e5fb-11e7-80c1-9a914cz093ae"
+export TF_VAR_WEBHOOK_LISTENER_PATH="3277c954-e5fb-11e7-80c1-9a914cz093ae"
 
 # AFTER running `npm run deploy`, enter the value of the `POST` output
-export WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+export TF_VAR_WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
 
 # If NOT running in Cloud9, uncomment below and add your AWS access key value
 #export AWS_ACCESS_KEY=
 
 # If NOT running in Cloud9, uncomment below and add your AWS access key value
 #export AWS_SECRET_ACCESS_KEY=
-export AWS_ACCESS_KEY_ID=ASIAQWFZDSISTHGNLP4S
-export AWS_SECRET_ACCESS_KEY=ro1/LFIPVWi5KWzDlsZ8ghKQmPBHmOWFC/RKAX3V
-export AWS_SESSION_TOKEN=FwoGZXIvYXdzECkaDAxWI33PvGbJXPdT3SKsAXE7A8u8zjjMhAL6XblF/iExSyaLJ6I6YV3W1Xpm23DAdbbBL4BKmBuO9lKvObgGlrgw3V8jyT1WbCpknNxH3NiloMFySkPjaCvxE0E/bX4qtOZ4u+ode5l1EWbjVcVcVRl55sCc7yZOPGK+FOMOtHU0WAj5zlzTcOxqNU16xqCoVURNO0kL+wZKDZAaCUUoVkXh1umsYBOIOxGcONtmVhJ1uA36VVlq6wIRUOgo6MCwhAYyLWYRbS3vD9fQJ+qcFlwaSV6pCEtc6ZRYfd07rBDIfUHm4SzWaCt54zgkT3DryA==
+
+
+#export AWS_ROLE_LAMBDA_DEV=arn:aws:iam::191922881076:role/deployLambdaTerminal
+
+export AWS_ACCESS_KEY_ID=ASIAQWFZDSISXZCHHWAD
+export AWS_SECRET_ACCESS_KEY=2OytgfNuYyq6jY3bjL2wRMEMe+SpaFJM9ONVM+EJ
+export AWS_SESSION_TOKEN=FwoGZXIvYXdzEBUaDKIWfWcqLD/Bylqb4CKsAQtEEsZiWL9fSkS6MKqF/4j+wtaWhvceQh8IX2syBkidoSSbOTKjgtHBPUOxMYoCdXBHHIVusFNE4kvdvgjgPa6p8HEhrPgBgVeFBM2YnMsHbhuKuMxV+R43CsXHNw8ISi9ECTfoYkQNNxYgjM/LDTyaBNbWkmOPHpmxdBsA0R7eX+zlavLg0vpnp9lVo/IZN7FIhkZmSRJgm0sRVI5f4s+8jJ3/I+IaS/VlGcYol4yshAYyLTAbiDPKTdd8xcZhcdOuL67nuy+Nvlgy8f5Xddj//KrBC5jX6eU0Zuud4xF+2w==
 export AWS_DEFAULT_REGION=us-east-1
