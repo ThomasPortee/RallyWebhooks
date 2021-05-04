@@ -18,7 +18,7 @@ var options = {
     "ObjectTypes": ["Feature", "Epic", "Investment"],
     "Expressions": [{
       // Find the attibute ID with: https://rally1.rallydev.com/slm/webservice/v2.0/attributedefinition/ObjectID
-        "AttributeID": "2fae400d-b1f8-4c9b-b304-c15f43016a65", // Business Value - For prod use 4283471c-75a8-43f6-9a09-e3e0bb45bb02
+        "AttributeID": "2fae400d-b1f8-4c9b-b304-c15f43016a65", // c_Strategy Business Value - For prod use 4283471c-75a8-43f6-9a09-e3e0bb45bb02
         "Operator": "changed"
       },
       {

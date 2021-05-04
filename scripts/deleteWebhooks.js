@@ -10,7 +10,8 @@ const query = {
 
 function queryWebhooks(query) {
     const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook?${qs.stringify(query)}`;
-
+    console.log(webhookUrl)
+   
     return fetch(webhookUrl, {
         headers: {
             cookie: `ZSESSIONID=${process.env.RALLY_API_KEY}`,
@@ -30,7 +31,10 @@ function deleteWebhook(ref) {
     });
 }
 
-const itemsToDelete = [];
+const itemsToDelete = [
+    //'e0b41ef5-ce92-4ee5-94de-17e74d77dc0c'
+    'Update New Portfolio Item Investment Strategy'
+];
 
 function handleGetWebhooks(response) {
     var promise = Promise.resolve();
@@ -54,7 +58,8 @@ function handleGetWebhooks(response) {
                 console.log(`Deleting ${itemsToDelete.length} webhooks...`);
                 promise = bluebird.map(itemsToDelete, (item) => {
                     console.log(`Deleting webhook: ${item._ref} (${item.Name})`);
-                    return deleteWebhook(item._ref);
+                    return null;
+                    //return deleteWebhook(item._ref);
                 });
             }
             else {

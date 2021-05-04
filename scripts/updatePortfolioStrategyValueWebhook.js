@@ -7,7 +7,7 @@ const utils = require("../app/utils.js");
 const targetUrl = "https://jdy3dk37sf.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3";
 //const targetUrl="https://00qlixd4m3.execute-api.us-east-1.amazonaws.com/test"; // testing
 
-const wh_ref = "26493394-2d85-4d97-bd53-884f82b98954"; // This is the webhook _ref or ID for Rally Training environment
+const wh_ref = "8c8a531d-0bb8-4568-80db-53c455c36f00"; // This is the webhook _ref or ID for Rally Training environment
 
 const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/${wh_ref}`;
 
