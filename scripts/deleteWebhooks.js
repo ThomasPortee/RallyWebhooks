@@ -10,7 +10,7 @@ const query = {
 
 function queryWebhooks(query) {
     const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook?${qs.stringify(query)}`;
-    console.log(webhookUrl)
+    //console.log(webhookUrl)
    
     return fetch(webhookUrl, {
         headers: {
@@ -55,15 +55,15 @@ function handleGetWebhooks(response) {
         }
         else {
             if (itemsToDelete.length) {
-                console.log(`Deleting ${itemsToDelete.length} webhooks...`);
+                //console.log(`Deleting ${itemsToDelete.length} webhooks...`);
                 promise = bluebird.map(itemsToDelete, (item) => {
-                    console.log(`Deleting webhook: ${item._ref} (${item.Name})`);
+                    //console.log(`Deleting webhook: ${item._ref} (${item.Name})`);
                     return null;
                     //return deleteWebhook(item._ref);
                 });
             }
             else {
-                console.log(`No webhooks found for this app.`);
+                //console.log(`No webhooks found for this app.`);
             }
         }
     }
@@ -78,5 +78,5 @@ function handleGetWebhooks(response) {
 return queryWebhooks()
     .then(handleGetWebhooks)
     .then(() => {
-        console.log("Done");
+        //console.log("Done");
     });

@@ -15,7 +15,7 @@ module.exports.doesRuleApply = (message) => {
   }
 
   if (result) {
-    log.info("rule applies");
+    //log.info("rule applies");
   }
   return result
 }
@@ -46,7 +46,7 @@ module.exports.run = (message) => {
         }, (error) => {
           // Ignore concurrency errors since we update both fields in each webhook
           if (error && error.message && !error.message.startsWith('Concurrency')) {
-            log.error(error);
+            //log.error(error);
           }
           resolve(error);
         })

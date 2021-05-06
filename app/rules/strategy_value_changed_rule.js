@@ -22,9 +22,9 @@ module.exports.doesRuleApply = (message) => {
   let result = false;
 
   if (message && message.changesByField['c_Strategy']) { // For investment and cascade down.
-    console.log("rule applies");
+    console.log("strategy_value_changed_rule applies");
     console.log(message);
-    this.printObj(message);
+    log.info(message);
     result = true;
   } else {
     console.log("strategy_value_changed_rule does NOT apply");
@@ -40,11 +40,20 @@ module.exports.run = (message) => {
     const INVESTMENT = 'INVESTMENT_(NEEDS_NO_PARENT)';
 
     if (message) {
-      this.printObj(message);
+      log.info("***Message:")
+      console.log(message);
       let currentStrategyValue = get(message, ['stateByField', 'c_Strategy', 'value']);
+      console.log("currentStrategyValue")
+      console.log(currentStrategyValue)
       let desiredStrategyValue = currentStrategyValue;
+      console.log("desiredStrategyValue")
+      console.log(desiredStrategyValue)
       let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
+      console.log("workspaceId")
+      console.log(workspaceId)
       let workspaceRef = `/workspace/${workspaceId}`;
+      console.log("workspaceRef")
+      console.log(workspaceRef)
 
       var promise;
       // First, if the Portfolio Item is not an Investment, get the parent's Business Value. If the PI is an Investment, ignore the parent Business Initiative
@@ -53,8 +62,15 @@ module.exports.run = (message) => {
       if (parentRef && (message.object_type != "Investment")) {
         // Return the parent artifact Business value
         console.log("With parent - Not Investment");
+        console.log("parentRef");
+        console.log(parentRef)
         promise = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_Strategy'])
           .then((response) => {
+            console.log("c_Strategy")
+            console.log(response)
+            console.log(get(response, ['c_Strategy']));
+            //console.log("c_Strategy");
+            //console.log(get(response, ['c_Strategy']));
             return get(response, ['c_Strategy']);
           });
       }
@@ -71,12 +87,12 @@ module.exports.run = (message) => {
       // Build the list of objects to update.
       promise
         .then((parentStrategyValue) => {
-          console.log("Entering promise, parentStrategyValue value is"+parentStrategyValue);
+          //console.log("Entering promise, parentStrategyValue value is "+parentStrategyValue);
           if ( parentStrategyValue != INVESTMENT && parentStrategyValue != currentStrategyValue) {
             // Update only this item. The portfolio item has been changed to have a Business value
             // that doesn't match the parent. Change it back.
 
-            console.log("Setting desiredStrategyValue to "+parentStrategyValue);
+            //console.log("Setting desiredStrategyValue to "+parentStrategyValue);
             desiredStrategyValue = parentStrategyValue;
             return [{
               _ref: message.ref,
@@ -88,10 +104,11 @@ module.exports.run = (message) => {
             // To minimize conflict from concurrent webhooks, don't attempt to update all descendents. Update only immediate children
             // and rely on the webhook callback for those updates to allow us to update their children.
             // Otherwise you may get Concurrency Exceptions from Agile Central.
-            console.log("Finding all first level children and updating those");
+            //console.log("Finding all first level children and updating those");
             let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
             if (childrenRef) {
               console.log("childrenRef value");
+              //console.log(childrenRef);
               this.printObj(childrenRef);
               return rally_utils
                 .getArtifactByRef(childrenRef, workspaceRef, ['c_Strategy'])
@@ -102,7 +119,7 @@ module.exports.run = (message) => {
                 });
             }
             else {
-              console.log("No children found");
+              //console.log("No children found");
               return []; // No children (example Features have no portfolio item children, only ChildStories)
             }
           }
@@ -127,7 +144,7 @@ module.exports.run = (message) => {
               );
             }
             else {
-              console.log("No update needed for this item as "+item.c_Strategy+" is equal to "+desiredStrategyValue);
+              //console.log("No update needed for this item as "+item.c_Strategy+" is equal to "+desiredStrategyValue);
               // No update needed for this item
               return;
             }
@@ -153,7 +170,7 @@ module.exports.printObj = (obj) => {
   for (var propName in obj) {
     propValue = obj[propName]
 
-    console.log(propName, propValue);
+    //console.log(propName, propValue);
   }
 }
 

@@ -25,7 +25,7 @@ function handleGetWebhooks(response) {
     const appId = utils.getAppId();
     response.Results.forEach((item) => {
         if (item.CreatedBy === appId) {
-            console.log(`${item._ref} (${item.Name})`);
+            //console.log(`${item._ref} (${item.Name})`);
         }
     });
 
@@ -43,5 +43,5 @@ function handleGetWebhooks(response) {
 return queryWebhooks()
     .then(handleGetWebhooks)
     .then(() => {
-        console.log("Done");
+        //console.log("Done");
     });

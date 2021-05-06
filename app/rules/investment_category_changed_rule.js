@@ -10,13 +10,13 @@ module.exports.doesRuleApply = (message) => {
   let result = false;
 
   if (message && message.changesByField['InvestmentCategory']) {
-    log.info("rule applies");
-    console.log("investment_category_changed_rule does applies");
-    this.printObj(message);
+    //log.info("rule applies");
+    //console.log("investment_category_changed_rule does applies");
+    //this.printObj(message);
     result = true;
   } else {
-    console.log("investment_category_changed_rule does NOT apply");
-    this.printObj(message);
+    //console.log("investment_category_changed_rule does NOT apply");
+    //this.printObj(message);
   }
 
   return result;
@@ -81,7 +81,7 @@ module.exports.run = (message) => {
 
         // Update the list of OIDs (either reverting the 1 item, or updating all its children)
         .then((itemsToUpdate) => {
-          log.info("Items to update: ", itemsToUpdate);
+          //log.info("Items to update: ", itemsToUpdate);
           return bluebird.map(itemsToUpdate, (item) => {
             if (item.InvestmentCategory != desiredInvestmentCategory) {
               return rally_utils.updateArtifact(
@@ -114,6 +114,6 @@ module.exports.printObj = (obj) => {
   for (var propName in obj) {
     propValue = obj[propName]
 
-    console.log(propName, propValue);
+    //console.log(propName, propValue);
   }
 }

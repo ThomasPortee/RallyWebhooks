@@ -32,5 +32,5 @@ var options = {
 
 request(options, function(error, response, body) {
   if (error) throw new Error(error);
-  console.log(`Created webhook: ${body._ref} (${body.Name})`);
+  //console.log(`Created webhook: ${body._ref} (${body.Name})`);
 });

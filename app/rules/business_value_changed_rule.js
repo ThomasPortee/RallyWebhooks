@@ -28,13 +28,13 @@ module.exports.doesRuleApply = (message) => {
   let result = false;
 
   if (message && message.changesByField['c_BusinessValuePrimary']) {
-    log.info("rule applies");
-    console.log("business_value_changed_rule applies");
-    this.printObj(message);
+    //log.info("rule applies");
+    //console.log("business_value_changed_rule applies");
+    //this.printObj(message);
     result = true;
   } else {
-    console.log("business_value_changed_rule does NOT apply");
-    this.printObj(message);
+    //console.log("business_value_changed_rule does NOT apply");
+    //this.printObj(message);
   }
 
   return result;
@@ -46,7 +46,7 @@ module.exports.run = (message) => {
     const INVESTMENT = 'INVESTMENT_(NEEDS_NO_PARENT)';
 
     if (message) {
-       this.printObj(message);
+       //this.printObj(message);
       let currentBusinessValue = get(message, ['stateByField', 'c_BusinessValuePrimary', 'value']);
       let desiredBusinessValue = currentBusinessValue;
       let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
@@ -58,7 +58,7 @@ module.exports.run = (message) => {
       let parentRef = get(message, ['stateByField', 'Parent', 'value', 'ref']);
       if (parentRef && (message.object_type != "Investment")) {
         // Return the parent artifact Business value
-        console.log("With parent - Not Investment");
+        //console.log("With parent - Not Investment");
         promise = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_BusinessValuePrimary'])
           .then((response) => {
             return get(response, ['c_BusinessValuePrimary']);
@@ -67,22 +67,22 @@ module.exports.run = (message) => {
       else {
         if((message.object_type != "Investment")) {
           promise = Promise.resolve(null);
-          console.log("No parent - Not Investment");
+          //console.log("No parent - Not Investment");
         } else {
           promise = Promise.resolve(INVESTMENT);
-          console.log("No parent - but Investment");
+          //console.log("No parent - but Investment");
         }
       }
 
       // Build the list of objects to update.
       promise
         .then((parentBusinessValue) => {
-          console.log("Entering promise, parentBusinessValue value is"+parentBusinessValue);
+          //console.log("Entering promise, parentBusinessValue value is"+parentBusinessValue);
           if ( parentBusinessValue != INVESTMENT && parentBusinessValue != currentBusinessValue) {
             // Update only this item. The portfolio item has been changed to have a Business value
             // that doesn't match the parent. Change it back.
 
-            console.log("Setting desiredBusinessValue to "+parentBusinessValue);
+            //console.log("Setting desiredBusinessValue to "+parentBusinessValue);
             desiredBusinessValue = parentBusinessValue;
             return [{
               _ref: message.ref,
@@ -94,21 +94,21 @@ module.exports.run = (message) => {
             // To minimize conflict from concurrent webhooks, don't attempt to update all descendents. Update only immediate children
             // and rely on the webhook callback for those updates to allow us to update their children.
             // Otherwise you may get Concurrency Exceptions from Agile Central.
-            console.log("Finding all first level children and updating those");
+            //console.log("Finding all first level children and updating those");
             let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
             if (childrenRef) {
-              console.log("childrenRef value");
-              this.printObj(childrenRef);
+              //console.log("childrenRef value");
+              //this.printObj(childrenRef);
               return rally_utils
                 .getArtifactByRef(childrenRef, workspaceRef, ['c_BusinessValuePrimary'])
                 .then(response => {
-                  console.log("Result of updating the children");
-                  this.printObj(response);
+                  //console.log("Result of updating the children");
+                  //this.printObj(response);
                   return response.Results;
                 });
             }
             else {
-              console.log("No children found");
+              //console.log("No children found");
               return []; // No children (example Features have no portfolio item children, only ChildStories)
             }
           }
@@ -116,15 +116,15 @@ module.exports.run = (message) => {
 
         // Update the list of OIDs (either reverting the 1 item, or updating all its children)
         .then((itemsToUpdate) => {
-          log.info("Items to update: ", itemsToUpdate);
-          console.log("Items to update: ", itemsToUpdate);
+          //log.info("Items to update: ", itemsToUpdate);
+          //console.log("Items to update: ", itemsToUpdate);
           return bluebird.map(itemsToUpdate, (item) => {
 
-            console.log("Item");
-            this.printObj(item);
+            //console.log("Item");
+            //this.printObj(item);
 
             if (item.c_BusinessValuePrimary != desiredBusinessValue) {
-              console.log("Updating item to " + desiredBusinessValue);
+              //console.log("Updating item to " + desiredBusinessValue);
               return rally_utils.updateArtifact(
                 item._ref,
                 workspaceRef, ['FormattedID', 'Name', 'c_BusinessValuePrimary'], {
@@ -133,14 +133,14 @@ module.exports.run = (message) => {
               );
             }
             else {
-              console.log("No update needed for this item as "+item.c_BusinessValuePrimary+" is equal to "+desiredBusinessValue);
+              //console.log("No update needed for this item as "+item.c_BusinessValuePrimary+" is equal to "+desiredBusinessValue);
               // No update needed for this item
               return;
             }
           });
         })
         .then((updates) => {
-          console.log("Resolving all updates");
+          //console.log("Resolving all updates");
           resolve(updates);
         })
     }
@@ -159,7 +159,7 @@ module.exports.printObj = (obj) => {
   for (var propName in obj) {
     propValue = obj[propName]
 
-    console.log(propName, propValue);
+    //console.log(propName, propValue);
   }
 }
 
