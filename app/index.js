@@ -30,16 +30,16 @@ app.post(path, (request, response) => {
 	let result;
 	const payload = request.body;
 
-	////log.info(JSON.stringify(payload))
+	//log.info(JSON.stringify(payload))
 
-	//log.info('In catcher')
+	log.info('In catcher')
 
 	//if webhook request is a delete (Recycled) operation, no action is required. 
 	if (payload.message.subscription_id == process.env.RALLY_SUBSCRIPTION_ID && payload.message.action != "Recycled" && payload.message.action != "Deleted") {
 		result = router.processMessage(payload)
 	}
 	else {
-		//log.error('Request from incorrect subscription and/or is a delete operation', payload.message.subscription_id, payload.message.action)
+		log.error('Request from incorrect subscription and/or is a delete operation', payload.message.subscription_id, payload.message.action)
 	}
 
 	if (result) {
@@ -54,7 +54,7 @@ app.post(path, (request, response) => {
 
 if (process.env.SERVERLESS) {
 	// Running as Serverless function
-	//console.log("Debugging");
+	console.log("Debugging");
 	module.exports.handler = serverless(app);
 }
 else {
@@ -63,9 +63,9 @@ else {
 	const host = process.env.HOST || '0.0.0.0';
 	app.listen(port, host, (err) => {
 		if (err) {
-			return //log.error('error =>', err)
+			return log.error('error =>', err)
 		}
 
-		//log.info(`server is listening on ${host}:${port}`)
+		log.info(`server is listening on ${host}:${port}`)
 	})
 }

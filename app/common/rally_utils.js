@@ -15,7 +15,7 @@ module.exports.projectIncluded = (rule_name, top_project_names, project_uuid) =>
 }
 
 module.exports.updateArtifact = (ref, workspaceRef, fetch, data) => {
-	//log.info('Updating: ', ref, data);
+	log.info('Updating: ', ref, data);
 	return new Promise((resolve, reject) => {
 		restApi.update({
 			ref: refUtils.getRelative(ref),
@@ -26,7 +26,7 @@ module.exports.updateArtifact = (ref, workspaceRef, fetch, data) => {
 			}
 		}, function(error, result) {
 			if (error) {
-				//log.debug(`Error updating ref: ${ref}`, error);
+				log.debug(`Error updating ref: ${ref}`, error);
 				reject(error);
 			}
 			else {
@@ -48,7 +48,7 @@ module.exports.getArtifactByRef = (ref, workspaceRef, fetch) => {
 			limit: Infinity
 		}, function(error, result) {
 			if (error) {
-				//log.error(error)
+				log.error(error)
 			}
 			else {
 				resolve(result)

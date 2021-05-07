@@ -18,13 +18,13 @@ module.exports.doesRuleApply = (message) => {
   }
 
   if (result) {
-    //log.info("rule applies");
-    //console.log("rule update_new_investment_category_rule applies");
-    //this.printObj(message);
+    log.info("rule applies");
+    console.log("rule update_new_investment_category_rule applies");
+    this.printObj(message);
   }
   else {
-    //console.log("rule update_new_investment_category_rule does NOT apply");
-    //this.printObj(message);
+    console.log("rule update_new_investment_category_rule does NOT apply");
+    this.printObj(message);
   }
   return result
 }
@@ -132,5 +132,5 @@ module.exports.printObj = (obj) => {
    for(var propName in obj) {
      propValue = obj[propName]
  
-     //console.log(propName,propValue);
+     console.log(propName,propValue);
  }}

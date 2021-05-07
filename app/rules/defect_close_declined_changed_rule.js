@@ -30,18 +30,18 @@ module.exports.doesRuleApply = (message) => {
   let result = false;
   let closedDate = get(message,['stateByField','ClosedDate','value'])
 
-  //console.log("Validates if rule applies to this message")
-  //console.log(message)
-  //console.log(closedDate)
+  console.log("Validates if rule applies to this message")
+  console.log(message)
+  console.log(closedDate)
 
   if (message && message.changesByField['State'] && message.object_type == "Defect" && (!closedDate || closedDate == '')) {
-    //log.info("rule applies");
-    //console.log("defect_close_declined_change_rule applies");
-    //this.printObj(message);
+    log.info("rule applies");
+    console.log("defect_close_declined_change_rule applies");
+    this.printObj(message);
     result = true;
   } else {
-    //console.log("defect_close_declined_change_rule does NOT apply");
-    //this.printObj(message);
+    console.log("defect_close_declined_change_rule does NOT apply");
+    this.printObj(message);
   }
 
   return result;
@@ -61,18 +61,18 @@ module.exports.run = (message) => {
 
       var promise
 
-      //console.log("Closed Date:")
-      //console.log(closedDate)
+      console.log("Closed Date:")
+      console.log(closedDate)
 
       if(message.object_type=="Defect" && (closedDate == undefined || closedDate == '' || closedDate == null)){
         
         // If it's a Defect and does not have a Closed Date:
-        //console.log("Generating promise to Change state to closed")
+        console.log("Generating promise to Change state to closed")
         promise = rally_utils.updateArtifact(message.ref, workspaceRef, ['State'],{
           State:"Closed"
         })
         .then(()=>{
-          //console.log("Defect changed to Status:Closed")
+          console.log("Defect changed to Status:Closed")
           // Get artifact by referecne to see the update
           // Is message available here
           return rally_utils.updateArtifact(message.ref, workspaceRef, ['State'],{
@@ -81,13 +81,13 @@ module.exports.run = (message) => {
   
         })
         .then((result)=>{
-          //console.log("Defech changed to Closed Delcined")
+          console.log("Defech changed to Closed Delcined")
           resolve(result)
         })
 
       }else{
         // If no object exists return undefined
-        //console.log("Nothing to do")
+        console.log("Nothing to do")
         promise = Promise.resolve(undefined)
 
       }
@@ -109,7 +109,7 @@ module.exports.printObj = (obj) => {
   for (var propName in obj) {
     propValue = obj[propName]
 
-    //console.log(propName, propValue);
+    console.log(propName, propValue);
   }
 }
 

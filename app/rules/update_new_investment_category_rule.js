@@ -18,13 +18,13 @@ module.exports.doesRuleApply = (message) => {
   }
 
   if (result) {
-    //log.info("rule applies");
-    //console.log("rule update_new_investment_category_rule applies");
-    //this.printObj(message);
+    log.info("rule applies");
+    console.log("rule update_new_investment_category_rule applies");
+    this.printObj(message);
   }
   else {
-    //console.log("rule update_new_investment_category_rule does NOT apply");
-    //this.printObj(message);
+    console.log("rule update_new_investment_category_rule does NOT apply");
+    this.printObj(message);
   }
   return result
 }
@@ -80,6 +80,7 @@ module.exports.run = (message) => {
 
 
       let currentBusinessValue = get(message, ['stateByField', 'c_BusinessValuePrimary', 'value']);
+      
       if (message.object_type != "Investment" && parentRef) {
         // Return the parent artifact Business Value
         promise = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_BusinessValuePrimary'])
@@ -94,16 +95,56 @@ module.exports.run = (message) => {
           promise = Promise.resolve(INVESTMENT);
         }
       }
-
       promise
-        .then((parentBusinessValue) => {
-          if (parentBusinessValue != INVESTMENT && parentBusinessValue != currentBusinessValue) {
+      .then((parentBusinessValue) => {
+        if (parentBusinessValue != INVESTMENT && parentBusinessValue != currentBusinessValue) {
+          // Update only this item. The portfolio item has been changed to have an business value
+          // that doesn't match the parent. Change it back.
+          return rally_utils.updateArtifact(
+            message.ref,
+            workspaceRef, ['FormattedID', 'Name', 'c_BusinessValuePrimary'], {
+              c_BusinessValuePrimary: parentBusinessValue
+            }
+          );
+        }
+        else {
+          // No update needed for this item
+          return;
+        }
+      })
+      .then((updates) => {
+        updateArray.push(updates);
+        resolve(updateArray);
+      })
+
+
+      // c_Strategy
+      let currentStrategy = get(message, ['stateByField', 'c_Strategy', 'value']);
+      if (message.object_type != "Investment" && parentRef) {
+        // Return the parent artifact Business Value
+        promiseStrategy = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_Strategy'])
+          .then((response) => {
+            return get(response, ['c_Strategy']);
+          });
+      }
+      else {
+        if(message.object_type != "Investment") {
+          promiseStrategy = Promise.resolve(null);
+        } else {
+          promiseStrategy = Promise.resolve(INVESTMENT);
+        }
+      }
+
+
+      promiseStrategy
+        .then((parentStrategy) => {
+          if (parentStrategy != INVESTMENT && parentStrategy != currentStrategy) {
             // Update only this item. The portfolio item has been changed to have an business value
             // that doesn't match the parent. Change it back.
             return rally_utils.updateArtifact(
               message.ref,
-              workspaceRef, ['FormattedID', 'Name', 'c_BusinessValuePrimary'], {
-                c_BusinessValuePrimary: parentBusinessValue
+              workspaceRef, ['FormattedID', 'Name', 'c_Strategy'], {
+                c_Strategy: parentStrategy
               }
             );
           }
@@ -132,5 +173,5 @@ module.exports.printObj = (obj) => {
    for(var propName in obj) {
      propValue = obj[propName]
  
-     //console.log(propName,propValue);
+     console.log(propName,propValue);
  }}

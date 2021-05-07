@@ -33,12 +33,12 @@ var options = {
 
 request(options, function(error, response, body) {
   if (error) throw new Error(error);
-  //console.log(`Created webhook: ${body._ref} (${body.Name})`);
+  console.log(`Created webhook: ${body._ref} (${body.Name})`);
   var nyc = body;
   var propValue;
   for(var propName in nyc) {
     propValue = nyc[propName]
 
-    //console.log(propName,propValue);
+    console.log(propName,propValue);
 }
 });

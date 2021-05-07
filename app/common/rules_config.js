@@ -14,7 +14,7 @@ return new Promise((resolve, reject) => {
 	let project_uuid = payload && payload.message && payload.message.project && payload.message.project.uuid || null
 
 
-	//log.debug('webhook_name', webhook_name, project)
+	log.debug('webhook_name', webhook_name, project)
 
 	let promises = []
 
@@ -27,7 +27,7 @@ return new Promise((resolve, reject) => {
 		}
 	}
 	
-	//log.info('promises',promises)
+	log.info('promises',promises)
 
 	Promise.all(promises)
 			.then((results) => {
@@ -37,7 +37,7 @@ return new Promise((resolve, reject) => {
 						for ( i in app_config.webhook_requests[webhook_name].rules){
 							let rule = app_config.webhook_requests[webhook_name].rules[i]
 							let valid = _.find(results, function(o) { return o[rule.Name]; });
-							//log.info('results[rule.Name]',rule.Name, valid)
+							log.info('results[rule.Name]',rule.Name, valid)
 							if(!project){ // if project is null for some reason, add the rule if enabled.
 								if(rule.Enabled) rules.push(rule)
 							}else{

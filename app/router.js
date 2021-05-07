@@ -15,7 +15,7 @@ module.exports.processMessage = (payload) => {
 	const result = rules_config.getRules(payload)
 		.then((rules) => {
 			if (rules && rules.length == 0) {
-				//log.info('Rules does not match or enabled')
+				log.info('Rules does not match or enabled')
 				return;
 			}
 
@@ -31,7 +31,7 @@ module.exports.processMessage = (payload) => {
 				let rule = require(rules[i].Path)
 
 				if (!rule.doesRuleApply(message)) {
-					//log.info("Rule does not apply")
+					log.info("Rule does not apply")
 				}
 				else {
 					if((rules[i].Name === 'Business Value Changed Rule' ||
@@ -51,11 +51,11 @@ module.exports.processMessage = (payload) => {
 			return Promise.all(ruleResults)
 				.then((values) => {
 					foreach(values, value => {
-						//log.info('result', value);
+						log.info('result', value);
 					});
 				})
 				.catch((error) => {
-					//log.error(error)
+					log.error(error)
 				});
 		})
 

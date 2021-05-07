@@ -20,5 +20,5 @@ const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/${whI
 		method: "GET"
 	});
 
-	//console.log(response);
+	console.log(response);
 })();
