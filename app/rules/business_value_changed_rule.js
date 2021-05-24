@@ -29,11 +29,11 @@ module.exports.doesRuleApply = (message) => {
 
   if (message && message.changesByField['c_CAIBenefit']) {
     log.info("rule applies");
-    console.log("business_value_changed_rule applies");
-    console.log(message);
+    console.log("rule business_value_changed_rule applies");
+    //console.log(message);
     result = true;
   } else {
-    console.log("business_value_changed_rule does NOT apply");
+    console.log("rule business_value_changed_rule does NOT apply");
     this.printObj(message);
   }
 
@@ -43,46 +43,51 @@ module.exports.doesRuleApply = (message) => {
 module.exports.run = (message) => {
   var result = new Promise((resolve, reject) => {
 
-    const INVESTMENT = 'INVESTMENT_(NEEDS_NO_PARENT)';
+    //const INVESTMENT = 'INVESTMENT_(NEEDS_NO_PARENT)';
+    const EPIC = 'EPIC_(NEEDS_NO_PARENT)';
 
     if (message) {
-       this.printObj(message);
+      this.printObj(message);
       let currentBusinessValue = get(message, ['stateByField', 'c_CAIBenefit', 'value']);
       let desiredBusinessValue = currentBusinessValue;
       let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
       let workspaceRef = `/workspace/${workspaceId}`;
 
       var promise;
-      // First, if the Portfolio Item is not an Investment, get the parent's Business Value. If the PI is an Investment, ignore the parent Business Initiative
-      // as the Business value is explicitly ignored on Business Initiatives.
+      // First, if the Portfolio Item is not an Investment, get the parent's Business Value. If the PI is an Investment, 
+      // ignore the parent Business Initiative as the Business value is explicitly ignored on Business Initiatives.
       let parentRef = get(message, ['stateByField', 'Parent', 'value', 'ref']);
-      if (parentRef && (message.object_type != "Investment")) {
+
+      // If Portfolio Item is Epic, will cascade down to all features the c_CAIBenefit value
+      // If Portfolio Item is Feature will take the value C_CAI Benefit of Parent
+
+      if (parentRef && (message.object_type != "Epic")) {
         // Return the parent artifact Business value
-        console.log("With parent - Not Investment");
+        console.log("Epic will cascade down to children");
         promise = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_CAIBenefit'])
           .then((response) => {
             return get(response, ['c_CAIBenefit']);
           });
       }
       else {
-        if((message.object_type != "Investment")) {
+        if((message.object_type != "Epic")) {
           promise = Promise.resolve(null);
-          console.log("No parent - Not Investment");
+          console.log("No parent - Not EPIC");
         } else {
-          promise = Promise.resolve(INVESTMENT);
-          console.log("No parent - but Investment");
+          promise = Promise.resolve(EPIC);
+          console.log("No parent - but EPIC");
         }
       }
 
       // Build the list of objects to update.
       promise
         .then((parentBusinessValue) => {
-          console.log("Entering promise, parentBusinessValue value is"+parentBusinessValue);
-          if ( parentBusinessValue != INVESTMENT && parentBusinessValue != currentBusinessValue) {
+          console.log("Entering promise, parentBusinessValue value is "+parentBusinessValue);
+          if ( parentBusinessValue != EPIC && parentBusinessValue != currentBusinessValue) {
             // Update only this item. The portfolio item has been changed to have a Business value
             // that doesn't match the parent. Change it back.
 
-            console.log("Setting desiredBusinessValue to "+parentBusinessValue);
+            console.log("Setting desired BusinessValue to "+parentBusinessValue);
             desiredBusinessValue = parentBusinessValue;
             return [{
               _ref: message.ref,

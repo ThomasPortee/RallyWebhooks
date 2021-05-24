@@ -32,10 +32,6 @@
     "strategy_value_changed_rule": {
       "appenders": ["out"],
       "level": "debug"
-    },
-    "update_new_investment_strategy_rule": {
-      "appenders": ["out"],
-      "level": "debug"
     }
   }
 }

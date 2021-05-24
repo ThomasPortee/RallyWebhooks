@@ -5,9 +5,10 @@ const utils = require("../app/utils.js");
 //const targetUrl ="https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3" // AWS Cox environemnt
 // const targetUrl = "https://2p316jv2tk.execute-api.us-east-2.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3"; // JCM  environment for testing
 const targetUrl = "https://jdy3dk37sf.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3";
-//const targetUrl="https://00qlixd4m3.execute-api.us-east-1.amazonaws.com/test"; // testing
 
-const wh_ref = "84516def-eeab-4021-abee-98e49679cf98 "; // This is the webhook _ref or ID for Rally Training environment
+
+
+const wh_ref = "84516def-eeab-4021-abee-98e49679cf98"; // This is the webhook _ref or ID for Rally Training environment
 
 const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/${wh_ref}`;
 
@@ -21,7 +22,7 @@ var options = {
 	body: {
 		AppUrl: targetUrl,
 		TargetUrl: targetUrl,
-		"ObjectTypes": ["Feature", "Epic"], //Removed investment
+		ObjectTypes: ["Feature", "Epic"], //Removed investment
 	},
 	json: true
 };
