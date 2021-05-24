@@ -27,7 +27,7 @@ const rally_utils = require('../common/rally_utils')
 module.exports.doesRuleApply = (message) => {
   let result = false;
 
-  if (message && message.changesByField['c_BusinessValuePrimary']) {
+  if (message && message.changesByField['c_CAIBenefit']) {
     log.info("rule applies");
     console.log("business_value_changed_rule applies");
     console.log(message);
@@ -47,7 +47,7 @@ module.exports.run = (message) => {
 
     if (message) {
        this.printObj(message);
-      let currentBusinessValue = get(message, ['stateByField', 'c_BusinessValuePrimary', 'value']);
+      let currentBusinessValue = get(message, ['stateByField', 'c_CAIBenefit', 'value']);
       let desiredBusinessValue = currentBusinessValue;
       let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
       let workspaceRef = `/workspace/${workspaceId}`;
@@ -59,9 +59,9 @@ module.exports.run = (message) => {
       if (parentRef && (message.object_type != "Investment")) {
         // Return the parent artifact Business value
         console.log("With parent - Not Investment");
-        promise = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_BusinessValuePrimary'])
+        promise = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_CAIBenefit'])
           .then((response) => {
-            return get(response, ['c_BusinessValuePrimary']);
+            return get(response, ['c_CAIBenefit']);
           });
       }
       else {
@@ -86,7 +86,7 @@ module.exports.run = (message) => {
             desiredBusinessValue = parentBusinessValue;
             return [{
               _ref: message.ref,
-              c_BusinessValuePrimary: currentBusinessValue
+              c_CAIBenefit: currentBusinessValue
             }];
           }
           else {
@@ -100,7 +100,7 @@ module.exports.run = (message) => {
               console.log("childrenRef value");
               this.printObj(childrenRef);
               return rally_utils
-                .getArtifactByRef(childrenRef, workspaceRef, ['c_BusinessValuePrimary'])
+                .getArtifactByRef(childrenRef, workspaceRef, ['c_CAIBenefit'])
                 .then(response => {
                   console.log("Result of updating the children");
                   this.printObj(response);
@@ -123,17 +123,17 @@ module.exports.run = (message) => {
             console.log("Item");
             this.printObj(item);
 
-            if (item.c_BusinessValuePrimary != desiredBusinessValue) {
+            if (item.c_CAIBenefit != desiredBusinessValue) {
               console.log("Updating item to " + desiredBusinessValue);
               return rally_utils.updateArtifact(
                 item._ref,
-                workspaceRef, ['FormattedID', 'Name', 'c_BusinessValuePrimary'], {
-                  c_BusinessValuePrimary: desiredBusinessValue
+                workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], {
+                  c_CAIBenefit: desiredBusinessValue
                 }
               );
             }
             else {
-              console.log("No update needed for this item as "+item.c_BusinessValuePrimary+" is equal to "+desiredBusinessValue);
+              console.log("No update needed for this item as "+item.c_CAIBenefit+" is equal to "+desiredBusinessValue);
               // No update needed for this item
               return;
             }

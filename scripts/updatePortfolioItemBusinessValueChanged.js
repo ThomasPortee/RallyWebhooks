@@ -20,7 +20,8 @@ var options = {
 	},
 	body: {
 		AppUrl: targetUrl,
-		TargetUrl: targetUrl
+		TargetUrl: targetUrl,
+		"ObjectTypes": ["Feature", "Epic"], //Removed investment
 	},
 	json: true
 };
