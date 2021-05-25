@@ -33,7 +33,7 @@ module.exports.doesRuleApply = (message) => {
 module.exports.run = (message) => {
   var result = new Promise((resolve, reject) => {
 
-    var updateArray = [];
+    
     const INVESTMENT = 'INVESTMENT_(NEEDS_NO_PARENT)';
     if (message) {
       let currentInvestmentCategory = get(message, ['stateByField', 'InvestmentCategory', 'value', 'value']);
@@ -41,23 +41,24 @@ module.exports.run = (message) => {
       let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
       let workspaceRef = `/workspace/${workspaceId}`;
 
-      var promise;
+      var promiseStateByField;
+      var updateArray = [];
       // First, if the Portfolio Item is not an Investment, get the parent's Investment Category. If the PI is an Investment, ignore the parent Business Initiative
       // as the InvestmentCategory is explicitly ignored on Business Initiatives.
       let parentRef = get(message, ['stateByField', 'Parent', 'value', 'ref']);
       if (message.object_type != "Investment" && parentRef) {
         // Return the parent artifact InvestmentCategory
-        promise = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['InvestmentCategory'])
+        promiseStateByField = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['InvestmentCategory'])
           .then((response) => {
             return get(response, ['InvestmentCategory']);
           });
       }
       else {
         // No parent, return undefined as parent InvestmentCategory
-        promise = Promise.resolve(undefined);
+        promiseStateByField = Promise.resolve(undefined);
       }
 
-      promise
+      promiseStateByField
         .then((parentInvestmentCategory) => {
           if (parentInvestmentCategory && parentInvestmentCategory != 'None' && parentInvestmentCategory != currentInvestmentCategory) {
             // Update only this item. The portfolio item has been changed to have an investment category
@@ -76,51 +77,66 @@ module.exports.run = (message) => {
         })
         .then((updates) => {
           updateArray.push(updates);
+          //resolve(updates);
         })
 
 
-      let currentBusinessValue = get(message, ['stateByField', 'c_BusinessValuePrimary', 'value']);
+      // Business Value
+      var promiseBenefit;
+      var updateArrayBenefit = [];
+      let currentBusinessValue = get(message, ['stateByField', 'c_CAIBenefit', 'value']);
+      const EPIC = 'EPIC_(NEEDS_NO_PARENT)';
       
-      if (message.object_type != "Investment" && parentRef) {
+      if (message.object_type != "Epic" && parentRef) {
+        console.log("Updating CAIBenefit")
         // Return the parent artifact Business Value
-        promise = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_BusinessValuePrimary'])
+        promiseBenefit = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_CAIBenefit'])
           .then((response) => {
-            return get(response, ['c_BusinessValuePrimary']);
+            return get(response, ['c_CAIBenefit']);
           });
       }
       else {
-        if(message.object_type != "Investment") {
-          promise = Promise.resolve(null);
+        if(message.object_type != "Epic") {
+          promiseBenefit = Promise.resolve(null);
         } else {
-          promise = Promise.resolve(INVESTMENT);
+          promiseBenefit = Promise.resolve(EPIC);
         }
       }
-      promise
+      promiseBenefit
       .then((parentBusinessValue) => {
-        if (parentBusinessValue != INVESTMENT && parentBusinessValue != currentBusinessValue) {
+        if (parentBusinessValue != EPIC && parentBusinessValue != currentBusinessValue) {
+          console.log("parentBusinessValue");
+          console.log(parentBusinessValue);
           // Update only this item. The portfolio item has been changed to have an business value
           // that doesn't match the parent. Change it back.
           return rally_utils.updateArtifact(
             message.ref,
-            workspaceRef, ['FormattedID', 'Name', 'c_BusinessValuePrimary'], {
-              c_BusinessValuePrimary: parentBusinessValue
+            workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], {
+              c_CAIBenefit: parentBusinessValue
             }
           );
         }
         else {
           // No update needed for this item
+          console.log("No update needed for this item")
           return;
         }
       })
       .then((updates) => {
-        updateArray.push(updates);
-        resolve(updateArray);
+        console.log("Resolving updates parenBusinessValue");
+        console.log(updates);
+        //updateArrayBenefit.push(updates);
+        //resolve(updateArrayBenefit);
       })
 
 
+
       // c_Strategy
+      var promiseStrategy;
+      var updateArrayStrategy = [];
       let currentStrategy = get(message, ['stateByField', 'c_Strategy', 'value']);
       if (message.object_type != "Investment" && parentRef) {
+        console.log("Updating Strategy")
         // Return the parent artifact Business Value
         promiseStrategy = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_Strategy'])
           .then((response) => {
@@ -154,8 +170,10 @@ module.exports.run = (message) => {
           }
         })
         .then((updates) => {
-          updateArray.push(updates);
-          resolve(updateArray);
+          console.log("Resolving updates Strategy");
+          console.log(updates);
+          //updateArrayStrategy.push(updates);
+          //resolve(updateArrayStrategy);
         })
     }
     else {
