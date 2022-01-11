@@ -11,7 +11,7 @@ module.exports.doesRuleApply = (message) => {
 
   if (message && message.changesByField['InvestmentCategory']) {
     log.info("rule applies");
-    console.log("investment_category_changed_rule does applies");
+    console.log("investment_category_changed_rule does apply");
     this.printObj(message);
     result = true;
   } else {

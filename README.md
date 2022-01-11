@@ -150,16 +150,16 @@ These should be treated as passwords and not stored on an deployed environment.
 ### SNOW Fields
 `Send Epic to Snow Indicator (DSE Only)` and `Snow Status (Don't Touch Admin Only)`
 #### Feature
-| Test || Expected Result |
-| :--- | :---: | :---|
-| create new without SNOW fields set | - | new has has SNOW fields blank |
-| create new with Snow Indicator | - | new item has SNOW Indicator cleared |
-| create new with Snow Status | - | new item has Snow status cleared |
-| create new with Snow Indicator an Snow Status | - | new item has SNOW fields blank |
-| copy new without SNOW fields set | - | new item has SNOW fields blank |
-| copy new with Snow Indicator | - | new item Snow Indicator cleared |
-| copy new with Snow Status | - | new item Snow Status cleared |
-| copy new with Snow Indicator an Snow Status | - | new item Snow Status and Snow Indicator cleared |
+| Test                                          |       | Expected Result                                 |
+| :-------------------------------------------- | :---: | :---------------------------------------------- |
+| create new without SNOW fields set            |   -   | new has has SNOW fields blank                   |
+| create new with Snow Indicator                |   -   | new item has SNOW Indicator cleared             |
+| create new with Snow Status                   |   -   | new item has Snow status cleared                |
+| create new with Snow Indicator an Snow Status |   -   | new item has SNOW fields blank                  |
+| copy new without SNOW fields set              |   -   | new item has SNOW fields blank                  |
+| copy new with Snow Indicator                  |   -   | new item Snow Indicator cleared                 |
+| copy new with Snow Status                     |   -   | new item Snow Status cleared                    |
+| copy new with Snow Indicator an Snow Status   |   -   | new item Snow Status and Snow Indicator cleared |
 
 #### Epic
 Same tests as Feature but at Epic level
@@ -172,69 +172,69 @@ Same tests as Feature but at Business Initiative level
 
 
 ### Release
-| Test || Expected Result | 
-| :--- | :---: | :--- |
-| create story without parent, release unset | - | __TODO__ |
-| create story without parent, release set | - | __TODO__ |
-| create story with parent, release unset | - | __TODO__ |
-| create story with parent, release set | - | __TODO__ |
-| update story release, without parent | - | __TODO__ |
-| update story release, with parent with release unset | - | __TODO__ |
-| update story release, with parent with release set | - | __TODO__ |
+| Test                                                 |       | Expected Result |
+| :--------------------------------------------------- | :---: | :-------------- |
+| create story without parent, release unset           |   -   | __TODO__        |
+| create story without parent, release set             |   -   | __TODO__        |
+| create story with parent, release unset              |   -   | __TODO__        |
+| create story with parent, release set                |   -   | __TODO__        |
+| update story release, without parent                 |   -   | __TODO__        |
+| update story release, with parent with release unset |   -   | __TODO__        |
+| update story release, with parent with release set   |   -   | __TODO__        |
 
 ### Investment Category (IC)
 
 #### Business Initiative
-| Test || Expected Result | 
-| :--- | :---: | :--- |
-| create with IC unset | - | IC remains unset |
-| create with IC set | - | IC remains set |
-| change IC does not update descendents ICs | - | descendents ICs unchanged |
+| Test                                      |       | Expected Result           |
+| :---------------------------------------- | :---: | :------------------------ |
+| create with IC unset                      |   -   | IC remains unset          |
+| create with IC set                        |   -   | IC remains set            |
+| change IC does not update descendents ICs |   -   | descendents ICs unchanged |
 
 #### Investment
-| Test || Expected Result | 
-| :--- | :---: | :--- |
-| create without parent, leave IC unset | - | IC is "None" |
-| create without parent, set IC | - | IC is set value |
-| create with parent IC unset, leave IC unset | - | IC is "None" |
-| create with parent IC unset, set IC | - | IC is set value |
-| create with parent IC set, leave IC unset | - | IC is "None" (ignores parent BI) |
-| create with parent IC set, set IC | - | IC is set value (ignores parent BI) |
-| change IC without parent | - | IC is new value |
-| change IC with parent IC unset | - | IC is new value |
-| change IC with parent IC set | - | IC is new valeu (ignores parent BI) |
-| reparent with IC unset to no parent | - | IC remains unset |
-| reparent with IC set to no parent | - | IC remains set |
-| reparent with IC unset to parent with IC unset | - | IC remains unset |
-| reparent with IC set to parent with IC unset | - | IC remains set |
-| reparent with IC unset to parent with IC set | - | IC remains set (ignores parent BI) |
-| reparent with IC set to parent with IC set | - | IC updated to parent value |
-| change IC updates descendents | - | descendent ICs updated |
-| reparent does not update descendents | - | descendent ICs unchanged (ignores parent BI) |
+| Test                                           |       | Expected Result                              |
+| :--------------------------------------------- | :---: | :------------------------------------------- |
+| create without parent, leave IC unset          |   -   | IC is "None"                                 |
+| create without parent, set IC                  |   -   | IC is set value                              |
+| create with parent IC unset, leave IC unset    |   -   | IC is "None"                                 |
+| create with parent IC unset, set IC            |   -   | IC is set value                              |
+| create with parent IC set, leave IC unset      |   -   | IC is "None" (ignores parent BI)             |
+| create with parent IC set, set IC              |   -   | IC is set value (ignores parent BI)          |
+| change IC without parent                       |   -   | IC is new value                              |
+| change IC with parent IC unset                 |   -   | IC is new value                              |
+| change IC with parent IC set                   |   -   | IC is new valeu (ignores parent BI)          |
+| reparent with IC unset to no parent            |   -   | IC remains unset                             |
+| reparent with IC set to no parent              |   -   | IC remains set                               |
+| reparent with IC unset to parent with IC unset |   -   | IC remains unset                             |
+| reparent with IC set to parent with IC unset   |   -   | IC remains set                               |
+| reparent with IC unset to parent with IC set   |   -   | IC remains set (ignores parent BI)           |
+| reparent with IC set to parent with IC set     |   -   | IC updated to parent value                   |
+| change IC updates descendents                  |   -   | descendent ICs updated                       |
+| reparent does not update descendents           |   -   | descendent ICs unchanged (ignores parent BI) |
 #### Epic
-| Test || Expected Result | 
-| :--- | :---: | :--- |
-| same tests as Feature | - | __TODO__ |
-| change IC updates descendents | - | descendent ICs updated |
-| reparent updates descendents | - | descendent ICs updated to match new parent |
+| Test                          |       | Expected Result                            |
+| :---------------------------- | :---: | :----------------------------------------- |
+| same tests as Feature         |   -   | __TODO__                                   |
+| change IC updates descendents |   -   | descendent ICs updated                     |
+| reparent updates descendents  |   -   | descendent ICs updated to match new parent |
 #### Feature
-| Test || Expected Result | 
-| :--- | :---: | :--- |
-| create without parent, leave IC unset | - |  IC is "None" |
-| create without parent, set IC | - |  IC is set value |
-| create with parent IC unset, leave IC unset | - |  IC is "None" |
-| create with parent IC unset, set IC | - |  IC is set value |
-| create with parent IC set, leave IC unset | - |  IC reset to parent IC value |
-| create with parent IC set, set IC | - |  IC updated to parent value |
-| change IC without parent | - |  IC is new value |
-| change IC with parent IC unset | - |  IC is new value |
-| change IC with parent IC set | - |  IC updated to parent value |
-| reparent with IC unset to no parent | - |  IC remains unset |
-| reparent with IC set to no parent | - |  IC remains set |
-| reparent with IC unset to parent with IC unset | - |  IC remains unset |
-| reparent with IC set to parent with IC unset | - |  IC remains set |
-| reparent with IC unset to parent with IC set | - |  IC updated to parent value |
-| reparent with IC set to parent with IC set | - |  IC updated to parent value |
+| Test                                           |       | Expected Result             |
+| :--------------------------------------------- | :---: | :-------------------------- |
+| create without parent, leave IC unset          |   -   | IC is "None"                |
+| create without parent, set IC                  |   -   | IC is set value             |
+| create with parent IC unset, leave IC unset    |   -   | IC is "None"                |
+| create with parent IC unset, set IC            |   -   | IC is set value             |
+| create with parent IC set, leave IC unset      |   -   | IC reset to parent IC value |
+| create with parent IC set, set IC              |   -   | IC updated to parent value  |
+| change IC without parent                       |   -   | IC is new value             |
+| change IC with parent IC unset                 |   -   | IC is new value             |
+| change IC with parent IC set                   |   -   | IC updated to parent value  |
+| reparent with IC unset to no parent            |   -   | IC remains unset            |
+| reparent with IC set to no parent              |   -   | IC remains set              |
+| reparent with IC unset to parent with IC unset |   -   | IC remains unset            |
+| reparent with IC set to parent with IC unset   |   -   | IC remains set              |
+| reparent with IC unset to parent with IC set   |   -   | IC updated to parent value  |
+| reparent with IC set to parent with IC set     |   -   | IC updated to parent value  |
 
 ## Limitations
 1. Assumes that Portfolio Item Hierarchy is `BusinessInitiative` -> `Investment` -> `Epic` -> `Feature`
@@ -293,3 +293,9 @@ After that we are going to be able all of the attributes, we will need to find t
   * Update the code with the s3 URL
   * Validate
 4. `node ./scripts/{name of the new webhook}` - to deploy the new webhook
+
+
+
+### 2022-01-11
+any investemnt should have Investment category should be the same
+feature should match 

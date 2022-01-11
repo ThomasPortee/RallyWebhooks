@@ -8,7 +8,8 @@ const targetUrl = "https://jdy3dk37sf.execute-api.us-east-1.amazonaws.com/dev/32
 
 
 
-const wh_ref = "84516def-eeab-4021-abee-98e49679cf98"; // This is the webhook _ref or ID for Rally Training environment
+//const wh_ref = "84516def-eeab-4021-abee-98e49679cf98"; // This is the webhook _ref or ID for Rally Training environment
+const wh_ref = "bcfcba77-3e32-4d28-9670-3f53027a74a6" //Portfolio Item Investment Category Changed
 
 const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/${wh_ref}`;
 
@@ -22,7 +23,8 @@ var options = {
 	body: {
 		AppUrl: targetUrl,
 		TargetUrl: targetUrl,
-		ObjectTypes: ["Feature", "Epic"], //Removed investment
+		ObjectTypes: ["Feature", "Epic", "Investment"], //Removed investment
+		Disabled: false,
 	},
 	json: true
 };

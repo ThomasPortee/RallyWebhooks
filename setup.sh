@@ -43,7 +43,7 @@ export WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com
 
 # If NOT running in Cloud9, uncomment below and add your AWS access key value
 #export AWS_SECRET_ACCESS_KEY=
-export AWS_ACCESS_KEY_ID=ASIAQWFZDSIS7UKAL5RE
-export AWS_SECRET_ACCESS_KEY=g/Mu7h3q8E5xGpYWSN7pBl2nxmO462Wr3A6Ra4II
-export AWS_SESSION_TOKEN=FwoGZXIvYXdzEID//////////wEaDHVcyoCfR/cV1KEF7CKsAasUacNnleeHJCrPDpzla2+GAdNc5aHsIcYUdKjdjNyGJWP+kG1ehkXt5wXmmGtPrSmeMj2MASheL2ms9UjTrv+ESUvEV6AxssHKOq5/j+BRMpPW9y8e3E2M7eC+vAPkgzi6Vi3aVzqw7+1vSQbfD382fyHkMCZEKkHLrsqiWS1GKUpSUDz05z/SfgoMeh5xRWyVfwwg878Fkunv21a9XzjSJ/tdhUL7syAGQc8olo60hQYyLSE7ObtLhlAkJNGITW35zMRejNeUhv9VUzV0fwmxA8WtIK+r4CUdZvVweyImcw==
-export AWS_DEFAULT_REGION=us-east-1
+#export AWS_ACCESS_KEY_ID=ASIAQWFZDSIS7UKAL5RE
+#export AWS_SECRET_ACCESS_KEY=g/Mu7h3q8E5xGpYWSN7pBl2nxmO462Wr3A6Ra4II
+#export AWS_SESSION_TOKEN=FwoGZXIvYXdzEID//////////wEaDHVcyoCfR/cV1KEF7CKsAasUacNnleeHJCrPDpzla2+GAdNc5aHsIcYUdKjdjNyGJWP+kG1ehkXt5wXmmGtPrSmeMj2MASheL2ms9UjTrv+ESUvEV6AxssHKOq5/j+BRMpPW9y8e3E2M7eC+vAPkgzi6Vi3aVzqw7+1vSQbfD382fyHkMCZEKkHLrsqiWS1GKUpSUDz05z/SfgoMeh5xRWyVfwwg878Fkunv21a9XzjSJ/tdhUL7syAGQc8olo60hQYyLSE7ObtLhlAkJNGITW35zMRejNeUhv9VUzV0fwmxA8WtIK+r4CUdZvVweyImcw==
+#export AWS_DEFAULT_REGION=us-east-1
