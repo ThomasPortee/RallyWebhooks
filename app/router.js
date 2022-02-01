@@ -9,6 +9,8 @@ module.exports.processMessage = (payload) => {
 
 	// Transform so that the field values are in a hash with a key that is the field name
 	// instead of the field's UUID
+	
+
 	const message = payload.message
 
 	// Get all the rules that applies to this payload
@@ -38,8 +40,8 @@ module.exports.processMessage = (payload) => {
 					rules[i].Name === 'Update New Portfolio Item Investment Category Rule' ||
 					rules[i].Name === 'Investment Category Changed Rule' ||
 					rules[i].Name === 'Strategy Value Changed Rule'
-					) && delayExecuted == false) {
-						var waitTill = new Date(new Date().getTime() + 5 * 1000);
+					) && delayExecuted === false) {
+						var waitTill = new Date(new Date().getTime() + 5 * 100); //There was a 5 second delay to not overlap the calls.
 						while(waitTill > new Date()){}
 						delayExecuted=true;
 					}

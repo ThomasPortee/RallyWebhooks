@@ -9,7 +9,7 @@ const targetUrl = "https://jdy3dk37sf.execute-api.us-east-1.amazonaws.com/dev/32
 
 
 //const wh_ref = "84516def-eeab-4021-abee-98e49679cf98"; // This is the webhook _ref or ID for Rally Training environment
-const wh_ref = "b215a6f5-e572-4d4c-8e85-08c39b908c15" //Portfolio Item Investment Category Changed
+const wh_ref = "9ed1aea9-3c87-44f4-b45f-4bddcafc5d1d" //Portfolio Item Business Value Changed c_CAIBenefit
 
 const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/${wh_ref}`;
 
@@ -23,7 +23,17 @@ var options = {
 	body: {
 		AppUrl: targetUrl,
 		TargetUrl: targetUrl,
-		ObjectTypes: ["Feature", "Epic", "Investment"], //Removed investment
+		Expressions: [{
+			"AttributeID": "f7be48fa-c502-4f5c-a5d0-646a85a586f1", // C_CAIBenefit field must change: https://rally1.rallydev.com/slm/webservice/v2.0/attributedefinition/72c54fac-1164-4e2e-88d3-3442860c7c9e
+			"Operator": "changed"
+		},
+		{
+			"AttributeName": "Workspace",
+			"Operator": "=",
+			"Value": process.env.WEBHOOK_RALLY_WORKSPACE_UUID
+		}
+		],
+		ObjectTypes: ["Feature", "Epic"], //Removed investment
 		Disabled: false,
 	},
 	json: true

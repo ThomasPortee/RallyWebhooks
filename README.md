@@ -299,3 +299,43 @@ After that we are going to be able all of the attributes, we will need to find t
 ### 2022-01-11
 any investemnt should have Investment category should be the same
 feature should match 
+
+### URLS
+
+This URL brings all of the attributes of an item in this case an Investment: [https://rally1.rallydev.com/slm/webservice/v2.0/portfolioitem/investment/601152697484](https://rally1.rallydev.com/slm/webservice/v2.0/portfolioitem/investment/601152697484)
+This can privide the UUID of an specific attribute : [https://rally1.rallydev.com/slm/webservice/v2.0/TypeDefinition/73208213512/Attributes?query=&fetch=true&start=1&pagesize=2000](https://rally1.rallydev.com/slm/webservice/v2.0/TypeDefinition/73208213512/Attributes?query=&fetch=true&start=1&pagesize=2000)
+Detail of CAI Benefit attribute: [https://rally1.rallydev.com/slm/webservice/v2.0/attributedefinition/72c54fac-1164-4e2e-88d3-3442860c7c9e](https://rally1.rallydev.com/slm/webservice/v2.0/attributedefinition/72c54fac-1164-4e2e-88d3-3442860c7c9e)
+Production: Portfolio Item Business Value Changed: [https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/84516def-eeab-4021-abee-98e49679cf98](https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/84516def-eeab-4021-abee-98e49679cf98)
+Trainning:  Portfolio Item Business Value Changed: [https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/9ed1aea9-3c87-44f4-b45f-4bddcafc5d1d](https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/9ed1aea9-3c87-44f4-b45f-4bddcafc5d1d)
+API Webservice: [https://rally1.rallydev.com/slm/doc/webservice/](https://rally1.rallydev.com/slm/doc/webservice/)
+
+
+I'm analyzing: https://rally1.rallydev.com/slm/webservice/v2.0/portfolioitem/epic/183271785068
+I made the change: CAI BENEFIT added [Client-specific Requests] on 	01/28/2022 12:47 PM EST
+
+I have disabled in trainning https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/8071d783-2f50-45e7-b460-5a3098f0e9c3 Update New Portfolio Item Investment Category
+it triggers on nay change because of this:
+    {
+      "AttributeID": "5736cb0d-4ef8-4e83-a086-cb11e9a705e2", // Investment category
+      "AttributeName": null,
+      "Operator": "has",
+      "Value": null
+    }, 
+    So it has thtat attribute, but maybe we need to change it to on change or somehting similar.
+
+### 2022-01-31. Test for CAI Benefit:
+
+#### Working:
+1. Changing the field on the child DOES trigger the webhook to force agreement (both webhooks).
+2. Changing the values on the Parent DOES trigger the webhook to change the children (both webhooks).
+3. Setting the CAI Benefit on child Feature whose Epic has no CAI Benefit does trigger the webhook to change the child - this is working as expected
+
+#### In progress:
+1. Creating a new Feature on an Epic is NOT triggering the webhook for New Portfolio Items for Investment Category // done --check strategy creation.
+2. Setting the Investment Category on child Feature whose Epic has no Investment Category does not trigger the webhook to change the child - this is working as expected // done
+2. Moving a Feature from one Epic to another with different CAI Benefit and Investment Category does NOT trigger the webhook to update the children.
+4. Creating a Feature under an Epic with a CAI Benefit is NOT triggering the webhook for New Portfolio Item for CAI Benefit
+
+#### Solutions:
+1. Create a new webhook intended for Features that checks parent changes.
+2. 

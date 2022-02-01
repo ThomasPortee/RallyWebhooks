@@ -9,7 +9,9 @@ const query = {
 };
 
 function queryWebhooks(query) {
+    //console.log(query)
     const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook?${qs.stringify(query)}`;
+    //console.log(webhookUrl)
 
     return fetch(webhookUrl, {
         headers: {

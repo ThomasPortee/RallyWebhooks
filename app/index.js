@@ -31,6 +31,10 @@ app.post(path, (request, response) => {
 	const payload = request.body;
 
 	//log.info(JSON.stringify(payload))
+	if (process.env.LOG_PAYLOAD === "true") {
+		console.log("PAYLOAD")
+		console.log(JSON.stringify(payload))
+	}
 
 	log.info('In catcher')
 

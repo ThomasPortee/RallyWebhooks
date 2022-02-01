@@ -30,24 +30,28 @@ module.exports.doesRuleApply = (message) => {
   if (message && message.changesByField['c_CAIBenefit']) {
     log.info("rule applies");
     console.log("rule business_value_changed_rule applies");
-    //console.log(message);
+
     result = true;
   } else {
     console.log("rule business_value_changed_rule does NOT apply");
-    this.printObj(message);
+    //this.printObj(message);
   }
+
+  //console.log(JSON.stringify(message));
 
   return result;
 }
 
 module.exports.run = (message) => {
+  console.log("rule business_value_changed_rule Running");
+
   var result = new Promise((resolve, reject) => {
 
-    //const INVESTMENT = 'INVESTMENT_(NEEDS_NO_PARENT)';
     const EPIC = 'EPIC_(NEEDS_NO_PARENT)';
-
+    
     if (message) {
-      this.printObj(message);
+      
+      //this.printObj(message);
       let currentBusinessValue = get(message, ['stateByField', 'c_CAIBenefit', 'value']);
       let desiredBusinessValue = currentBusinessValue;
       let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
@@ -89,6 +93,7 @@ module.exports.run = (message) => {
 
             console.log("Setting desired BusinessValue to "+parentBusinessValue);
             desiredBusinessValue = parentBusinessValue;
+            //resolve(`Setting desired BusinessValue to ${parentBusinessValue}`)
             return [{
               _ref: message.ref,
               c_CAIBenefit: currentBusinessValue
@@ -103,12 +108,13 @@ module.exports.run = (message) => {
             let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
             if (childrenRef) {
               console.log("childrenRef value");
-              this.printObj(childrenRef);
+              console.log(JSON.stringify(childrenRef))
+              //this.printObj(childrenRef);
               return rally_utils
                 .getArtifactByRef(childrenRef, workspaceRef, ['c_CAIBenefit'])
                 .then(response => {
                   console.log("Result of updating the children");
-                  this.printObj(response);
+                  //this.printObj(response);
                   return response.Results;
                 });
             }
@@ -122,11 +128,10 @@ module.exports.run = (message) => {
         // Update the list of OIDs (either reverting the 1 item, or updating all its children)
         .then((itemsToUpdate) => {
           log.info("Items to update: ", itemsToUpdate);
-          console.log("Items to update: ", itemsToUpdate);
+          console.log("Items to update: ", JSON.stringify(itemsToUpdate));
           return bluebird.map(itemsToUpdate, (item) => {
-
             console.log("Item");
-            this.printObj(item);
+            //this.printObj(item);
 
             if (item.c_CAIBenefit != desiredBusinessValue) {
               console.log("Updating item to " + desiredBusinessValue);
@@ -154,7 +159,6 @@ module.exports.run = (message) => {
     }
   });
   
-
   return result;
 }
 
@@ -163,7 +167,6 @@ module.exports.printObj = (obj) => {
   var propValue;
   for (var propName in obj) {
     propValue = obj[propName]
-
     console.log(propName, propValue);
   }
 }

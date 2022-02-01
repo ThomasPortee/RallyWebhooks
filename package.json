@@ -26,6 +26,7 @@
     "clean": "rm dist/*",
     "package": "npm run clean || true && zip -r ./dist/cox-webhook-reflector_${npm_package_version}.zip app node_modules scripts package.json serverless.yml setup.sh.example yarn.lock README.md dist/README_${npm_package_version}.html",
     "push": "aws s3 cp ./dist/cox-webhook-reflector_${npm_package_version}.zip s3://cox-terraform-test/v.1.1.4/cox-webhook-reflector-114.zip",
+    "update-code": "npm run package && npm run push && aws lambda update-function-code --function-name arn:aws:lambda:us-east-1:047632847397:function:cox-webhook-reflector-114 --s3-bucket cox-terraform-test --s3-key v.1.1.4/cox-webhook-reflector-114.zip",
     "dist": "npm run clean; node scripts/updateServerlessServiceVersion.js; npm run build; npm run package"
   },
   "repository": {
@@ -47,13 +48,13 @@
     "log4js": "^2.4.1",
     "rally": "2.1.2",
     "request": "^2.87.0",
-    "serverless-http": "^1.5.2"
+    "serverless-http": "^2.7.0"
   },
   "devDependencies": {
     "node-fetch-json": "^0.0.3",
     "qs": "^6.7.0",
-    "serverless": "^1.24.1",
-    "serverless-offline": "^3.16.0",
+    "serverless": "^3.0.1",
+    "serverless-offline": "^8.4.0",
     "showdown": "^1.8.5",
     "yamljs": "^0.3.0",
     "yarn": "^1.22.10"

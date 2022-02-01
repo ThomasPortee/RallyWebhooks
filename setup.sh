@@ -35,8 +35,10 @@ export WEBHOOK_RALLY_API_KEY=_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs
 # likely to be able to guess this URL and abuse the webhook listeners.
 export WEBHOOK_LISTENER_PATH="3277c954-e5fb-11e7-80c1-9a914cz093ae"
 
-# AFTER running `npm run deploy`, enter the value of the `POST` output
-export WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+# AFTER running `npm run deploy`, enter the value of the `POST` output, this is the Production URL
+#export WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+# This is the TEST URL AFTER running `npm run deploy`, enter the value of the `POST` output.
+export WEBHOOK_TARGET_URL=https://jdy3dk37sf.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
 
 # If NOT running in Cloud9, uncomment below and add your AWS access key value
 #export AWS_ACCESS_KEY=
