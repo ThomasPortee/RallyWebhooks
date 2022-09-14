@@ -41,7 +41,9 @@ module.exports.processMessage = (payload) => {
 					rules[i].Name === 'Investment Category Changed Rule' ||
 					rules[i].Name === 'Strategy Value Changed Rule'
 					) && delayExecuted === false) {
-						var waitTill = new Date(new Date().getTime() + 5 * 100); //There was a 5 second delay to not overlap the calls.
+						var msTimeout = parseInt(process.env.MSTIMEOUT)
+						var waitTill = new Date(new Date().getTime() + msTimeout);
+						//var waitTill = new Date(new Date().getTime() + 5 * 100); //There was a 5 second delay to not overlap the calls.
 						while(waitTill > new Date()){}
 						delayExecuted=true;
 					}
