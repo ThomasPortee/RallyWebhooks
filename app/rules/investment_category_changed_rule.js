@@ -6,12 +6,22 @@ var log = require('log4js').getLogger("investment_category_changed_rule");
 
 const rally_utils = require('../common/rally_utils')
 
+
+/**
+ * investment_category_changed
+ * Change Investment Category Reflector:  Always cascade Investment Category from Investment to Epic and Feature.
+    1. If Investment Category is set on an orphan Epic or Feature, remove Investment Category.
+    2. If Investment Category is set on a Feature or Epic whose parent does not have an Investment Category, remove Investment Category.
+ * @param {*} message 
+ * @returns 
+ */
+
 module.exports.doesRuleApply = (message) => {
   let result = false;
 
   if (message && message.changesByField['InvestmentCategory']) {
     log.info("rule applies");
-    console.log("investment_category_changed_rule does apply");
+    console.log("investment_category_changed_rule applies");
     this.printObj(message);
     result = true;
   } else {
@@ -44,7 +54,8 @@ module.exports.run = (message) => {
       }
       else {
         // No parent, return undefined as parent InvestmentCategory
-        promise = Promise.resolve(undefined);
+        //1. If Investment Category is set on an orphan Epic or Feature, remove Investment Category.
+        promise = Promise.resolve('None');
       }
 
       // Build the list of objects to update.
@@ -87,8 +98,8 @@ module.exports.run = (message) => {
               return rally_utils.updateArtifact(
                 item._ref,
                 workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], {
-                  InvestmentCategory: desiredInvestmentCategory
-                }
+                InvestmentCategory: desiredInvestmentCategory
+              }
               );
             }
             else {
