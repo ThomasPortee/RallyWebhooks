@@ -40,7 +40,7 @@ function handleGetWebhooks(response) {
                     return "Production"
                 });
 
-            console.log(`${item._ref} (${item.Name}) <${JSON.stringify(ws)}>`);
+            console.log(`${item._ref} | ${item.Name}  <${ws[0]}>`);
 
         }
     });

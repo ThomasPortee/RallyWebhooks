@@ -78,7 +78,7 @@ module.exports.run = (message) => {
             if (parentInvestmentCategory == 'None' && message.object_type != 'Investment') {
               desiredInvestmentCategory = 'None';
             } else {
-              desiredInvestmentCategory = parentInvestmentCategory;
+              desiredInvestmentCategory = currentInvestmentCategory;
             }
 
             // Collect this items children for update.

@@ -33,7 +33,7 @@ module.exports.doesRuleApply = (message) => {
 module.exports.run = (message) => {
   var result = new Promise((resolve, reject) => {
 
-    
+
     const INVESTMENT = 'INVESTMENT_(NEEDS_NO_PARENT)';
     if (message) {
       let currentInvestmentCategory = get(message, ['stateByField', 'InvestmentCategory', 'value', 'value']);
@@ -66,13 +66,39 @@ module.exports.run = (message) => {
             return rally_utils.updateArtifact(
               message.ref,
               workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], {
-                InvestmentCategory: parentInvestmentCategory
-              }
+              InvestmentCategory: parentInvestmentCategory
+            }
             );
           }
           else {
-            // No update needed for this item
-            return;
+            // This will return the Investnment Category as None.
+            if (parentInvestmentCategory == 'None' && message.object_type != 'Investment') {
+              desiredInvestmentCategory = 'None';
+            } else {
+              desiredInvestmentCategory = parentInvestmentCategory;
+            }
+
+            // Collect this items children for update.
+            // To minimize conflict from concurrent webhooks, don't attempt to update all descendents. Update only immediate children
+            // and rely on the webhook callback for those updates to allow us to update their children.
+            // Otherwise you may get Concurrency Exceptions from Agile Central.
+            let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
+            let children_count = get(message, ['stateByField', 'DirectChildrenCount', 'value'])
+            log.debug(`children count: ${children_count}`);
+            if (childrenRef && children_count > 0) {
+              // TODO paginate children
+              return rally_utils
+                .getArtifactByRef(childrenRef, workspaceRef, ['InvestmentCategory'])
+                .then(response => {
+                  return response.Results;
+                });
+            }
+            else {
+              return [{
+                _ref: message.ref,
+                InvestmentCategory: currentInvestmentCategory //Must be None
+              }]; // No children (example Features have no portfolio item children, only ChildStories)
+            }
           }
         })
         .then((updates) => {
@@ -86,9 +112,9 @@ module.exports.run = (message) => {
       var updateArrayBenefit = [];
       let currentBusinessValue = get(message, ['stateByField', 'c_CAIBenefit', 'value']);
       const EPIC = 'EPIC_(NEEDS_NO_PARENT)';
-      
+
       if (message.object_type != "Epic" && parentRef) {
-        console.log("Updating CAIBenefit")
+        console.log("Updating Investment Category on new Portfolio Item")
         // Return the parent artifact Business Value
         promiseBenefit = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_CAIBenefit'])
           .then((response) => {
@@ -96,38 +122,38 @@ module.exports.run = (message) => {
           });
       }
       else {
-        if(message.object_type != "Epic") {
+        if (message.object_type != "Epic") {
           promiseBenefit = Promise.resolve(null);
         } else {
           promiseBenefit = Promise.resolve(EPIC);
         }
       }
       promiseBenefit
-      .then((parentBusinessValue) => {
-        if (parentBusinessValue != EPIC && parentBusinessValue != currentBusinessValue) {
-          console.log("parentBusinessValue");
-          console.log(parentBusinessValue);
-          // Update only this item. The portfolio item has been changed to have an business value
-          // that doesn't match the parent. Change it back.
-          return rally_utils.updateArtifact(
-            message.ref,
-            workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], {
+        .then((parentBusinessValue) => {
+          if (parentBusinessValue != EPIC && parentBusinessValue != currentBusinessValue) {
+            console.log("parentBusinessValue");
+            console.log(parentBusinessValue);
+            // Update only this item. The portfolio item has been changed to have an business value
+            // that doesn't match the parent. Change it back.
+            return rally_utils.updateArtifact(
+              message.ref,
+              workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], {
               c_CAIBenefit: parentBusinessValue
             }
-          );
-        }
-        else {
-          // No update needed for this item
-          console.log("No update needed for this item")
-          return;
-        }
-      })
-      .then((updates) => {
-        console.log("Resolving updates parenBusinessValue");
-        console.log(updates);
-        //updateArrayBenefit.push(updates);
-        //resolve(updateArrayBenefit);
-      })
+            );
+          }
+          else {
+            // No update needed for this item
+            console.log("No update needed for this item")
+            return;
+          }
+        })
+        .then((updates) => {
+          console.log("Resolving updates parenBusinessValue");
+          console.log(updates);
+          //updateArrayBenefit.push(updates);
+          //resolve(updateArrayBenefit);
+        })
 
 
 
@@ -144,7 +170,7 @@ module.exports.run = (message) => {
           });
       }
       else {
-        if(message.object_type != "Investment") {
+        if (message.object_type != "Investment") {
           promiseStrategy = Promise.resolve(null);
         } else {
           promiseStrategy = Promise.resolve(INVESTMENT);
@@ -160,8 +186,8 @@ module.exports.run = (message) => {
             return rally_utils.updateArtifact(
               message.ref,
               workspaceRef, ['FormattedID', 'Name', 'c_Strategy'], {
-                c_Strategy: parentStrategy
-              }
+              c_Strategy: parentStrategy
+            }
             );
           }
           else {
@@ -188,8 +214,9 @@ module.exports.run = (message) => {
 
 module.exports.printObj = (obj) => {
   var propValue;
-   for(var propName in obj) {
-     propValue = obj[propName]
- 
-     console.log(propName,propValue);
- }}
+  for (var propName in obj) {
+    propValue = obj[propName]
+
+    console.log(propName, propValue);
+  }
+}
