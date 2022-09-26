@@ -5,14 +5,50 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/app/index.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "env": {
+                "RALLY_SUBSCRIPTION_ID": "59351",
+                "WEBHOOK_RALLY_WORKSPACE_UUID": "8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2",
+                "WEBHOOK_RALLY_API_KEY": "_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs",
+                "WEBHOOK_LISTENER_PATH": "3277c954-e5fb-11e7-80c1-9a914cz093ae",
+                "WEBHOOK_TARGET_URL": "https://5cb4-2806-2f0-92e4-9cd5-9e70-54de-4951-f0d9.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Servereless Offline",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": [
+                "debug"
+            ],
+            "env": {
+                "SERVERLESS": "true",
+                "RALLY_SUBSCRIPTION_ID": "59351",
+                "WEBHOOK_RALLY_WORKSPACE_UUID": "8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2",
+                "RALLY_API_KEY": "_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs",
+                "WEBHOOK_RALLY_API_KEY": "_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs",
+                "WEBHOOK_LISTENER_PATH": "3277c954-e5fb-11e7-80c1-9a914cz093ae",
+                "WEBHOOK_TARGET_URL": "https://jdy3dk37sf.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3"
+            }
+        },
+        {
             "type": "pwa-node",
             "request": "launch",
-            "name": "Launch Serverless Offline",
+            "name": "Launch Serverless Offline direct",
             "program": "${workspaceFolder}/node_modules/serverless/bin/serverless",
             "args": [
                 "offline",
                 "start",
-                "--noTimeout"
+                "--noTimeout",
+                "dev"
             ],
             "protocol": "inspector",
             "runtimeExecutable": "node",

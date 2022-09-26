@@ -63,7 +63,7 @@ if (process.env.SERVERLESS) {
 }
 else {
 	// Running as local service
-	const port = process.env.PORT || 8080;
+	const port = process.env.PORT || 3000;
 	const host = process.env.HOST || '0.0.0.0';
 	app.listen(port, host, (err) => {
 		if (err) {
@@ -71,5 +71,6 @@ else {
 		}
 
 		log.info(`server is listening on ${host}:${port}`)
+		console.log(`server is listening on ${host}:${port}`)
 	})
 }

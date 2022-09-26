@@ -6,31 +6,45 @@
   },
   "categories": {
     "default": {
-      "appenders": ["out"],
+      "appenders": [
+        "out"
+      ],
       "level": "error"
     },
     "rally_utils": {
-      "appenders": ["out"],
+      "appenders": [
+        "out"
+      ],
       "level": "error"
     },
     "investment_category_changed_rule": {
-      "appenders": ["out"],
-      "level": "error"
+      "appenders": [
+        "out"
+      ],
+      "level": "debug"
     },
     "business_value_changed_rule": {
-      "appenders": ["out"],
+      "appenders": [
+        "out"
+      ],
       "level": "error"
     },
-    "defect_close_declined_change_rule":{
-      "appenders": ["out"],
+    "defect_close_declined_change_rule": {
+      "appenders": [
+        "out"
+      ],
       "level": "error"
     },
     "update_new_investment_category_rule": {
-      "appenders": ["out"],
+      "appenders": [
+        "out"
+      ],
       "level": "error"
     },
     "strategy_value_changed_rule": {
-      "appenders": ["out"],
+      "appenders": [
+        "out"
+      ],
       "level": "debug"
     }
   }

@@ -19,7 +19,7 @@
     "create-webhooks:newStory": "node scripts/createUpdateNewStoryReleaseWebhook.js",
     "create-webhooks:clearSnowFields": "node scripts/createUpdateNewPortfolioItemSnowFieldsWebhook.js",
     "create-webhooks:defectCloseDeclined": "node scripts/createDefectClosedDeclinedChange",
-    "list-webhooks": "node scripts/listWebhooks.js",
+    "list": "node scripts/listWebhooks.js",
     "delete-webhooks": "node scripts/deleteWebhooks.js",
     "postversion": "npm run dist",
     "build": "showdown makehtml --completeHTMLDocument --tables -i README.md -o dist/README_${npm_package_version}.html",
@@ -27,7 +27,8 @@
     "package": "npm run clean || true && zip -r ./dist/cox-webhook-reflector_${npm_package_version}.zip app node_modules scripts package.json serverless.yml setup.sh.example yarn.lock README.md dist/README_${npm_package_version}.html",
     "push": "aws s3 cp ./dist/cox-webhook-reflector_${npm_package_version}.zip s3://cox-terraform-test/v.1.1.4/cox-webhook-reflector-114.zip",
     "update-code": "npm run package && npm run push && aws lambda update-function-code --function-name arn:aws:lambda:us-east-1:047632847397:function:cox-webhook-reflector-114 --s3-bucket cox-terraform-test --s3-key v.1.1.4/cox-webhook-reflector-114.zip",
-    "dist": "npm run clean; node scripts/updateServerlessServiceVersion.js; npm run build; npm run package"
+    "dist": "npm run clean; node scripts/updateServerlessServiceVersion.js; npm run build; npm run package",
+    "debug": "node --inspect node_modules/serverless/bin/serverless offline -s dev --noTimeout"
   },
   "repository": {
     "type": "git",

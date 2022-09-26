@@ -18,6 +18,8 @@ const rally_utils = require('../common/rally_utils')
 
 module.exports.doesRuleApply = (message) => {
   let result = false;
+  console.log("MESSAGE")
+  console.log(message)
 
   if (message && message.changesByField['InvestmentCategory']) {
     log.info("rule applies");
@@ -43,7 +45,7 @@ module.exports.run = (message) => {
 
       var promise;
       // First, if the Portfolio Item is not an Investment, get the parent's Investment Category. If the PI is an Investment, ignore the parent Business Initiative
-      // as the InvestmentCategory is explicitly ignored on Business Initiatives.
+      // 
       let parentRef = get(message, ['stateByField', 'Parent', 'value', 'ref']);
       if (parentRef && (message.object_type != "Investment")) {
         // Return the parent artifact InvestmentCategory
@@ -54,7 +56,7 @@ module.exports.run = (message) => {
       }
       else {
         // No parent, return undefined as parent InvestmentCategory
-        //1. If Investment Category is set on an orphan Epic or Feature, remove Investment Category.
+        //1. If Investment Category is set on an orphan Epic or Feature, set Investment Category to None.
         promise = Promise.resolve('None');
       }
 
@@ -71,12 +73,22 @@ module.exports.run = (message) => {
             }];
           }
           else {
+
+            // This will return the Investnment Category as None.
+            if (parentInvestmentCategory == 'None' && message.object_type != 'Investment') {
+              desiredInvestmentCategory = 'None';
+            } else {
+              desiredInvestmentCategory = parentInvestmentCategory;
+            }
+
             // Collect this items children for update.
             // To minimize conflict from concurrent webhooks, don't attempt to update all descendents. Update only immediate children
             // and rely on the webhook callback for those updates to allow us to update their children.
             // Otherwise you may get Concurrency Exceptions from Agile Central.
             let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
-            if (childrenRef) {
+            let children_count = get(message, ['stateByField', 'DirectChildrenCount', 'value'])
+            log.debug(`children count: ${children_count}`);
+            if (childrenRef && children_count > 0) {
               // TODO paginate children
               return rally_utils
                 .getArtifactByRef(childrenRef, workspaceRef, ['InvestmentCategory'])
@@ -85,13 +97,24 @@ module.exports.run = (message) => {
                 });
             }
             else {
-              return []; // No children (example Features have no portfolio item children, only ChildStories)
+              return [{
+                _ref: message.ref,
+                InvestmentCategory: currentInvestmentCategory //Must be None
+              }]; // No children (example Features have no portfolio item children, only ChildStories)
             }
           }
         })
 
         // Update the list of OIDs (either reverting the 1 item, or updating all its children)
         .then((itemsToUpdate) => {
+          if (desiredInvestmentCategory == 'None') {
+            itemsToUpdate.push(
+              {
+                _ref: message.ref,
+                InvestmentCategory: currentInvestmentCategory //Must be None
+              }
+            )
+          }
           log.info("Items to update: ", itemsToUpdate);
           return bluebird.map(itemsToUpdate, (item) => {
             if (item.InvestmentCategory != desiredInvestmentCategory) {
