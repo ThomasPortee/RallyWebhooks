@@ -1,4 +1,5 @@
 const get = require('lodash.get');
+const map = require('lodash.map');
 const bluebird = require('bluebird');
 
 var log = require('log4js').getLogger("update_new_investment_category_rule");
@@ -9,6 +10,8 @@ module.exports.doesRuleApply = (message) => {
   let result = false;
 
   if (message) {
+    log.debug(`${message.action} on ${message.object_type} ${JSON.stringify(Object.keys(message.changesByField))}`);
+    log.debug(`${message.detail_link}`);
     if (message.action == "Created") {
       result = true;
     }
@@ -19,12 +22,12 @@ module.exports.doesRuleApply = (message) => {
 
   if (result) {
     log.info("rule applies");
-    console.log("rule update_new_investment_category_rule applies");
-    this.printObj(message);
+    log.info("rule update_new_investment_category_rule applies");
+    //this.printObj(message);
   }
   else {
     console.log("rule update_new_investment_category_rule does NOT apply");
-    this.printObj(message);
+    //this.printObj(message);
   }
   return result
 }
@@ -32,11 +35,9 @@ module.exports.doesRuleApply = (message) => {
 
 module.exports.run = (message) => {
   var result = new Promise((resolve, reject) => {
-
-
-    const INVESTMENT = 'INVESTMENT_(NEEDS_NO_PARENT)';
     if (message) {
       let currentInvestmentCategory = get(message, ['stateByField', 'InvestmentCategory', 'value', 'value']);
+      let desiredInvestmentCategory = currentInvestmentCategory;
       // TODO Test UUID - The Workspace.value.ref ends in a UUID, which isn't accepted by lookback. Get the ID from the detail_link
       let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
       let workspaceRef = `/workspace/${workspaceId}`;
@@ -50,8 +51,12 @@ module.exports.run = (message) => {
         // Return the parent artifact InvestmentCategory
         promiseStateByField = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['InvestmentCategory'])
           .then((response) => {
+            log.debug(response);
             return get(response, ['InvestmentCategory']);
-          });
+          }).catch((err) => {
+            log.error(err);
+          })
+
       }
       else {
         // No parent, return undefined as parent InvestmentCategory
@@ -60,6 +65,7 @@ module.exports.run = (message) => {
 
       promiseStateByField
         .then((parentInvestmentCategory) => {
+          log.debug(parentInvestmentCategory)
           if (parentInvestmentCategory && parentInvestmentCategory != 'None' && parentInvestmentCategory != currentInvestmentCategory) {
             // Update only this item. The portfolio item has been changed to have an investment category
             // that doesn't match the parent. Change it back.
@@ -101,10 +107,36 @@ module.exports.run = (message) => {
             }
           }
         })
-        .then((updates) => {
-          updateArray.push(updates);
-          //resolve(updates);
+        // Update the list of OIDs (either reverting the 1 item, or updating all its children)
+        .then((itemsToUpdate) => {
+          if (desiredInvestmentCategory == 'None') {
+            itemsToUpdate.push(
+              {
+                _ref: message.ref,
+                InvestmentCategory: currentInvestmentCategory //Must be None
+              }
+            )
+          }
+          log.info("Items to update: ", itemsToUpdate);
+          return bluebird.map(itemsToUpdate, (item) => {
+            if (item.InvestmentCategory != desiredInvestmentCategory) {
+              return rally_utils.updateArtifact(
+                item._ref,
+                workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], {
+                InvestmentCategory: desiredInvestmentCategory
+              });
+            }
+            else {
+              // No update needed for this item
+              return;
+            }
+          });
         })
+        .then((updates) => {
+          log.debug("Investment Category Updates", updates)
+          resolve(updates);
+        })
+
 
 
       // Business Value
@@ -114,7 +146,7 @@ module.exports.run = (message) => {
       const EPIC = 'EPIC_(NEEDS_NO_PARENT)';
 
       if (message.object_type != "Epic" && parentRef) {
-        console.log("Updating Investment Category on new Portfolio Item")
+        log.info(`${message.action} on ${message.object_type} [c_CAIBenefit] from ${currentBusinessValue}`);
         // Return the parent artifact Business Value
         promiseBenefit = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_CAIBenefit'])
           .then((response) => {
@@ -162,7 +194,7 @@ module.exports.run = (message) => {
       var updateArrayStrategy = [];
       let currentStrategy = get(message, ['stateByField', 'c_Strategy', 'value']);
       if (message.object_type != "Investment" && parentRef) {
-        console.log("Updating Strategy")
+        log.info("Updating Strategy")
         // Return the parent artifact Business Value
         promiseStrategy = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_Strategy'])
           .then((response) => {
@@ -196,8 +228,8 @@ module.exports.run = (message) => {
           }
         })
         .then((updates) => {
-          console.log("Resolving updates Strategy");
-          console.log(updates);
+          log.info("Resolving updates Strategy");
+          log.debug(updates);
           //updateArrayStrategy.push(updates);
           //resolve(updateArrayStrategy);
         })
@@ -216,7 +248,7 @@ module.exports.printObj = (obj) => {
   var propValue;
   for (var propName in obj) {
     propValue = obj[propName]
-
-    console.log(propName, propValue);
+    log.debug(propName);
+    log.debug(propValue);
   }
 }

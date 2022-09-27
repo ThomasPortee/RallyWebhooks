@@ -15,7 +15,7 @@
       "appenders": [
         "out"
       ],
-      "level": "error"
+      "level": "debug"
     },
     "investment_category_changed_rule": {
       "appenders": [
@@ -39,7 +39,7 @@
       "appenders": [
         "out"
       ],
-      "level": "error"
+      "level": "debug"
     },
     "strategy_value_changed_rule": {
       "appenders": [

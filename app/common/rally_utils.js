@@ -24,7 +24,7 @@ module.exports.updateArtifact = (ref, workspaceRef, fetch, data) => {
 			scope: {
 				workspace: refUtils.getRelative(workspaceRef)
 			}
-		}, function(error, result) {
+		}, function (error, result) {
 			if (error) {
 				log.debug(`Error updating ref: ${ref}`, error);
 				reject(error);
@@ -46,7 +46,7 @@ module.exports.getArtifactByRef = (ref, workspaceRef, fetch) => {
 				workspace: refUtils.getRelative(workspaceRef)
 			},
 			limit: Infinity
-		}, function(error, result) {
+		}, function (error, result) {
 			if (error) {
 				log.error(error)
 			}
@@ -55,4 +55,22 @@ module.exports.getArtifactByRef = (ref, workspaceRef, fetch) => {
 			}
 		});
 	})
+}
+
+module.exports.getArtifactByRefAsync = async (ref, workspaceRef, fetch) => {
+	return await restApi.query({
+		ref: refUtils.getRelative(ref),
+		fetch: fetch,
+		scope: {
+			workspace: refUtils.getRelative(workspaceRef)
+		},
+		limit: Infinity
+	}, function (error, result) {
+		if (error) {
+			log.error(error)
+		}
+		else {
+			return result
+		}
+	});
 }
