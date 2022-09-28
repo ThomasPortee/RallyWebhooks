@@ -9,7 +9,7 @@ module.exports.processMessage = (payload) => {
 
 	// Transform so that the field values are in a hash with a key that is the field name
 	// instead of the field's UUID
-	
+
 
 	const message = payload.message
 
@@ -36,16 +36,16 @@ module.exports.processMessage = (payload) => {
 					log.info("Rule does not apply")
 				}
 				else {
-					if((rules[i].Name === 'Business Value Changed Rule' ||
-					rules[i].Name === 'Update New Portfolio Item Investment Category Rule' ||
-					rules[i].Name === 'Investment Category Changed Rule' ||
-					rules[i].Name === 'Strategy Value Changed Rule'
+					if ((rules[i].Name === 'Business Value Changed Rule' ||
+						rules[i].Name === 'Update New Portfolio Item Investment Category Rule' ||
+						rules[i].Name === 'Investment Category Changed Rule' ||
+						rules[i].Name === 'Strategy Value Changed Rule'
 					) && delayExecuted === false) {
 						var msTimeout = parseInt(process.env.MSTIMEOUT)
 						var waitTill = new Date(new Date().getTime() + msTimeout);
 						//var waitTill = new Date(new Date().getTime() + 5 * 100); //There was a 5 second delay to not overlap the calls.
-						while(waitTill > new Date()){}
-						delayExecuted=true;
+						while (waitTill > new Date()) { }
+						delayExecuted = true;
 					}
 
 					ruleResults.push(rule.run(message));
@@ -59,7 +59,7 @@ module.exports.processMessage = (payload) => {
 					});
 				})
 				.catch((error) => {
-					log.error(error)
+					log.error(error.message, error.stack)
 				});
 		})
 

@@ -5,6 +5,7 @@ const bluebird = require('bluebird');
 var log = require('log4js').getLogger("update_new_investment_category_rule");
 
 const rally_utils = require('../common/rally_utils');
+const { response } = require('express');
 
 module.exports.doesRuleApply = (message) => {
   let result = false;
@@ -36,203 +37,178 @@ module.exports.doesRuleApply = (message) => {
 module.exports.run = (message) => {
   var result = new Promise((resolve, reject) => {
     if (message) {
-      let currentInvestmentCategory = get(message, ['stateByField', 'InvestmentCategory', 'value', 'value']);
-      let desiredInvestmentCategory = currentInvestmentCategory;
+
+      // 2022-08-27: Here we will define the fields that need to be validated and changed 
+      // in case an item has been changed to a different parent or if an item is created
+      // and these fields have to cascade down
+      //const check_fields = ['InvestmentCategory', 'c_CAIBenefit', 'c_Strategy'] // Startegy is OFF
+      // Popagate c_CAIBenefit only if the chane was not in Investment
+
+      const check_fields = ['InvestmentCategory', 'c_CAIBenefit'] // Startegy is OFF
+
+      var current_values = {};
+      var parent_values = {};
+
+      // Get these from current item
+      check_fields.forEach((field) => {
+        if (field != 'c_CAIBenefit') {
+          current_values[field] = get(message, ['stateByField', field, 'value', 'value']);
+          return;
+        }
+        current_values[field] = get(message, ['stateByField', field, 'value']);
+      });
+
+
+      // Get Parent field values
       // TODO Test UUID - The Workspace.value.ref ends in a UUID, which isn't accepted by lookback. Get the ID from the detail_link
       let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
       let workspaceRef = `/workspace/${workspaceId}`;
 
-      var promiseStateByField;
-      var updateArray = [];
       // First, if the Portfolio Item is not an Investment, get the parent's Investment Category. If the PI is an Investment, ignore the parent Business Initiative
       // as the InvestmentCategory is explicitly ignored on Business Initiatives.
       let parentRef = get(message, ['stateByField', 'Parent', 'value', 'ref']);
       if (message.object_type != "Investment" && parentRef) {
-        // Return the parent artifact InvestmentCategory
-        promiseStateByField = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['InvestmentCategory'])
-          .then((response) => {
-            log.debug(response);
-            return get(response, ['InvestmentCategory']);
-          }).catch((err) => {
-            log.error(err);
-          })
+        // Return the parent artifact for each check_field
 
-      }
-      else {
-        // No parent, return undefined as parent InvestmentCategory
-        promiseStateByField = Promise.resolve(undefined);
-      }
-
-      promiseStateByField
-        .then((parentInvestmentCategory) => {
-          log.debug(parentInvestmentCategory)
-          if (parentInvestmentCategory && parentInvestmentCategory != 'None' && parentInvestmentCategory != currentInvestmentCategory) {
-            // Update only this item. The portfolio item has been changed to have an investment category
-            // that doesn't match the parent. Change it back.
-            return rally_utils.updateArtifact(
-              message.ref,
-              workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], {
-              InvestmentCategory: parentInvestmentCategory
-            }
-            );
-          }
-          else {
-            // This will return the Investnment Category as None.
-            if (parentInvestmentCategory == 'None' && message.object_type != 'Investment') {
-              desiredInvestmentCategory = 'None';
-            } else {
-              desiredInvestmentCategory = parentInvestmentCategory;
-            }
-
-            // Collect this items children for update.
-            // To minimize conflict from concurrent webhooks, don't attempt to update all descendents. Update only immediate children
-            // and rely on the webhook callback for those updates to allow us to update their children.
-            // Otherwise you may get Concurrency Exceptions from Agile Central.
-            let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
-            let children_count = get(message, ['stateByField', 'DirectChildrenCount', 'value'])
-            log.debug(`children count: ${children_count}`);
-            if (childrenRef && children_count > 0) {
-              // TODO paginate children
-              return rally_utils
-                .getArtifactByRef(childrenRef, workspaceRef, ['InvestmentCategory'])
-                .then(response => {
-                  return response.Results;
-                });
-            }
-            else {
-              return [{
-                _ref: message.ref,
-                InvestmentCategory: currentInvestmentCategory //Must be None
-              }]; // No children (example Features have no portfolio item children, only ChildStories)
-            }
-          }
-        })
-        // Update the list of OIDs (either reverting the 1 item, or updating all its children)
-        .then((itemsToUpdate) => {
-          if (desiredInvestmentCategory == 'None') {
-            itemsToUpdate.push(
-              {
-                _ref: message.ref,
-                InvestmentCategory: currentInvestmentCategory //Must be None
+        var response = rally_utils.getArtifactByRef(parentRef, workspaceRef, check_fields)
+          .then((r) => {
+            parent_values = extract_result(check_fields, r);
+            let changes = {};
+            check_fields.map(f => {
+              if (current_values[f] != parent_values[f]) {
+                changes[f] = parent_values[f]
               }
-            )
+            })
+            return changes;
+          })
+          .catch((err) => {
+            log.error(err.message, err.stack)
+          });
+
+      }
+      else {
+        // No parent, Set Investment category as None
+        response = Promise.resolve(undefined);
+      }
+
+      response.then((parentChanges) => {
+
+        // Obtain children:
+        let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
+        let children_count = get(message, ['stateByField', 'DirectChildrenCount', 'value'])
+
+        log.debug(`children count: ${children_count}`);
+
+        let items_to_update = [];
+
+        if (parentChanges == undefined || parentChanges == null || Object.keys(parentChanges).length <= 0) {
+          log.info("Will only indicate changes to Investment category to None")
+
+          if (children_count <= 0) {
+            return [{
+              _ref: message.ref,
+              InvestmentCategory: null
+            }]
           }
-          log.info("Items to update: ", itemsToUpdate);
-          return bluebird.map(itemsToUpdate, (item) => {
-            if (item.InvestmentCategory != desiredInvestmentCategory) {
-              return rally_utils.updateArtifact(
-                item._ref,
-                workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], {
-                InvestmentCategory: desiredInvestmentCategory
+
+          return rally_utils
+            .getArtifactByRef(childrenRef, workspaceRef, check_fields)
+            .then(response => {
+              //console.log(response)
+              return response.Results;
+            }).then((children) => {
+              return children.map((child) => {
+                return {
+                  _ref: child._ref,
+                  InvestmentCategory: null
+                }
               });
-            }
-            else {
-              // No update needed for this item
-              return;
-            }
-          });
-        })
-        .then((updates) => {
-          log.debug("Investment Category Updates", updates)
-          resolve(updates);
-        })
-
-
-
-      // Business Value
-      var promiseBenefit;
-      var updateArrayBenefit = [];
-      let currentBusinessValue = get(message, ['stateByField', 'c_CAIBenefit', 'value']);
-      const EPIC = 'EPIC_(NEEDS_NO_PARENT)';
-
-      if (message.object_type != "Epic" && parentRef) {
-        log.info(`${message.action} on ${message.object_type} [c_CAIBenefit] from ${currentBusinessValue}`);
-        // Return the parent artifact Business Value
-        promiseBenefit = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_CAIBenefit'])
-          .then((response) => {
-            return get(response, ['c_CAIBenefit']);
-          });
-      }
-      else {
-        if (message.object_type != "Epic") {
-          promiseBenefit = Promise.resolve(null);
-        } else {
-          promiseBenefit = Promise.resolve(EPIC);
+            }).then((childrenToUpdate) => {
+              // Add to childrens to Update current element
+              let item = {
+                _ref: message.ref,
+                InvestmentCategory: null
+              }
+              childrenToUpdate.push(item);
+              return childrenToUpdate;
+            })
         }
-      }
-      promiseBenefit
-        .then((parentBusinessValue) => {
-          if (parentBusinessValue != EPIC && parentBusinessValue != currentBusinessValue) {
-            console.log("parentBusinessValue");
-            console.log(parentBusinessValue);
-            // Update only this item. The portfolio item has been changed to have an business value
-            // that doesn't match the parent. Change it back.
-            return rally_utils.updateArtifact(
-              message.ref,
-              workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], {
-              c_CAIBenefit: parentBusinessValue
+
+        log.info("Generate changes for current element and children")
+        log.info(parentChanges)
+
+        if (childrenRef && children_count > 0) {
+          //TODO paginate children
+          return rally_utils
+            .getArtifactByRef(childrenRef, workspaceRef, check_fields)
+            .then(response => {
+              //console.log(response)
+              return response.Results;
+            })
+            .then((children) => {
+              return children.map((child) => {
+                let item = {}
+                Object.keys(parentChanges).forEach((key) => {
+                  // Validate if children needs to be updated
+                  if (child[key] != parentChanges[key]) {
+                    item['_ref'] = child._ref;
+                    item[key] = parentChanges[key]
+                  }
+                });
+                return item;
+              });
+            }).then((childrenToUpdate) => {
+              // Add to childrens to Update current element
+              let item = {};
+              Object.keys(parentChanges).forEach((key) => {
+                // Validate if children needs to be updated
+                item['_ref'] = message.ref;
+                item[key] = parentChanges[key]
+
+              });
+              childrenToUpdate.push(item);
+              return childrenToUpdate;
+            })
+        } // Only if it has children
+        else {
+          // does not have children
+          let item = {};
+          Object.keys(parentChanges).forEach((key) => {
+            // Validate if children needs to be updated
+            if (message[key] != parentChanges[key]) {
+              item['_ref'] = message.ref;
+              item[key] = parentChanges[key]
             }
-            );
-          }
-          else {
-            // No update needed for this item
-            console.log("No update needed for this item")
-            return;
-          }
-        })
-        .then((updates) => {
-          console.log("Resolving updates parenBusinessValue");
-          console.log(updates);
-          //updateArrayBenefit.push(updates);
-          //resolve(updateArrayBenefit);
-        })
-
-
-
-      // c_Strategy
-      var promiseStrategy;
-      var updateArrayStrategy = [];
-      let currentStrategy = get(message, ['stateByField', 'c_Strategy', 'value']);
-      if (message.object_type != "Investment" && parentRef) {
-        log.info("Updating Strategy")
-        // Return the parent artifact Business Value
-        promiseStrategy = rally_utils.getArtifactByRef(parentRef, workspaceRef, ['c_Strategy'])
-          .then((response) => {
-            return get(response, ['c_Strategy']);
           });
-      }
-      else {
-        if (message.object_type != "Investment") {
-          promiseStrategy = Promise.resolve(null);
-        } else {
-          promiseStrategy = Promise.resolve(INVESTMENT);
+          items_to_update.appen(item)
+          return items_to_update;
         }
-      }
-
-
-      promiseStrategy
-        .then((parentStrategy) => {
-          if (parentStrategy != INVESTMENT && parentStrategy != currentStrategy) {
-            // Update only this item. The portfolio item has been changed to have an business value
-            // that doesn't match the parent. Change it back.
-            return rally_utils.updateArtifact(
-              message.ref,
-              workspaceRef, ['FormattedID', 'Name', 'c_Strategy'], {
-              c_Strategy: parentStrategy
+      }).then((itemsToUpdate) => {
+        log.debug("ITEMS TO UPDATE:");
+        log.debug(itemsToUpdate);
+        return bluebird.map(itemsToUpdate, (item) => {
+          let artifact_update = {};
+          Object.keys(item).forEach(key => {
+            if (key != '_ref') {
+              artifact_update[key] = item[key];
             }
-            );
-          }
-          else {
-            // No update needed for this item
-            return;
-          }
+          });
+          log.debug("UPDATING:", item);
+          log.debug(artifact_update)
+          const keys = Object.keys(artifact_update)
+          return rally_utils.updateArtifact(
+            item._ref,
+            workspaceRef, ['FormattedID', 'Name', ...keys], artifact_update);
+
+        });
+      }).then((updates) => {
+        log.debug("Finished updates!")
+        resolve(updates)
+      })
+        .catch((err) => {
+          reject(err);
         })
-        .then((updates) => {
-          log.info("Resolving updates Strategy");
-          log.debug(updates);
-          //updateArrayStrategy.push(updates);
-          //resolve(updateArrayStrategy);
-        })
+
     }
     else {
       reject("No message in webhook");
@@ -243,6 +219,14 @@ module.exports.run = (message) => {
   return result;
 }
 
+function extract_result(fields, result) {
+  let pv = {}
+  fields.forEach((f) => {
+    pv[f] = get(result, f);
+  });
+
+  return pv;
+}
 
 module.exports.printObj = (obj) => {
   var propValue;
