@@ -20,3 +20,9 @@ functions:
             - {http: {path: '${env:WEBHOOK_LISTENER_PATH}/${file(./package.json):version}', method: get}}
 plugins:
     - serverless-offline
+package:
+    patterns:
+        - "!terraform/**"
+        - "!dist/**"
+        - "!.vscode/**"
+
