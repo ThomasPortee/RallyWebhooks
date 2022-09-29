@@ -42,7 +42,7 @@ module.exports.run = (message) => {
       // in case an item has been changed to a different parent or if an item is created
       // and these fields have to cascade down
       //const check_fields = ['InvestmentCategory', 'c_CAIBenefit', 'c_Strategy'] // Startegy is OFF
-      // Popagate c_CAIBenefit only if the chane was not in Investment
+
 
       const check_fields = ['InvestmentCategory', 'c_CAIBenefit'] // Startegy is OFF
 
@@ -180,7 +180,7 @@ module.exports.run = (message) => {
               item[key] = parentChanges[key]
             }
           });
-          items_to_update.appen(item)
+          items_to_update.push(item)
           return items_to_update;
         }
       }).then((itemsToUpdate) => {
@@ -236,3 +236,5 @@ module.exports.printObj = (obj) => {
     log.debug(propValue);
   }
 }
+
+// On update c_CAIBenefit does not update
