@@ -15,6 +15,7 @@ functions:
             RALLY_API_KEY: '${env:RALLY_API_KEY}'
             RALLY_SUBSCRIPTION_ID: '${env:RALLY_SUBSCRIPTION_ID}'
             WEBHOOK_LISTENER_PATH: '${env:WEBHOOK_LISTENER_PATH}'
+            MSTIMEOUT: "500"
         events:
             - {http: {path: '${env:WEBHOOK_LISTENER_PATH}/${file(./package.json):version}', method: post}}
             - {http: {path: '${env:WEBHOOK_LISTENER_PATH}/${file(./package.json):version}', method: get}}
