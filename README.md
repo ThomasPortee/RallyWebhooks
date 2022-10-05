@@ -338,4 +338,31 @@ it triggers on nay change because of this:
 
 #### Solutions:
 1. Create a new webhook intended for Features that checks parent changes.
-2. 
+
+
+## Debuggin locally instructions
+
+1. I added a debug configuration inside package.json, this configuration enables Serverless Offline in the local environment. I also added a "Launch Serverless Offline direct" configuration inside VS Code's launch.json, so it can be debugged with F5.
+2. Start with VS Code with F5. This will enable Serverless Framework development environment and you will be able to access the POST and GET processes through http://localhost:3000 will display something similar to this:
+`node ./node_modules/serverless/bin/serverless offline start --noTimeout dev
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│   POST |                                                                     │
+│   http://localhost:3000/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3       │
+│   POST | http://localhost:3000/2015-03-31/functions/app/invocations          │
+│   GET  |                                                                     │
+│   http://localhost:3000/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3       │
+│   POST | http://localhost:3000/2015-03-31/functions/app/invocations          │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+` 
+
+3. Install and enable ngrok. This will make a tunnel to our local application.
+3.1. Setup a new account at [ngrok](https://dashboard.ngrok.com/login), this is to generate a KEY API needed for creating the tunnel.
+3.2. Install ngrok for you OS with the following instructions [https://dashboard.ngrok.com/get-started/setup](https://dashboard.ngrok.com/get-started/setup)
+3.3. After you've setup your account, login and create an Authtoken and follow the instructions to set it up.
+3.4. Open up an ngrok connection: `ngrok http 3000`
+3.5. It will provide an URL that has to be set up as TargetURL in the training Reflector Webhook. i.e:`https://1da2-187-189-214-70.ngrok.io`  and you would have to set up your target URL as:`https://1da2-187-189-214-70.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3` 
+
+4. Try it with a GET to the URL. It will return a _Thanks for visiting_ web page

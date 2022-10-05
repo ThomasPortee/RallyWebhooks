@@ -28,7 +28,8 @@
     "push": "aws s3 cp ./dist/cox-webhook-reflector_${npm_package_version}.zip s3://cox-terraform-test/v.1.1.4/cox-webhook-reflector-114.zip",
     "update-code": "npm run package && npm run push && aws lambda update-function-code --function-name arn:aws:lambda:us-east-1:047632847397:function:cox-webhook-reflector-114 --s3-bucket cox-terraform-test --s3-key v.1.1.4/cox-webhook-reflector-114.zip",
     "dist": "npm run clean; node scripts/updateServerlessServiceVersion.js; npm run build; npm run package",
-    "debug": "node --inspect node_modules/serverless/bin/serverless offline -s dev --noTimeout"
+    "debug": "node --inspect node_modules/serverless/bin/serverless offline -s dev --noTimeout",
+    "test": "jest --watchAll --verbose"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "bluebird": "^3.5.1",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "jest": "^29.1.2",
     "lodash.foreach": "^4.5.0",
     "lodash.get": "^4.4.2",
     "lodash.map": "^4.6.0",
@@ -52,6 +54,7 @@
     "serverless-http": "^2.7.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.1.1",
     "node-fetch-json": "^0.0.3",
     "qs": "^6.7.0",
     "serverless": "^3.0.1",
