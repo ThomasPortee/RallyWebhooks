@@ -44,7 +44,7 @@ module.exports.run = (message) => {
       //const check_fields = ['InvestmentCategory', 'c_CAIBenefit', 'c_Strategy'] // Startegy is OFF
 
 
-      const check_fields = ['InvestmentCategory', 'c_CAIBenefit'] // Startegy is OFF
+      const check_fields = ['InvestmentCategory', 'c_CAIBenefit'] // Strategy is OFF
 
       var current_values = {};
       var parent_values = {};
@@ -124,7 +124,7 @@ module.exports.run = (message) => {
                 }
               });
             }).then((childrenToUpdate) => {
-              // Add to childrens to Update current element
+              // Add to children to Update current element
               let item = {
                 _ref: message.ref,
                 InvestmentCategory: null
@@ -158,7 +158,7 @@ module.exports.run = (message) => {
                 return item;
               });
             }).then((childrenToUpdate) => {
-              // Add to childrens to Update current element
+              // Add to children to Update current element
               let item = {};
               Object.keys(parentChanges).forEach((key) => {
                 // Validate if children needs to be updated
@@ -175,7 +175,7 @@ module.exports.run = (message) => {
           let item = {};
           Object.keys(parentChanges).forEach((key) => {
             // Validate if children needs to be updated
-            if (message[key] != parentChanges[key]) {
+            if (current_values[key] != parentChanges[key]) {
               item['_ref'] = message.ref;
               item[key] = parentChanges[key]
             }

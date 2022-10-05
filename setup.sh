@@ -15,16 +15,21 @@ export RALLY_SUBSCRIPTION_ID=59351
 # 5. Find the `ObjectUUID` value.  (Example: `213c5e3e-1c86-49e4-bff0-9ceadda`)
 
 # This is the production UUID
-#export WEBHOOK_RALLY_WORKSPACE_UUID=b475cff6-a00b-4cec-9a29-ca2eaba81e04
+if [ "$ENV" = "PROD" ]; then
+    echo "\n*********************************"
+    echo "*** RUNNING PRODUCTION SETUP ****"
+    echo "*********************************\n\n"
+    export WEBHOOK_RALLY_WORKSPACE_UUID=b475cff6-a00b-4cec-9a29-ca2eaba81e04
 # This is the Training UUID
-export WEBHOOK_RALLY_WORKSPACE_UUID=8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2
+else
+    export WEBHOOK_RALLY_WORKSPACE_UUID=8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2
 # DO NOT LEAVE BOTH UNCOMMENTED
+fi
 echo "WEBHOOK_RALLY_WORKSPACE_UUID: ${WEBHOOK_RALLY_WORKSPACE_UUID}"
 
 # Enter an API key for a user that has edit access to all projects in the workspace
 export RALLY_API_KEY=_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs
 #export RALLY_API_KEY=XMLcizA9QhqBzLhP8QiWHp1eNJnEEEll4dJDaAcEs
-
 # Enter an API key for a user that has workspace admin
 export WEBHOOK_RALLY_API_KEY=_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs
 #export WEBHOOK_RALLY_API_KEY=XMLcizA9QhqBzLhP8QiWHp1eNJnEEEll4dJDaAcEs
@@ -38,9 +43,14 @@ export WEBHOOK_LISTENER_PATH="3277c954-e5fb-11e7-80c1-9a914cz093ae"
 echo "WEBHOOK_LISTENER_PATH: ${WEBHOOK_LISTENER_PATH}"
 
 # AFTER running `npm run deploy`, enter the value of the `POST` output, this is the Production URL
-#export WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+if [ "$ENV" = "PROD" ]; then
+    export WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
 # This is the TEST URL AFTER running `npm run deploy`, enter the value of the `POST` output.
-export WEBHOOK_TARGET_URL=https://jdy3dk37sf.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+#export WEBHOOK_TARGET_URL=https://jdy3dk37sf.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+else
+    # Modify this with the ngrok provided for local development
+    export WEBHOOK_TARGET_URL=https://1da2-187-189-214-70.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+fi
 
 echo "WEBHOOK_TARGET_URL: ${WEBHOOK_TARGET_URL}"
 
