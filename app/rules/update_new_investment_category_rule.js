@@ -102,13 +102,18 @@ module.exports.run = (message) => {
         let items_to_update = [];
 
         if (parentChanges == undefined || parentChanges == null || Object.keys(parentChanges).length <= 0) {
-          log.info("Will only indicate changes to Investment category to None")
+          log.info("Will only indicate changes when the element (Epic or Feature) is orphan")
 
           if (children_count <= 0) {
             return [{
               _ref: message.ref,
               InvestmentCategory: null
-            }]
+            },
+            {
+              _ref: message.ref,
+              c_CAIBenefit: null
+            }
+            ]
           }
 
           return rally_utils

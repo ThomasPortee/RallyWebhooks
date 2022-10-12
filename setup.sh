@@ -26,6 +26,7 @@ else
 # DO NOT LEAVE BOTH UNCOMMENTED
 fi
 echo "WEBHOOK_RALLY_WORKSPACE_UUID: ${WEBHOOK_RALLY_WORKSPACE_UUID}"
+echo "if STARTS with b475cff6 is PRODUCTION\n"
 
 # Enter an API key for a user that has edit access to all projects in the workspace
 export RALLY_API_KEY=_CypYmrgpRGElYBCjZ4g3uwRwYwqkUqloGBDNsEWJs
@@ -46,10 +47,11 @@ echo "WEBHOOK_LISTENER_PATH: ${WEBHOOK_LISTENER_PATH}"
 if [ "$ENV" = "PROD" ]; then
     export WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
 # This is the TEST URL AFTER running `npm run deploy`, enter the value of the `POST` output.
-#export WEBHOOK_TARGET_URL=https://jdy3dk37sf.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+
 else
     # Modify this with the ngrok provided for local development
-    export WEBHOOK_TARGET_URL=https://1da2-187-189-214-70.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+    #export WEBHOOK_TARGET_URL=https://790c-2806-2f0-9101-93f6-cd0a-1b47-75ba-9f50.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+    export WEBHOOK_TARGET_URL=https://pmgy8b70wb.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
 fi
 
 echo "WEBHOOK_TARGET_URL: ${WEBHOOK_TARGET_URL}"
