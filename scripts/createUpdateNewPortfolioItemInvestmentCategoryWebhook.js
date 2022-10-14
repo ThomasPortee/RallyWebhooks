@@ -17,20 +17,21 @@ var options = {
     "TargetUrl": targetUrl,
     "ObjectTypes": ["Feature", "Epic", "Investment"],
     "Expressions": [{
-        "AttributeID": "5736cb0d-4ef8-4e83-a086-cb11e9a705e2", // InvestmentCategory
-        "Operator": "has"
-      },
-      {
-        "AttributeName": "Workspace",
-        "Operator": "=",
-        "Value": process.env.WEBHOOK_RALLY_WORKSPACE_UUID
-      }
+      "AttributeID": "5736cb0d-4ef8-4e83-a086-cb11e9a705e2", // InvestmentCategory
+      "AttributeName": "InvestmentCategory", // InvestmentCategory
+      "Operator": "has"
+    },
+    {
+      "AttributeName": "Workspace",
+      "Operator": "=",
+      "Value": process.env.WEBHOOK_RALLY_WORKSPACE_UUID
+    }
     ]
   },
   "json": true
 };
 
-request(options, function(error, response, body) {
+request(options, function (error, response, body) {
   if (error) throw new Error(error);
   console.log(`Created webhook: ${body._ref} (${body.Name})`);
 });

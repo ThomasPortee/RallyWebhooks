@@ -19,8 +19,8 @@ const bluebird = require('bluebird');
  * 
  */
 
-//var log = require('log4js').getLogger("business_value_changed_rule");
-var log = require('log4js').getLogger("business_value_changed_rule");
+//var log = require('log4js').getLogger("caibenefit_value_changed_rule");
+var log = require('log4js').getLogger("caibenefit_value_changed_rule");
 
 const rally_utils = require('../common/rally_utils')
 
@@ -43,7 +43,7 @@ module.exports.doesRuleApply = (message) => {
 }
 
 module.exports.run = (message) => {
-  console.log("rule business_value_changed_rule Running");
+  console.log("rule caibenefit_value_changed_rule Running");
 
   var result = new Promise((resolve, reject) => {
 

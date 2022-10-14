@@ -34,7 +34,7 @@
 			"rules": [
 				{
 					"Name": "Update New Portfolio Item Investment Category Rule",
-					"Path": "./rules/update_new_investment_category_rule",
+					"Path": "./rules/new_portfolio_item_rule",
 					"Enabled": true,
 					"Description": "Update new Portfolio Items' Investment Category to match the parent"
 				}

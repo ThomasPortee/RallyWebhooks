@@ -37,7 +37,6 @@ module.exports.processMessage = (payload) => {
 				}
 				else {
 					if ((rules[i].Name === 'Business Value Changed Rule' ||
-						rules[i].Name === 'Update New Portfolio Item Investment Category Rule' ||
 						rules[i].Name === 'Investment Category Changed Rule' ||
 						rules[i].Name === 'Strategy Value Changed Rule'
 					) && delayExecuted === false) {

@@ -35,13 +35,19 @@
       ],
       "level": "error"
     },
-    "update_new_investment_category_rule": {
+    "new_portfolio_item_rule": {
       "appenders": [
         "out"
       ],
       "level": "debug"
     },
     "strategy_value_changed_rule": {
+      "appenders": [
+        "out"
+      ],
+      "level": "debug"
+    },
+    "caibenefit_value_changed_rule": {
       "appenders": [
         "out"
       ],

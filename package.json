@@ -20,6 +20,7 @@
     "create-webhooks:clearSnowFields": "node scripts/createUpdateNewPortfolioItemSnowFieldsWebhook.js",
     "create-webhooks:defectCloseDeclined": "node scripts/createDefectClosedDeclinedChange",
     "list": "node scripts/listWebhooks.js",
+    "update-train": "node scripts/updateTrainningWebhookTargeURL.js",
     "delete-webhooks": "node scripts/deleteWebhooks.js",
     "postversion": "npm run dist",
     "build": "showdown makehtml --completeHTMLDocument --tables -i README.md -o dist/README_${npm_package_version}.html",

@@ -6,6 +6,7 @@ var log = require('log4js').getLogger("update_new_investment_category_rule");
 
 const rally_utils = require('../common/rally_utils');
 const { response } = require('express');
+const forEach = require('lodash.foreach');
 
 module.exports.doesRuleApply = (message) => {
   let result = false;
@@ -44,7 +45,7 @@ module.exports.run = (message) => {
       //const check_fields = ['InvestmentCategory', 'c_CAIBenefit', 'c_Strategy'] // Startegy is OFF
 
 
-      const check_fields = ['InvestmentCategory', 'c_CAIBenefit'] // Strategy is OFF
+      const check_fields = ['InvestmentCategory'] // Strategy is OFF
 
       var current_values = {};
       var parent_values = {};
@@ -105,15 +106,14 @@ module.exports.run = (message) => {
           log.info("Will only indicate changes when the element (Epic or Feature) is orphan")
 
           if (children_count <= 0) {
-            return [{
-              _ref: message.ref,
-              InvestmentCategory: null
-            },
-            {
-              _ref: message.ref,
-              c_CAIBenefit: null
-            }
-            ]
+            return check_fields.map((field) => {
+              var updating_fields = {}
+              updating_fields["_ref"] = message.ref;
+              updating_fields[field] = null;
+
+              return updating_fields
+            })
+
           }
 
           return rally_utils
