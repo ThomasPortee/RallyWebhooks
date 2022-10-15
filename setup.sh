@@ -44,15 +44,20 @@ export WEBHOOK_LISTENER_PATH="3277c954-e5fb-11e7-80c1-9a914cz093ae"
 echo "WEBHOOK_LISTENER_PATH: ${WEBHOOK_LISTENER_PATH}"
 
 # AFTER running `npm run deploy`, enter the value of the `POST` output, this is the Production URL
-if [ "$ENV" = "PROD" ]; then
-    export WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
-# This is the TEST URL AFTER running `npm run deploy`, enter the value of the `POST` output.
 
-else
-    # Modify this with the ngrok provided for local development
-    #export WEBHOOK_TARGET_URL=https://2de0-2806-2f0-9101-93f6-8792-55b4-13c2-8411.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
-    export WEBHOOK_TARGET_URL=https://pmgy8b70wb.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
-fi
+case $ENV in
+    PROD)
+        export WEBHOOK_TARGET_URL=https://o8fki03ts0.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+        ;;
+    LOCAL)
+        # Modify this with the ngrok provided for local development
+        export WEBHOOK_TARGET_URL=https://2de0-2806-2f0-9101-93f6-8792-55b4-13c2-8411.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+        ;;
+    *)
+        export WEBHOOK_TARGET_URL=https://pmgy8b70wb.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+        ;;
+
+esac
 
 echo "WEBHOOK_TARGET_URL: ${WEBHOOK_TARGET_URL}"
 

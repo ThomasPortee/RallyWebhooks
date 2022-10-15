@@ -9,8 +9,8 @@ const targetUrl = utils.getTargetUrl();
 //const targetUrl = "https://5cb4-2806-2f0-92e4-9cd5-9e70-54de-4951-f0d9.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3";
 
 // webhook url for TRAINNING
-//https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/8071d783-2f50-45e7-b460-5a3098f0e9c3 
-const wh_ref = "8071d783-2f50-45e7-b460-5a3098f0e9c3";
+//https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/2e1492a1-0252-494a-83d0-df85e8b0edf6 
+const wh_ref = "2e1492a1-0252-494a-83d0-df85e8b0edf6";
 // This is the webhook _ref or ID for Webhoh Portfolio Investment Category change
 
 const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/${wh_ref}`;
@@ -23,6 +23,20 @@ var options = {
         cookie: `ZSESSIONID=${process.env.WEBHOOK_RALLY_API_KEY}`
     },
     body: {
+        Expressions: [
+            {
+                "AttributeID": "f7be48fa-c502-4f5c-a5d0-646a85a586f1",
+                "AttributeName": "c_CAIBenefit",
+                "Operator": "has",
+                "Value": null
+            },
+            {
+                "AttributeName": "Workspace",
+                "Operator": "=",
+                "Value": "8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2"
+            }
+        ],
+        Name: "New Portfolio Item CAIBenefit Value Changed", // previous name "Update New Portfolio Item Business Value"
         AppUrl: targetUrl,
         TargetUrl: targetUrl
     },

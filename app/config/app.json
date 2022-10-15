@@ -4,7 +4,7 @@
 			"rules": [
 				{
 					"Name": "Portfolio Item Investment Category Changed",
-					"Path": "./rules/investment_category_changed_rule",
+					"Path": "./rules/new_portfolio_item_investmentcategory_rule",
 					"Enabled": true,
 					"Description": "Update child Portfolio Items' Investment Category to match the updated parent"
 				}
@@ -14,7 +14,7 @@
 			"rules": [
 				{
 					"Name": "Business Value Changed Rule",
-					"Path": "./rules/business_value_changed_rule",
+					"Path": "./rules/caibenefit_value_changed_rule",
 					"Enabled": true,
 					"Description": "Update child Portfolio Items' Business Value to match the updated parent"
 				}
@@ -34,7 +34,7 @@
 			"rules": [
 				{
 					"Name": "Update New Portfolio Item Investment Category Rule",
-					"Path": "./rules/new_portfolio_item_rule",
+					"Path": "./rules/new_portfolio_item_investmentcategory_rule",
 					"Enabled": true,
 					"Description": "Update new Portfolio Items' Investment Category to match the parent"
 				}

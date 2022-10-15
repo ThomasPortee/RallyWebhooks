@@ -13,8 +13,6 @@ function queryWebhooks(query) {
     //console.log(query)
     const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook?${qs.stringify(query)}`;
 
-
-
     return fetch(webhookUrl, {
         headers: {
             cookie: `ZSESSIONID=${process.env.RALLY_API_KEY}`,

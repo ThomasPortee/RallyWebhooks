@@ -1,7 +1,10 @@
 const fetch = require('node-fetch-json');
-const bluebird = require('bluebird');
+
 const qs = require('qs');
 const utils = require("../app/utils.js");
+const targetUrl = utils.getTargetUrl();
+
+const request = require("request");
 
 const query = {
     pagesize: 200,
@@ -60,6 +63,7 @@ return queryWebhooks()
     });
     */
 
+
 (async () => {
     console.log("Fetching Trainnig Webhooks");
     const query = {
@@ -77,6 +81,7 @@ return queryWebhooks()
         wh = await queryWebhooks(query)
         results.push(...wh.Results)
     }
+    console.log(`Retrieved ${results.length} Webhooks`);
 
     // Filter by Workspace
     const workspaceId = process.env.WEBHOOK_RALLY_WORKSPACE_UUID;
@@ -86,7 +91,31 @@ return queryWebhooks()
     const filtered_results = results.filter(result => {
         return result.CreatedBy === utils.getAppId() && result.Expressions.filter(exp => exp.AttributeName == "Workspace").map(ws => ws.Value).includes(workspaceId)
     })
-    console.log(filtered_results)
+
+    webhooks_to_update = ['Portfolio Item Business Value Changed', 'Update New Portfolio Item Business Value']
+
+
+    filtered_results.forEach(async (item) => {
+        console.log(`${item._ref} | ${item.Name}`);
+    });
 
 
 })();
+
+
+/* Steps
+
+https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/9ed1aea9-3c87-44f4-b45f-4bddcafc5d1d 
+
+# Change Name
+Portfolio Item Business Value Changed -> Portfolio Item CAIBenefit Updated Value
+
+https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/2e1492a1-0252-494a-83d0-df85e8b0edf6 
+
+# Change Name
+Update New Portfolio Item Business Value -> Portfolio Item CAIBenefit New Value
+
+
+# Update Target URL to targetUrl
+
+*/
