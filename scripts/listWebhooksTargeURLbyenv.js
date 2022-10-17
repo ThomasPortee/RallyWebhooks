@@ -65,7 +65,7 @@ return queryWebhooks()
 
 
 (async () => {
-    console.log("Fetching Trainnig Webhooks");
+    console.log(`Fetching ${process.env["WEBHOOK_RALLY_WORKSPACE_UUID"]} Webhooks`);
     const query = {
         order: "Name"
     };

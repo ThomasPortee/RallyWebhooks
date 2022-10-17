@@ -1,6 +1,7 @@
 const handler = require('./common/message_handler');
 const rules_config = require('./common/rules_config');
 const foreach = require('lodash.foreach');
+const utils = require('./utils');
 
 var log = require('log4js').getLogger("router");
 
@@ -29,6 +30,10 @@ module.exports.processMessage = (payload) => {
 
 			var delayExecuted = false;
 
+			//random integer
+			var msTimeout = parseInt(process.env.MSTIMEOUT)
+			var randomWait = utils.randomBetween(150, msTimeout)
+
 			for (var i in rules) {
 				let rule = require(rules[i].Path)
 
@@ -36,12 +41,15 @@ module.exports.processMessage = (payload) => {
 					log.info("Rule does not apply")
 				}
 				else {
-					if ((rules[i].Name === 'Business Value Changed Rule' ||
-						rules[i].Name === 'Investment Category Changed Rule' ||
+					if ((
+						rules[i].Name === 'Portfolio Item CAIBenefit Updated' ||
+						rules[i].Name === 'Portfolio Item CAIBenefit New' ||
+						rules[i].Name === 'Portfolio Item InvestmentCategory Updated' ||
+						rules[i].Name === 'Portfolio Item InvestmentCategory New' ||
 						rules[i].Name === 'Strategy Value Changed Rule'
 					) && delayExecuted === false) {
-						var msTimeout = parseInt(process.env.MSTIMEOUT)
-						var waitTill = new Date(new Date().getTime() + msTimeout);
+
+						var waitTill = new Date(new Date().getTime() + randomWait);
 						//var waitTill = new Date(new Date().getTime() + 5 * 100); //There was a 5 second delay to not overlap the calls.
 						while (waitTill > new Date()) { }
 						delayExecuted = true;

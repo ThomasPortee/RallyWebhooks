@@ -1,12 +1,10 @@
 const get = require('lodash.get');
-const map = require('lodash.map');
 const bluebird = require('bluebird');
 
-var log = require('log4js').getLogger("update_new_investment_category_rule");
+var log = require('log4js').getLogger("investmentcategory_changed_rule");
 
 const rally_utils = require('../common/rally_utils');
-const { response } = require('express');
-const forEach = require('lodash.foreach');
+
 
 module.exports.doesRuleApply = (message) => {
   let result = false;
@@ -14,21 +12,20 @@ module.exports.doesRuleApply = (message) => {
   if (message) {
     log.debug(`${message.action} on ${message.object_type} ${JSON.stringify(Object.keys(message.changesByField))}`);
     log.debug(`${message.detail_link}`);
-    if (message.action == "Created") {
+    if (message.action == "Created" && message.object_type != "Investment") {
       result = true;
     }
-    else if ((message.action == "Updated") && message.changesByField['Parent']) {
+    else if (message.action == "Updated") {
       result = true;
     }
   }
 
   if (result) {
-    log.info("rule applies");
-    log.info("rule update_new_investment_category_rule applies");
+    log.info("rule investmentcategory_changed_rule applies");
     //this.printObj(message);
   }
   else {
-    console.log("rule update_new_investment_category_rule does NOT apply");
+    log.warn("rule investmentcategory_changed_rule does NOT apply");
     //this.printObj(message);
   }
   return result
@@ -42,10 +39,8 @@ module.exports.run = (message) => {
       // 2022-08-27: Here we will define the fields that need to be validated and changed 
       // in case an item has been changed to a different parent or if an item is created
       // and these fields have to cascade down
-      //const check_fields = ['InvestmentCategory', 'c_CAIBenefit', 'c_Strategy'] // Startegy is OFF
 
-
-      const check_fields = ['InvestmentCategory'] // Strategy is OFF
+      const check_fields = ['InvestmentCategory']
 
       var current_values = {};
       var parent_values = {};
@@ -68,7 +63,19 @@ module.exports.run = (message) => {
       // First, if the Portfolio Item is not an Investment, get the parent's Investment Category. If the PI is an Investment, ignore the parent Business Initiative
       // as the InvestmentCategory is explicitly ignored on Business Initiatives.
       let parentRef = get(message, ['stateByField', 'Parent', 'value', 'ref']);
+
+
+      // If the object_type is Investment AND has Children
+      // update the first children (Epic)
+      // If the object_type is different than investment
+      //  if the object has a parent and parent has InvestmentCategory, copy from that
+      //  if the object DOES not have parent, set Investment Category as NULL
+      //  If the oject has children. cascade the InvestmentCategory Down
+      // 
+
+
       if (message.object_type != "Investment" && parentRef) {
+
         // Return the parent artifact for each check_field
 
         var response = rally_utils.getArtifactByRef(parentRef, workspaceRef, check_fields)
@@ -88,7 +95,7 @@ module.exports.run = (message) => {
 
       }
       else {
-        // No parent, Set Investment category as None
+        // No parent
         response = Promise.resolve(undefined);
       }
 
@@ -102,7 +109,7 @@ module.exports.run = (message) => {
 
         let items_to_update = [];
 
-        if (parentChanges == undefined || parentChanges == null || Object.keys(parentChanges).length <= 0) {
+        if ((parentChanges == undefined || parentChanges == null || Object.keys(parentChanges).length <= 0) && message.object_type != "Investment") {
           log.info("Will only indicate changes when the element (Epic or Feature) is orphan")
 
           if (children_count <= 0) {
@@ -140,9 +147,13 @@ module.exports.run = (message) => {
         }
 
         log.info("Generate changes for current element and children")
-        log.info(parentChanges)
+
 
         if (childrenRef && children_count > 0) {
+          if (!parentChanges) {
+            parentChanges = current_values;
+          }
+          log.info(parentChanges)
           //TODO paginate children
           return rally_utils
             .getArtifactByRef(childrenRef, workspaceRef, check_fields)

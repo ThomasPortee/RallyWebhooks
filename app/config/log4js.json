@@ -17,17 +17,17 @@
       ],
       "level": "debug"
     },
-    "investment_category_changed_rule": {
+    "investmentcategory_changed_rule": {
       "appenders": [
         "out"
       ],
       "level": "debug"
     },
-    "business_value_changed_rule": {
+    "caibenefit_changed_rule": {
       "appenders": [
         "out"
       ],
-      "level": "error"
+      "level": "debug"
     },
     "defect_close_declined_change_rule": {
       "appenders": [
@@ -42,12 +42,6 @@
       "level": "debug"
     },
     "strategy_value_changed_rule": {
-      "appenders": [
-        "out"
-      ],
-      "level": "debug"
-    },
-    "caibenefit_value_changed_rule": {
       "appenders": [
         "out"
       ],
