@@ -8,6 +8,16 @@ const rally_utils = require('../common/rally_utils');
 
 module.exports.doesRuleApply = (message) => {
   let result = false;
+  if (!message) {
+    throw new Error("No message receive");
+  }
+
+
+
+  return true;
+
+
+  const fields_updated = ['InvestmentCategory']
 
   if (message) {
     log.debug(`${message.action} on ${message.object_type} ${JSON.stringify(Object.keys(message.changesByField))}`);
@@ -15,7 +25,7 @@ module.exports.doesRuleApply = (message) => {
     if (message.action == "Created" && message.object_type != "Investment") {
       result = true;
     }
-    else if (message.action == "Updated") {
+    else if (message.action == "Updated" && Object.keys(message.changesByField).includes(fields_updated[0])) {
       result = true;
     }
   }
@@ -32,7 +42,59 @@ module.exports.doesRuleApply = (message) => {
 }
 
 
-module.exports.run = (message) => {
+module.exports.run = async (message) => {
+  try {
+    var result = await (async () => {
+      if (!message) {
+        throw new Error("No message was sent to Reflector")
+      }
+      var current_values = {};
+      var parent_values = {};
+      // Obtain children:
+      let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
+      let children_count = get(message, ['stateByField', 'DirectChildrenCount', 'value'])
+
+      // If the artifacts has no children
+      // if the type is Investment
+      // returns
+      // if type is different than investment
+      //  if parent is undefined request set InvestmentCategory as NULL and return
+      //  else Set InvestmentCategory as current_value
+      //  Request update for the Epic Or feature
+
+      // Get these from current item
+      check_fields.forEach((field) => {
+        if (field != 'c_CAIBenefit') {
+          current_values[field] = get(message, ['stateByField', field, 'value', 'value']);
+          return;
+        }
+        current_values[field] = get(message, ['stateByField', field, 'value']);
+      });
+
+
+      // Then should be Epic or Feature
+      // Get Parent field values
+      // TODO Test UUID - The Workspace.value.ref ends in a UUID, which isn't accepted by lookback. Get the ID from the detail_link
+      let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
+      let workspaceRef = `/workspace/${workspaceId}`;
+
+
+
+
+    });
+
+    return result;
+
+  } catch (error) {
+
+    throw new Error(error)
+
+  }
+}
+
+
+
+module.exports.__run = (message) => {
   var result = new Promise((resolve, reject) => {
     if (message) {
 
@@ -229,7 +291,6 @@ module.exports.run = (message) => {
     else {
       reject("No message in webhook");
     }
-
   });
 
   return result;
