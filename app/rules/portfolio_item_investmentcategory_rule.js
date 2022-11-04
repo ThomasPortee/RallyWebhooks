@@ -12,78 +12,151 @@ module.exports.doesRuleApply = (message) => {
     throw new Error("No message receive");
   }
 
-
-
-  return true;
-
-
   const fields_updated = ['InvestmentCategory']
 
+  // if the object type is not PortfolioItem/Investment (then is Epic or Feature)
+  // if get the Parent InvestmentCategory if it is different to the current:
+  //  update current object tho Parent InvestmentCategory
+  //  if the object has children update the InvestmentCategory of those children.
+  // if does not have parent and object has InvestmentCategory set
+  //  set InvestmentCategory to null
+  // "5736cb0d-4ef8-4e83-a086-cb11e9a705e2" is InvestmentCategory
+
   if (message) {
-    log.debug(`${message.action} on ${message.object_type} ${JSON.stringify(Object.keys(message.changesByField))}`);
-    log.debug(`${message.detail_link}`);
+
     if (message.action == "Created" && message.object_type != "Investment") {
       result = true;
     }
+    //else if (message.action == "Updated") {
     else if (message.action == "Updated" && Object.keys(message.changesByField).includes(fields_updated[0])) {
       result = true;
     }
   }
-
-  if (result) {
-    log.info("rule investmentcategory_changed_rule applies");
-    //this.printObj(message);
-  }
-  else {
-    log.warn("rule investmentcategory_changed_rule does NOT apply");
-    //this.printObj(message);
-  }
-  return result
+  return result;
 }
 
 
 module.exports.run = async (message) => {
   try {
-    var result = await (async () => {
-      if (!message) {
-        throw new Error("No message was sent to Reflector")
-      }
-      var current_values = {};
-      var parent_values = {};
-      // Obtain children:
-      let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
-      let children_count = get(message, ['stateByField', 'DirectChildrenCount', 'value'])
+    log.info("portfolio_item_investmentcategory_rule applies!");
+    log.debug(`${message.object_type}  ${message.action}: \n ${JSON.stringify(message.changesByField)}`);
+    log.debug(`${message.detail_link}`);
+    // Get Parent field values
+    // TODO Test UUID - The Workspace.value.ref ends in a UUID, which isn't accepted by lookback. Get the ID from the detail_link
+    let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
+    let workspaceRef = `/workspace/${workspaceId}`;
 
-      // If the artifacts has no children
-      // if the type is Investment
-      // returns
-      // if type is different than investment
-      //  if parent is undefined request set InvestmentCategory as NULL and return
-      //  else Set InvestmentCategory as current_value
-      //  Request update for the Epic Or feature
+    var current_investment_category = get(message, ['stateByField', 'InvestmentCategory', 'value', 'value']);;
+    var parent_investment_category = "";
+    // Obtain children:
+    let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
+    let children_count = get(message, ['stateByField', 'DirectChildrenCount', 'value'])
+    log.debug(`children count: ${children_count}`);
 
-      // Get these from current item
-      check_fields.forEach((field) => {
-        if (field != 'c_CAIBenefit') {
-          current_values[field] = get(message, ['stateByField', field, 'value', 'value']);
-          return;
+    let items_to_update = [];
+
+    // if object type is not Investment
+    if (message.object_type == "Feature" || message.object_type == "Epic") {
+      // Obtain parent:
+      let parentRef = get(message, ['stateByField', 'Parent', 'value', 'ref']);
+      // if parent does not exists must update Investment category to null
+      if (!parentRef) {
+        // Update all InvestmentCategory from the current change and children to Null
+        // set artifact_update to InvestmentCategory = null
+        let artifact_update = {
+          "InvestmentCategory": null
         }
-        current_values[field] = get(message, ['stateByField', field, 'value']);
+
+        if (children_count > 0) {
+          let children = await rally_utils.getArtifactByRefAsync(childrenRef, workspaceRef, 'InvestmentCategory');
+          children.Results.forEach((child) => {
+            items_to_update.push(child._ref);
+          });
+        }
+
+        items_to_update.push(message.ref);
+
+        log.debug(`items to update: ${JSON.stringify(items_to_update)}`);
+
+        // for each item_to_update call rally_utils.UpdateArtifact
+        let update_results = items_to_update.map(async (item) => {
+          return await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], artifact_update);
+        });
+
+        log.debug(`update results: ${JSON.stringify(update_results)}`);
+        return;
+      }
+
+      let parent_response = await rally_utils.getArtifactByRefAsync(parentRef, workspaceRef, ['InvestmentCategory']);
+      let parent_values = extract_result(['InvestmentCategory'], parent_response);
+      parent_investment_category = parent_values.InvestmentCategory;
+
+      // if parent InvestmentCategory is different to current InvestmentCategory
+      if (parent_investment_category !== current_investment_category) {
+        items_to_update.push(message.ref);
+      }
+      // Update all InvestmentCategory from the current change and children to parent InvestmentCategory
+      if (children_count > 0) {
+        let children = await rally_utils.getArtifactByRefAsync(childrenRef, workspaceRef, 'InvestmentCategory');
+        children.Results.forEach((child) => {
+          if (current_investment_category !== child.InvestmentCategory) {
+            items_to_update.push(child._ref);
+          }
+        });
+      }
+
+      log.debug(`With parent items to update: ${JSON.stringify(items_to_update)}`);
+      let artifact_update = {
+        "InvestmentCategory": parent_investment_category
+      }
+      // for each item_to_update call rally_utils.UpdateArtifact
+      if (items_to_update.length > 0) {
+        return await Promise.all(items_to_update.map(async (item) => {
+          log.info(`item to update: ${item}`);
+          await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], artifact_update)
+            .then((result) => {
+              log.debug(`Investment category change: ${JSON.stringify(result)}`);
+            });
+        }));
+      }
+
+    }
+
+    // if object type is Investment
+    if (message.object_type == "Investment") {
+      // id children_count is equal to 0 return
+      if (children_count == 0) {
+        // No changes needed
+        log.info("No changes needed");
+        return;
+      }
+      // update chilren InvestmentCategory to current InvestmentCategory
+      let children = await rally_utils.getArtifactByRefAsync(childrenRef, workspaceRef, 'InvestmentCategory');
+      children.Results.forEach((child) => {
+        if (current_investment_category !== child.InvestmentCategory) {
+          items_to_update.push(child._ref);
+        }
       });
 
+      log.debug(`From Investment items to update: ${JSON.stringify(items_to_update)}`);
+      let artifact_update = {
+        "InvestmentCategory": current_investment_category
+      }
+      // for each item_to_update call rally_utils.UpdateArtifact
+      //if the length of items_to_update is greater than 0
+      if (items_to_update.length > 0) {
+        return await Promise.all(items_to_update.map(async (item) => {
+          log.info(`item to update: ${item}`);
+          await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], artifact_update)
+            .then((result) => {
+              log.debug(`Investment category change: ${JSON.stringify(result)}`);
+            });
+        }));
+      }
 
-      // Then should be Epic or Feature
-      // Get Parent field values
-      // TODO Test UUID - The Workspace.value.ref ends in a UUID, which isn't accepted by lookback. Get the ID from the detail_link
-      let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
-      let workspaceRef = `/workspace/${workspaceId}`;
+    }
 
-
-
-
-    });
-
-    return result;
+    return;
 
   } catch (error) {
 

@@ -32,8 +32,7 @@ app.post(path, (request, response) => {
 
 	//log.info(JSON.stringify(payload))
 	if (process.env.LOG_PAYLOAD === "true") {
-		console.log("PAYLOAD")
-		console.log(JSON.stringify(payload))
+		console.log(payload)
 	}
 
 	log.info('In catcher')

@@ -48,6 +48,10 @@ describe('Calls Rally API Investment I330', () => {
 })
 
 
+describe("Creates a new Investment", () => {
+
+})
+
 /******************
  *  TEST Suite.
  * 

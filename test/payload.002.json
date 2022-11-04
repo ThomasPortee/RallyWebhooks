@@ -1,0 +1,1287 @@
+{
+    "message": {
+        "object_id": "a75e6aba-670c-4954-8c34-4cd3f7ffbc8f",
+        "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/portfolioitem/investment/a75e6aba-670c-4954-8c34-4cd3f7ffbc8f",
+        "object_type": "Investment",
+        "transaction": {
+            "trace_id": "3de21b0d-eb98-48e1-9f5d-681ff960bed8",
+            "timestamp": 1667525660529,
+            "user": {
+                "uuid": "4b44597c-348b-4874-a4b5-e634c0152a80",
+                "username": "jose.munoz2@coxautoinc.com",
+                "email": "jose.munoz2@coxautoinc.com"
+            },
+            "message_id": "8b43d47f-f227-4fe3-a935-74316cd51fd0",
+            "parent_span_id": "6b7a9e2f-bb74-4063-ada9-1ef333229859",
+            "span_id": "c4697d6a-f08e-493f-b5c7-1bb0936be4e1",
+            "message_lag": 55
+        },
+        "state": {
+            "ef5c3b12-62b0-42e1-89c1-e9c5cc23a25e": {
+                "value": null,
+                "type": "String",
+                "name": "c_CIKata",
+                "display_name": "CI Kata",
+                "ref": null
+            },
+            "ea577bba-ff7e-4509-9b05-6d261a94d5c4": {
+                "value": null,
+                "type": "String",
+                "name": "c_EnterpriseStrategyAlignmentDecision",
+                "display_name": "Enterprise Strategy Alignment Decision",
+                "ref": null
+            },
+            "c3d4f057-0781-4660-8ce7-bc8514bf0945": {
+                "value": "a75e6aba-670c-4954-8c34-4cd3f7ffbc8f",
+                "type": "Raw",
+                "name": "ObjectUUID",
+                "display_name": "ObjectUUID",
+                "ref": null
+            },
+            "a3a039d5-50d9-4667-80e9-1df6cdd486f7": {
+                "value": null,
+                "type": "String",
+                "name": "c_MethodofService",
+                "display_name": "Method of Service",
+                "ref": null
+            },
+            "a2b3acf3-93f8-48d9-8aae-b0a836a811db": {
+                "value": null,
+                "type": "Date",
+                "name": "c_TestingStartDateexABMarketTest",
+                "display_name": "Testing Start Date (ex. AB Market Test)",
+                "ref": null
+            },
+            "83d56108-0da6-44f0-85a0-f997b84eb326": {
+                "value": null,
+                "type": "String",
+                "name": "c_PreliminaryBudget",
+                "display_name": "Preliminary Budget",
+                "ref": null
+            },
+            "17e158d4-48c2-4777-a9b2-f0d90cd5aa9b": {
+                "value": null,
+                "type": "Text",
+                "name": "c_OLDEstimateLevel6",
+                "display_name": "OLD-Estimate-Level-6",
+                "ref": null
+            },
+            "133bcf42-74fe-4729-b512-6e445eb713fa": {
+                "value": null,
+                "type": "Integer",
+                "name": "PreliminaryEstimateValue",
+                "display_name": "Preliminary Estimate Value",
+                "ref": null
+            },
+            "c722b73c-a4d1-42c0-bf31-26cbab7ecaa7": {
+                "value": null,
+                "type": "String",
+                "name": "c_TicketID",
+                "display_name": "Ticket ID",
+                "ref": null
+            },
+            "f7cb0ce5-354b-49bf-a39c-0e5382d95b7f": {
+                "value": null,
+                "type": "String",
+                "name": "c_DependencyStatus",
+                "display_name": "Dependency Status",
+                "ref": null
+            },
+            "b0778de0-a927-11e2-9e96-0800200c9a66": {
+                "value": "#848689",
+                "type": "String",
+                "name": "DisplayColor",
+                "display_name": "Display Color",
+                "ref": null
+            },
+            "0990deaa-7065-4c4f-b8df-504751663066": {
+                "value": 0,
+                "type": "Integer",
+                "name": "ValueScore",
+                "display_name": "Value Score",
+                "ref": null
+            },
+            "46fab580-0e1b-43e0-839f-dc67d69f5be3": {
+                "value": null,
+                "type": "Collection",
+                "name": "c_CMSProduct",
+                "display_name": "CMS Product",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/c_CMSProduct"
+            },
+            "500a0d67-9c48-4145-920c-821033e4a832": {
+                "value": "Test reflector create new Investment",
+                "type": "String",
+                "name": "Name",
+                "display_name": "Name",
+                "ref": null
+            },
+            "2f85dd1f-8d50-4f18-b859-fd25653ae795": {
+                "value": 0,
+                "type": "Integer",
+                "name": "LeafStoryCount",
+                "display_name": "Leaf Story Count",
+                "ref": null
+            },
+            "c5594558-1eca-4d2c-af7d-a30f34f418d3": {
+                "value": null,
+                "type": "Collection",
+                "name": "c_zDoNotUseWorkload",
+                "display_name": "z_DoNotUse_Workload",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/c_zDoNotUseWorkload"
+            },
+            "f2465402-f9ef-4c69-8b1f-0ed3ec1dc036": {
+                "value": null,
+                "type": "String",
+                "name": "c_ArchiveNotes",
+                "display_name": "Archive Notes",
+                "ref": null
+            },
+            "b2ba04a5-92fb-4d18-95d7-bcd2339b9726": {
+                "value": 0,
+                "type": "Decimal",
+                "name": "PercentDoneByStoryCount",
+                "display_name": "Percent Done By Story Count",
+                "ref": null
+            },
+            "beacf3d0-cbac-4003-b8bc-9adefa3f19d1": {
+                "value": 1,
+                "type": "Integer",
+                "name": "RROEValue",
+                "display_name": "RR/OE Value",
+                "ref": null
+            },
+            "2f339135-b2d7-4b38-acfa-052d8b1a2152": {
+                "value": null,
+                "type": "String",
+                "name": "c_SendtoSNOWIndicatorDSEONLY",
+                "display_name": "Send to SNOW Indicator (DSE ONLY)",
+                "ref": null
+            },
+            "07e85fe6-cefc-47b8-a3f3-99eb416d2d25": {
+                "value": 0,
+                "type": "Decimal",
+                "name": "PercentDoneByStoryPlanEstimate",
+                "display_name": "Percent Done By Story Plan Estimate",
+                "ref": null
+            },
+            "55c5512a-1518-4944-8597-3eb91875e8d1": {
+                "value": "I348",
+                "type": "String",
+                "name": "FormattedID",
+                "display_name": "Formatted ID",
+                "ref": null
+            },
+            "8cae2540-dac5-42ce-9f83-27feb1b8af91": {
+                "value": null,
+                "type": "String",
+                "name": "c_ProcessArea",
+                "display_name": "Process Area",
+                "ref": null
+            },
+            "9dfea03b-7916-485e-8807-fe2929ac1aff": {
+                "value": null,
+                "type": "Text",
+                "name": "c_KeyMetricsandPerformanceIndicators",
+                "display_name": "Key Metrics and Performance Indicator(s)",
+                "ref": null
+            },
+            "fd9e708c-402d-c1c8-9a4c-6c7802432ae5": {
+                "value": "I",
+                "type": "String",
+                "name": "FormattedIDPrefix",
+                "display_name": "Formatted ID Prefix",
+                "ref": null
+            },
+            "17f72ea6-04fd-449e-925c-89ac079c0668": {
+                "value": {
+                    "name": "Cox Training",
+                    "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/workspace/8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2",
+                    "detail_link": "https://rally1.rallydev.com/slm/#/detail/workspace/73024765556",
+                    "id": "8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2",
+                    "object_type": "Workspace"
+                },
+                "type": "Workspace",
+                "name": "Workspace",
+                "display_name": "Workspace",
+                "ref": null
+            },
+            "6feadf21-e7ae-4484-8c74-fadc4446f17c": {
+                "value": null,
+                "type": "Text",
+                "name": "c_OLDEstimateLevel2",
+                "display_name": "OLD-Estimate-Level-2",
+                "ref": null
+            },
+            "1160ddd6-86cf-4cce-883b-2465e993832a": {
+                "value": "2022-11-04T01:34:20.529Z",
+                "type": "Date",
+                "name": "LastUpdateDate",
+                "display_name": "Last Update Date",
+                "ref": null
+            },
+            "ba474c2c-9baf-468c-ae2d-152ac313fa84": {
+                "value": null,
+                "type": "Boolean",
+                "name": "c_TestIntegrationAdminOnly",
+                "display_name": "Test Integration (Admin Only)",
+                "ref": null
+            },
+            "506b5b46-0f7c-4f93-9fa1-ec127c275051": {
+                "value": null,
+                "type": "Text",
+                "name": "c_OLDEstimateLevel1",
+                "display_name": "OLD-Estimate-Level-1",
+                "ref": null
+            },
+            "02b34c56-c082-48ee-a295-51351d320eff": {
+                "value": null,
+                "type": "Blocker",
+                "name": "Blocker",
+                "display_name": "Blocker",
+                "ref": null
+            },
+            "100bcf42-74fe-4729-b512-5e445eb713fa": {
+                "value": null,
+                "type": "Preliminary Estimate",
+                "name": "PreliminaryEstimate",
+                "display_name": "Preliminary Estimate",
+                "ref": null
+            },
+            "90741da4-2cc2-40ea-a104-b6f5f61fdef1": {
+                "value": null,
+                "type": "String",
+                "name": "c_MyState",
+                "display_name": "MyState",
+                "ref": null
+            },
+            "be9efb75-abf4-412b-ba29-fb7b07926284": {
+                "value": 0,
+                "type": "Decimal",
+                "name": "LeafStoryPlanEstimateTotal",
+                "display_name": "Leaf Story Plan Estimate Total",
+                "ref": null
+            },
+            "a5245298-8a3f-0297-0a0c-79c2acf41406": {
+                "value": false,
+                "type": "Boolean",
+                "name": "Recycled",
+                "display_name": "Recycled",
+                "ref": null
+            },
+            "3e539b10-c993-4879-b84e-3db1623274c9": {
+                "value": false,
+                "type": "Boolean",
+                "name": "ChildStoryPredecessorScheduledInSameOrLaterIteration",
+                "display_name": "Child Story Predecessor Scheduled In Same Or Later Iteration",
+                "ref": null
+            },
+            "6776da91-9729-42c7-bab1-395b596013f2": {
+                "value": null,
+                "type": "Collection",
+                "name": "Tags",
+                "display_name": "Tags",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Tags"
+            },
+            "6489812b-417f-4f0b-b63f-5832c3f1bbc3": {
+                "value": null,
+                "type": "String",
+                "name": "c_EpicStatusDSEOnly",
+                "display_name": "Epic Status (DSE Only)",
+                "ref": null
+            },
+            "85d5d854-13b0-4bf3-88f3-a912038e728a": {
+                "value": null,
+                "type": "Collection",
+                "name": "Milestones",
+                "display_name": "Milestones",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Milestones"
+            },
+            "31945129-9066-43e5-b8bb-629a4d6ee009": {
+                "value": 1,
+                "type": "Integer",
+                "name": "TimeCriticality",
+                "display_name": "Time Criticality",
+                "ref": null
+            },
+            "7342ea30-0929-4f9a-b432-70ff9f959cb2": {
+                "value": false,
+                "type": "Boolean",
+                "name": "Archived",
+                "display_name": "Archived",
+                "ref": null
+            },
+            "3ed08e52-d8ec-429c-bef3-e9e6936cb613": {
+                "value": null,
+                "type": "Text",
+                "name": "c_LinktoDiscoveryArtifacts",
+                "display_name": "Link to Discovery Artifacts",
+                "ref": null
+            },
+            "575bfacf-ab8c-4a81-bab5-8d23e757ca05": {
+                "value": null,
+                "type": "String",
+                "name": "c_ConfidenceLevel",
+                "display_name": "Confidence Level",
+                "ref": null
+            },
+            "49bc14e8-a399-4547-98d7-5f36d3bcf8c7": {
+                "value": "P!%L'Mu`-j~a#;gwn<?ZJ+@g(@]hr;.V/y38M*9JucE+XYvi^nWV,(_Qmr3F)367",
+                "type": "String",
+                "name": "DragAndDropRank",
+                "display_name": "Drag And Drop Rank",
+                "ref": null
+            },
+            "bf9bb245-3e6e-401e-a39e-54e508562ea3": {
+                "value": null,
+                "type": "Text",
+                "name": "c_ReleasePlan",
+                "display_name": "Release Plan",
+                "ref": null
+            },
+            "073ca36e-4d88-41b9-bdf9-c03ddfe0ab53": {
+                "value": null,
+                "type": "Text",
+                "name": "c_ProgressActionPlan",
+                "display_name": "Progress/Action Plan",
+                "ref": null
+            },
+            "ce10e5af-ef87-49ce-a09d-5d01acc73389": {
+                "value": {
+                    "name": "Investment",
+                    "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/typedefinition/828a228c-2b1f-4f8f-a594-777e1cb8b6f8",
+                    "detail_link": null,
+                    "id": "828a228c-2b1f-4f8f-a594-777e1cb8b6f8",
+                    "object_type": "TypeDefinition"
+                },
+                "type": "Type Definition",
+                "name": "PortfolioItemType",
+                "display_name": "Portfolio Item Type",
+                "ref": null
+            },
+            "37b72d55-3e72-4985-bdad-c4ed3026835f": {
+                "value": null,
+                "type": "String",
+                "name": "c_ArchiveProject",
+                "display_name": "Archive Project",
+                "ref": null
+            },
+            "b6e488a2-9c04-4c44-ba03-e0be99e1660c": {
+                "value": null,
+                "type": "String",
+                "name": "c_WorkloadCIID",
+                "display_name": "Workload CI ID",
+                "ref": null
+            },
+            "d1c52615-595a-4ec2-bfe2-9974f6f2802f": {
+                "value": null,
+                "type": "Text",
+                "name": "c_OLDEstimateLevel4",
+                "display_name": "OLD-Estimate-Level-4",
+                "ref": null
+            },
+            "c8a82cb0-7566-4134-a7f2-38f65d66f0d6": {
+                "value": null,
+                "type": "String",
+                "name": "c_DependencyRequestedTo",
+                "display_name": "Dependency Requested To",
+                "ref": null
+            },
+            "f005ba11-f005-ba11-f005-ba11f005ba11": {
+                "value": {
+                    "name": "Carlos Munoz",
+                    "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/user/4b44597c-348b-4874-a4b5-e634c0152a80",
+                    "detail_link": "https://rally1.rallydev.com/slm/#/detail/user/436413646224",
+                    "id": "4b44597c-348b-4874-a4b5-e634c0152a80",
+                    "object_type": "User"
+                },
+                "type": "User",
+                "name": "CreatedBy",
+                "display_name": "Created By",
+                "ref": null
+            },
+            "44d9285a-9f65-494f-bcea-659eda547690": {
+                "value": null,
+                "type": "String",
+                "name": "c_EstimateLevel5",
+                "display_name": "Estimate-Level-5",
+                "ref": null
+            },
+            "2273db29-d6b5-44bf-9e47-cedc5d896c9a": {
+                "value": null,
+                "type": "String",
+                "name": "c_RecommendationforEnterprisePlanning",
+                "display_name": "Recommendation for Enterprise Planning",
+                "ref": null
+            },
+            "ad93a14a-0295-456e-a2ad-e9f06c43bd22": {
+                "value": null,
+                "type": "Date",
+                "name": "ActualStartDate",
+                "display_name": "Actual Start Date",
+                "ref": null
+            },
+            "2c861a59-8dfc-45aa-8b5b-0926b22bf24d": {
+                "value": null,
+                "type": "Integer",
+                "name": "c_CAIBusinessValue",
+                "display_name": "CAI Business Value ($)",
+                "ref": null
+            },
+            "2fae400d-b1f8-4c9b-b304-c15f43016a65": {
+                "value": null,
+                "type": "String",
+                "name": "c_Strategy",
+                "display_name": "Strategy",
+                "ref": null
+            },
+            "696a6114-7b85-4eee-81a0-82372e8e924f": {
+                "value": null,
+                "type": "String",
+                "name": "BlockedReason",
+                "display_name": "Blocked Reason",
+                "ref": null
+            },
+            "fb4494c3-431c-4e01-b06d-c7fdc932442a": {
+                "value": null,
+                "type": "String",
+                "name": "c_TypeofReturn",
+                "display_name": "Type of Return",
+                "ref": null
+            },
+            "180a954a-3a84-4d19-9470-d29da2b73436": {
+                "value": null,
+                "type": "String",
+                "name": "c_Goal",
+                "display_name": "Goal",
+                "ref": null
+            },
+            "3ddb7c96-72ba-4c37-a63b-106aa5423138": {
+                "value": null,
+                "type": "Date",
+                "name": "PlannedStartDate",
+                "display_name": "Planned Start Date",
+                "ref": null
+            },
+            "af29dcc6-4b2e-4658-bf33-51fa9371e944": {
+                "value": null,
+                "type": "String",
+                "name": "c_ApplicationArea",
+                "display_name": "Application Area",
+                "ref": null
+            },
+            "bc4b6afa-61f7-4705-b5fa-b7511b5e5cb9": {
+                "value": null,
+                "type": "String",
+                "name": "c_RetailInvestmentCategory",
+                "display_name": "Retail Investment Category",
+                "ref": null
+            },
+            "138d6e22-5ebe-4bdf-b8d8-46d3b13cc603": {
+                "value": null,
+                "type": "Text",
+                "name": "c_ConfidenceDetails",
+                "display_name": "Confidence Details",
+                "ref": null
+            },
+            "9c290b34-e6fe-4742-84f0-6ee217578d4e": {
+                "value": null,
+                "type": "String",
+                "name": "c_ArchiveDeliveryStream",
+                "display_name": "Archive Delivery Stream",
+                "ref": null
+            },
+            "34dd886d-933d-4e7b-a6c3-54b4cee133d1": {
+                "value": null,
+                "type": "String",
+                "name": "c_FocusArea",
+                "display_name": "Focus Area",
+                "ref": null
+            },
+            "326be78b-d219-4b25-83f3-32b0a9020595": {
+                "value": null,
+                "type": "Text",
+                "name": "c_MeasurementsofSuccess",
+                "display_name": "Measurement(s) of Success",
+                "ref": null
+            },
+            "653ce268-ccc9-4c7f-9e7a-bf570b8538ff": {
+                "value": null,
+                "type": "String",
+                "name": "c_AgileProgram",
+                "display_name": "Agile Program",
+                "ref": null
+            },
+            "0edbaf27-6d08-4ab1-a0f9-81185a002e9c": {
+                "value": null,
+                "type": "String",
+                "name": "c_EPStrategicInitiative2023",
+                "display_name": "EP Strategic Initiative 2023",
+                "ref": null
+            },
+            "45db9782-e143-4d34-85e0-c5c1cdce9059": {
+                "value": null,
+                "type": "String",
+                "name": "c_Teams",
+                "display_name": "Team(s)",
+                "ref": null
+            },
+            "06d7ce4f-9e4d-4981-9d1a-fe0854e6e748": {
+                "value": null,
+                "type": "Date",
+                "name": "c_MarketReleaseDate",
+                "display_name": "Market Release Date",
+                "ref": null
+            },
+            "f705ed17-9239-427e-8f34-10bbe088297e": {
+                "value": {
+                    "name": "Dealer.com",
+                    "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/subscription/933b8096-f996-448f-85c1-b07a2315984c",
+                    "detail_link": "https://rally1.rallydev.com/slm/#/detail/subscription/23240039666",
+                    "id": "933b8096-f996-448f-85c1-b07a2315984c",
+                    "object_type": "Subscription"
+                },
+                "type": "Subscription",
+                "name": "Subscription",
+                "display_name": "Subscription",
+                "ref": null
+            },
+            "fd25f16d-c96e-4679-ad30-5989273a830f": {
+                "value": null,
+                "type": "Text",
+                "name": "c_OLDEstimateLevel3",
+                "display_name": "OLD-Estimate-Level-3",
+                "ref": null
+            },
+            "2f8ee14a-2723-40c8-8708-179b097ef9f2": {
+                "value": null,
+                "type": "Date",
+                "name": "c_ArchiveDate",
+                "display_name": "Archive Date",
+                "ref": null
+            },
+            "f7be48fa-c502-4f5c-a5d0-646a85a586f1": {
+                "value": null,
+                "type": "String",
+                "name": "c_CAIBenefit",
+                "display_name": "CAI Benefit",
+                "ref": null
+            },
+            "7f68227d-c681-4181-835f-ef2d22c4a0c3": {
+                "value": null,
+                "type": "State",
+                "name": "State",
+                "display_name": "State",
+                "ref": null
+            },
+            "e669c3ce-927a-4b2e-80ca-7050749bd71a": {
+                "value": null,
+                "type": "String",
+                "name": "c_PortfolioArchitectureReview",
+                "display_name": "Portfolio Architecture Review",
+                "ref": null
+            },
+            "b362f191-3610-44fa-b674-69220c0e5ef0": {
+                "value": null,
+                "type": "Text",
+                "name": "c_Outcomes",
+                "display_name": "Outcomes",
+                "ref": null
+            },
+            "b753c12e-16a9-46b3-ad39-636c223b4c52": {
+                "value": null,
+                "type": "Collection",
+                "name": "Children",
+                "display_name": "Children",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Children"
+            },
+            "a1de5b24-ba39-445b-8fb6-d02f5cf7c369": {
+                "value": null,
+                "type": "Boolean",
+                "name": "c_NewComponent",
+                "display_name": "New Component",
+                "ref": null
+            },
+            "fd76667a-5974-4750-a1e1-7d704576f0b0": {
+                "value": 0,
+                "type": "Integer",
+                "name": "RiskScore",
+                "display_name": "Risk Score",
+                "ref": null
+            },
+            "95ac2b13-e4ee-413e-af83-42aaf4b53626": {
+                "value": "2022-11-04T01:30:29.574Z",
+                "type": "Date",
+                "name": "CreationDate",
+                "display_name": "Creation Date",
+                "ref": null
+            },
+            "557393c4-131b-4df7-b01e-5319b11edd24": {
+                "value": {
+                    "name": "Carlos Munoz",
+                    "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/user/4b44597c-348b-4874-a4b5-e634c0152a80",
+                    "detail_link": "https://rally1.rallydev.com/slm/#/detail/user/436413646224",
+                    "id": "4b44597c-348b-4874-a4b5-e634c0152a80",
+                    "object_type": "User"
+                },
+                "type": "User",
+                "name": "Owner",
+                "display_name": "Owner",
+                "ref": null
+            },
+            "8316ff23-cbc5-44b0-b83e-812565a741ae": {
+                "value": null,
+                "type": "String",
+                "name": "c_SSIntegrationID",
+                "display_name": "SS Integration ID",
+                "ref": null
+            },
+            "1a9d0964-b630-4ee5-a5fe-3febfd20264f": {
+                "value": null,
+                "type": "String",
+                "name": "c_DependencyRequestedFrom",
+                "display_name": "Dependency Requested From",
+                "ref": null
+            },
+            "77027d69-a6da-4011-82f0-5f5beb79e560": {
+                "value": null,
+                "type": "String",
+                "name": "c_EstimateLevel1",
+                "display_name": "Estimate-Level-1",
+                "ref": null
+            },
+            "db871a9a-a003-4c28-bc75-db631809f8a3": {
+                "value": null,
+                "type": "String",
+                "name": "c_ContinuousImprovementCategory",
+                "display_name": "Continuous Improvement Category",
+                "ref": null
+            },
+            "adc82467-9492-4061-9646-9c35b7b5a8de": {
+                "value": null,
+                "type": "String",
+                "name": "c_ProductIntakeID",
+                "display_name": "Product Intake ID",
+                "ref": null
+            },
+            "faaa4615-f80e-43cc-9c7c-47128158ae42": {
+                "value": "2022-11-04T01:30:29.574Z",
+                "type": "Date",
+                "name": "LastRollupDate",
+                "display_name": "Last Rollup Date",
+                "ref": null
+            },
+            "4ee51483-d97b-4f9a-a067-78120226db06": {
+                "value": 0,
+                "type": "Decimal",
+                "name": "WSJFScore",
+                "display_name": "WSJF Score",
+                "ref": null
+            },
+            "f46996bb-f128-4865-a058-2624afb84df4": {
+                "value": null,
+                "type": "Collection",
+                "name": "Discussion",
+                "display_name": "Discussion",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Discussion"
+            },
+            "2dbe73a0-5907-4ff0-bb28-72b01c244fc4": {
+                "value": null,
+                "type": "String",
+                "name": "c_InvestmentDisposition",
+                "display_name": "Investment Disposition",
+                "ref": null
+            },
+            "e8f75fa3-71c5-402f-9999-2b5156a696ea": {
+                "value": null,
+                "type": "String",
+                "name": "c_EstimateLevel2",
+                "display_name": "Estimate-Level-2",
+                "ref": null
+            },
+            "1641c41c-0248-fdf1-946a-bf41b4dd6279": {
+                "value": null,
+                "type": "Collection",
+                "name": "Connections",
+                "display_name": "Connections",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Connections"
+            },
+            "5586caf3-5079-4f44-aa87-034da2dfb78a": {
+                "value": null,
+                "type": "String",
+                "name": "c_EstimateLevel4",
+                "display_name": "Estimate-Level-4",
+                "ref": null
+            },
+            "0e41f4f4-4e67-40d4-b045-8f593c52c74c": {
+                "value": null,
+                "type": "Date",
+                "name": "c_ReleaseDate",
+                "display_name": "Release Date",
+                "ref": null
+            },
+            "f5b1fb22-6c15-44b5-a592-19189fafe5f2": {
+                "value": 2,
+                "type": "Integer",
+                "name": "VersionId",
+                "display_name": "VersionId",
+                "ref": null
+            },
+            "97ec09e6-fda8-479e-856d-78c21165b8c1": {
+                "value": null,
+                "type": "String",
+                "name": "c_EstimateLevel7",
+                "display_name": "Estimate-Level-7",
+                "ref": null
+            },
+            "fff26e0d-12f8-4fd0-b497-941fca3d682a": {
+                "value": null,
+                "type": "Collection",
+                "name": "Collaborators",
+                "display_name": "Collaborators",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Collaborators"
+            },
+            "00c3114f-75a6-4a9e-b92b-793b68c21326": {
+                "value": false,
+                "type": "Boolean",
+                "name": "ChildStoryPredecessorNotScheduled",
+                "display_name": "Child Story Predecessor Not Scheduled",
+                "ref": null
+            },
+            "5fe3d326-f0bc-4238-8f84-93630ea0c4f6": {
+                "value": null,
+                "type": "String",
+                "name": "c_InvestmentBudget",
+                "display_name": "Investment Budget",
+                "ref": null
+            },
+            "d778cf4d-2da6-4c4c-85da-8ecc02390868": {
+                "value": null,
+                "type": "Boolean",
+                "name": "c_ExcludefromRoadmap",
+                "display_name": "Exclude from Roadmap",
+                "ref": null
+            },
+            "6a1045e7-3d05-41bb-a27e-5964515e3f6a": {
+                "value": false,
+                "type": "Boolean",
+                "name": "Expedite",
+                "display_name": "Expedite",
+                "ref": null
+            },
+            "727a8977-f3a5-4713-9415-ac97471cc736": {
+                "value": false,
+                "type": "Boolean",
+                "name": "Ready",
+                "display_name": "Ready",
+                "ref": null
+            },
+            "ad53d848-2e83-4482-a221-49b4fe2d80aa": {
+                "value": null,
+                "type": "Collection",
+                "name": "c_RTSProduct",
+                "display_name": "RTS Product",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/c_RTSProduct"
+            },
+            "c9e91358-64a6-4732-a868-eb77c470eb19": {
+                "value": 1,
+                "type": "Integer",
+                "name": "JobSize",
+                "display_name": "Job Size",
+                "ref": null
+            },
+            "32e57d37-36f0-44a6-bc2f-34cf755ff91b": {
+                "value": null,
+                "type": "Collection",
+                "name": "Attachments",
+                "display_name": "Attachments",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Attachments"
+            },
+            "8fec8ffd-051c-4403-977b-9085f390b647": {
+                "value": null,
+                "type": "Date",
+                "name": "ActualEndDate",
+                "display_name": "Actual End Date",
+                "ref": null
+            },
+            "5736cb0d-4ef8-4e83-a086-cb11e9a705e2": {
+                "value": {
+                    "value": "Transformational",
+                    "ordinal_index": 1
+                },
+                "type": "Rating",
+                "name": "InvestmentCategory",
+                "display_name": "Investment Category",
+                "ref": null
+            },
+            "499b024d-2eb1-4fe2-b98f-d1650a227f9c": {
+                "value": null,
+                "type": "String",
+                "name": "c_DSSPreliminaryBudget",
+                "display_name": "DSS Preliminary Budget",
+                "ref": null
+            },
+            "d86b3a31-d8bd-4eae-b8db-0d0681fdeeed": {
+                "value": null,
+                "type": "String",
+                "name": "c_EstimateLevel3",
+                "display_name": "Estimate-Level-3",
+                "ref": null
+            },
+            "4ef37c14-9894-425d-9f04-069a93095ee1": {
+                "value": null,
+                "type": "Collection",
+                "name": "Risks",
+                "display_name": "Risks",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Risks"
+            },
+            "11e2e4f6-1c9e-4999-900e-bd7120d9509e": {
+                "value": null,
+                "type": "Text",
+                "name": "c_oldArchiveNotes",
+                "display_name": "[old]_Archive Notes",
+                "ref": null
+            },
+            "d6a02d2c-499f-4a08-b02d-ba419ed7ab5c": {
+                "value": null,
+                "type": "String",
+                "name": "c_IstheworkacceptedandreadytoBill",
+                "display_name": "Is the work accepted and ready to Bill?",
+                "ref": null
+            },
+            "7cc3e965-3c8e-4417-a44f-db39dd16afef": {
+                "value": null,
+                "type": "String",
+                "name": "c_Client",
+                "display_name": "Client",
+                "ref": null
+            },
+            "1dbc9b60-df59-4e4c-b5dd-831694d62e04": {
+                "value": null,
+                "type": "Text",
+                "name": "c_OLDEstimateLevel5",
+                "display_name": "OLD-Estimate-Level-5",
+                "ref": null
+            },
+            "af32b07f-5898-4ec4-82fd-f47086722aaa": {
+                "value": null,
+                "type": "String",
+                "name": "c_QualityScore",
+                "display_name": "Quality Score",
+                "ref": null
+            },
+            "a2f2c7c7-42ce-4803-843c-1fd39c3d1c34": {
+                "value": null,
+                "type": "Text",
+                "name": "c_AcceptanceCriteria",
+                "display_name": "Acceptance Criteria",
+                "ref": null
+            },
+            "ae8ecc9f-b9a0-42a4-a6e3-c83d7f8a7070": {
+                "value": {
+                    "name": "Cox Automotive (TRAINING)",
+                    "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/project/60ba4d22-77a8-4881-856e-8fc2ec2cfbd0",
+                    "detail_link": "https://rally1.rallydev.com/slm/#/detail/project/73226494260",
+                    "id": "60ba4d22-77a8-4881-856e-8fc2ec2cfbd0",
+                    "object_type": "Project"
+                },
+                "type": "Project",
+                "name": "Project",
+                "display_name": "Project",
+                "ref": null
+            },
+            "2dc135f2-a7db-4084-b258-42a24b05e3dd": {
+                "value": "2022-11-04T01:30:29.574Z",
+                "type": "Date",
+                "name": "StateChangedDate",
+                "display_name": "State Changed Date",
+                "ref": null
+            },
+            "95dac85b-84b2-4e43-a735-3121299bf475": {
+                "value": null,
+                "type": "Text",
+                "name": "c_CancellationNotes",
+                "display_name": "Cancellation Notes",
+                "ref": null
+            },
+            "9820e984-4ba4-4403-a9e2-01954b80ce9f": {
+                "value": null,
+                "type": "Collection",
+                "name": "Successors",
+                "display_name": "Successors",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Successors"
+            },
+            "91fe5cc5-309e-422c-864f-a28ba83a2fe2": {
+                "value": null,
+                "type": "Collection",
+                "name": "Predecessors",
+                "display_name": "Predecessors",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Predecessors"
+            },
+            "f6d58321-4699-417d-8ae1-c102666321e7": {
+                "value": null,
+                "type": "Integer",
+                "name": "LatestDiscussionAgeInMinutes",
+                "display_name": "Latest Discussion Age In Minutes",
+                "ref": null
+            },
+            "294eadce-0f94-49f8-bd34-eedbcac651ec": {
+                "value": null,
+                "type": "Text",
+                "name": "c_ReleaseNotes",
+                "display_name": "Release Notes",
+                "ref": null
+            },
+            "09877ea1-2678-4e62-83e9-748d851913fc": {
+                "value": {
+                    "name": "RevisionHistory_668245289559",
+                    "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/revisionhistory/4ee00de8-c13f-46bb-9c1d-f77cd26341e0",
+                    "detail_link": null,
+                    "id": "4ee00de8-c13f-46bb-9c1d-f77cd26341e0",
+                    "object_type": "RevisionHistory"
+                },
+                "type": "Revision History",
+                "name": "RevisionHistory",
+                "display_name": "Revision History",
+                "ref": null
+            },
+            "b6c300ee-6c4c-4e22-871f-d3136519cb8a": {
+                "value": null,
+                "type": "String",
+                "name": "c_SNOWStatusDontTouchAdminONLY",
+                "display_name": "SNOW Status (Don't Touch – Admin ONLY)",
+                "ref": null
+            },
+            "32d30f24-3132-4b1d-bdb1-faa71ff6ae05": {
+                "value": null,
+                "type": "String",
+                "name": "c_ProductServiceLine",
+                "display_name": "Product / Service Line",
+                "ref": null
+            },
+            "f14a1d84-8ea5-4e62-bc6d-569a9f6d1778": {
+                "value": null,
+                "type": "String",
+                "name": "c_WorkCategory",
+                "display_name": "Work Category",
+                "ref": null
+            },
+            "b9d1da3d-c49d-42ba-8057-fe0c62de8538": {
+                "value": null,
+                "type": "Date",
+                "name": "c_CommittedEndDate",
+                "display_name": "Committed End Date",
+                "ref": null
+            },
+            "4f0cd7a5-beeb-4f3c-a026-5897ed8b24c3": {
+                "value": null,
+                "type": "String",
+                "name": "c_EstimateLevel6",
+                "display_name": "Estimate-Level-6",
+                "ref": null
+            },
+            "b5bae981-bfe6-4980-844a-b5ecf3e9a156": {
+                "value": "",
+                "type": "Text",
+                "name": "Description",
+                "display_name": "Description",
+                "ref": null
+            },
+            "e23dd6e3-7256-48bd-b563-029112d7dbe9": {
+                "value": false,
+                "type": "Boolean",
+                "name": "Blocked",
+                "display_name": "Blocked",
+                "ref": null
+            },
+            "5ffa6b55-449e-4753-a22e-4cb6e303af84": {
+                "value": "Investment",
+                "type": "String",
+                "name": "PortfolioItemTypeName",
+                "display_name": "Portfolio Item Type Name",
+                "ref": null
+            },
+            "26a5cbc6-9523-4090-bd26-e89920cfb125": {
+                "value": null,
+                "type": "String",
+                "name": "c_AhaID",
+                "display_name": "Aha ID",
+                "ref": null
+            },
+            "e43aaa85-96f9-4983-a8ad-1552e1ff5e71": {
+                "value": 1,
+                "type": "Integer",
+                "name": "UserBusinessValue",
+                "display_name": "User/Business Value",
+                "ref": null
+            },
+            "58336b1e-0edc-4b5e-83ce-826da64c0042": {
+                "value": null,
+                "type": "String",
+                "name": "c_ProductReadiness",
+                "display_name": "Product Readiness",
+                "ref": null
+            },
+            "1a55b2ad-b819-4ba1-b614-4ee11576dab1": {
+                "value": null,
+                "type": "Collection",
+                "name": "Investments",
+                "display_name": "Investments",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Investments"
+            },
+            "5ceb36fb-f899-4a35-8187-cc1d1efb69ca": {
+                "value": null,
+                "type": "Text",
+                "name": "c_OLDEstimateLevel7",
+                "display_name": "OLD-Estimate-Level-7",
+                "ref": null
+            },
+            "cbd19d4b-145c-4ff4-80f3-79e6485d3eed": {
+                "value": null,
+                "type": "String",
+                "name": "c_IsthisFeatureEpicconnectedtoSOW",
+                "display_name": "Is this Feature/Epic connected to SOW?",
+                "ref": null
+            },
+            "2910ca71-9779-4e7b-8fcf-d718c919aff8": {
+                "value": 668245289557,
+                "type": "Integer",
+                "name": "ObjectID",
+                "display_name": "Object ID",
+                "ref": null
+            },
+            "46185a2d-b6dc-4990-aaae-15d0d6cd1373": {
+                "value": null,
+                "type": "Integer",
+                "name": "c_TimeTrackingID",
+                "display_name": "Time Tracking ID",
+                "ref": null
+            },
+            "c14d0722-3842-7c4c-57cc-fcbf9aa4cbb5": {
+                "value": 348,
+                "type": "Integer",
+                "name": "FormattedIDID",
+                "display_name": "Formatted ID ID",
+                "ref": null
+            },
+            "281d62bd-3b52-44d1-a1ef-a208c40cd65e": {
+                "value": null,
+                "type": "Text",
+                "name": "c_NonFunctionalRequirements",
+                "display_name": "Non Functional Requirements",
+                "ref": null
+            },
+            "627194cd-4169-4918-ad70-3d927dd126bb": {
+                "value": null,
+                "type": "Collection",
+                "name": "Changesets",
+                "display_name": "Changesets",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Changesets"
+            },
+            "e0f35bb4-dd51-4691-a4b6-080cef442f42": {
+                "value": null,
+                "type": "Date",
+                "name": "c_TestingEndDateexABMarketTest",
+                "display_name": "Testing End Date (ex. AB Market Test)",
+                "ref": null
+            },
+            "e1aabad8-5315-4004-bf0f-68ee64cf335a": {
+                "value": null,
+                "type": "Date",
+                "name": "PlannedEndDate",
+                "display_name": "Planned End Date",
+                "ref": null
+            },
+            "17abf34f-eafa-4fb2-9287-2f91bc67f719": {
+                "value": 0,
+                "type": "Decimal",
+                "name": "AcceptedLeafStoryPlanEstimateTotal",
+                "display_name": "Accepted Leaf Story Plan Estimate Total",
+                "ref": null
+            },
+            "e2a1c3b5-c780-4e5a-bff0-0ef8b0f72e96": {
+                "value": null,
+                "type": "Text",
+                "name": "c_ProblemStatement",
+                "display_name": "Problem Statement",
+                "ref": null
+            },
+            "ca88473f-0bba-4dd4-b3f7-5e0f67d7c66e": {
+                "value": null,
+                "type": "Decimal",
+                "name": "c_WhatistheSOWValue",
+                "display_name": "What is the SOW Value?",
+                "ref": null
+            },
+            "6389f8ef-e927-4675-b2b6-3168ed39f38d": {
+                "value": null,
+                "type": "Collection",
+                "name": "Objectives",
+                "display_name": "Objectives",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/Objectives"
+            },
+            "1daab65e-0b15-4174-9bd5-b0b65fa6af29": {
+                "value": null,
+                "type": "Collection",
+                "name": "c_Workload",
+                "display_name": "Workload",
+                "ref": "https://rally1.rallydev.com/slm/webservice/v2.x/PortfolioItem/Investment/668245289557/c_Workload"
+            },
+            "78e9e207-369d-4ccb-831f-07a9bd88a313": {
+                "value": null,
+                "type": "String",
+                "name": "c_CRSProduct",
+                "display_name": "CRS Product",
+                "ref": null
+            },
+            "a877f93d-0dd6-40ef-8392-68f0b03daafc": {
+                "value": null,
+                "type": "Text",
+                "name": "c_EnterpriseStrategyAlignmentNotes",
+                "display_name": "Enterprise Strategy Alignment Notes",
+                "ref": null
+            },
+            "72011592-cb2e-4c62-80d6-0d9e3d62cce8": {
+                "value": null,
+                "type": "Integer",
+                "name": "c_CAIEpicTargetCost",
+                "display_name": "CAI Epic Target Cost ($)",
+                "ref": null
+            },
+            "d2f27da7-c116-4d2f-bda3-ae8c53435bb4": {
+                "value": 0,
+                "type": "Integer",
+                "name": "DirectChildrenCount",
+                "display_name": "Direct Children Count",
+                "ref": null
+            },
+            "81fe3330-d4bd-4e27-9cea-f75c887f8c06": {
+                "value": 0,
+                "type": "Integer",
+                "name": "RefinedEstimate",
+                "display_name": "Refined Estimate",
+                "ref": null
+            },
+            "dd5872ea-b180-4ad3-b84b-32168c24c038": {
+                "value": null,
+                "type": "String",
+                "name": "c_ArchivePortfolio",
+                "display_name": "Archive Portfolio",
+                "ref": null
+            },
+            "abb5af67-e70a-4a98-ad21-26f71bf4fe83": {
+                "value": "",
+                "type": "Text",
+                "name": "Notes",
+                "display_name": "Notes",
+                "ref": null
+            },
+            "77f9ea84-780f-45fd-8864-b00c3e6f1260": {
+                "value": 0,
+                "type": "Integer",
+                "name": "UnEstimatedLeafStoryCount",
+                "display_name": "Un-Estimated Leaf Story Count",
+                "ref": null
+            },
+            "4edbdccb-3f29-496f-afde-21dd18d29d29": {
+                "value": null,
+                "type": "Business Initiative",
+                "name": "Parent",
+                "display_name": "Parent",
+                "ref": null
+            },
+            "c2ee4dda-86ec-4ee4-b39d-1566ad30efd2": {
+                "value": 0,
+                "type": "Integer",
+                "name": "AcceptedLeafStoryCount",
+                "display_name": "Accepted Leaf Story Count",
+                "ref": null
+            },
+            "a31907be-2025-49bf-99ab-ca4070bbcf79": {
+                "value": null,
+                "type": "Decimal",
+                "name": "c_SOWHourEstimate",
+                "display_name": "SOW Hour Estimate",
+                "ref": null
+            }
+        },
+        "subscription_id": 59351,
+        "message_id": "8b43d47f-f227-4fe3-a935-74316cd51fd0",
+        "project": {
+            "uuid": "60ba4d22-77a8-4881-856e-8fc2ec2cfbd0",
+            "name": "Cox Automotive (TRAINING)"
+        },
+        "id": "a75e6aba-670c-4954-8c34-4cd3f7ffbc8f",
+        "detail_link": "https://rally1.rallydev.com/slm/#/detail/portfolioitem/investment/668245289557",
+        "message_version": 2,
+        "changes": {
+            "f5b1fb22-6c15-44b5-a592-19189fafe5f2": {
+                "value": 2,
+                "old_value": 1,
+                "added": null,
+                "removed": null,
+                "type": "Integer",
+                "name": "VersionId",
+                "display_name": "VersionId",
+                "ref": null
+            },
+            "5736cb0d-4ef8-4e83-a086-cb11e9a705e2": {
+                "value": {
+                    "value": "Transformational",
+                    "ordinal_index": 1
+                },
+                "old_value": {
+                    "value": "None",
+                    "ordinal_index": 0
+                },
+                "added": null,
+                "removed": null,
+                "type": "Rating",
+                "name": "InvestmentCategory",
+                "display_name": "Investment Category",
+                "ref": null
+            }
+        },
+        "action": "Updated"
+    },
+    "rule": {
+        "LastUpdateDate": "2022-11-02T20:04:49.640Z",
+        "Expressions": [
+            {
+                "AttributeID": "5736cb0d-4ef8-4e83-a086-cb11e9a705e2",
+                "AttributeName": null,
+                "Operator": "has",
+                "Value": null
+            },
+            {
+                "AttributeID": null,
+                "AttributeName": "Workspace",
+                "Operator": "=",
+                "Value": "8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2"
+            }
+        ],
+        "SubscriptionID": 59351,
+        "LastWebhookResponseTime": 2124,
+        "ObjectTypes": [
+            "Epic",
+            "Feature",
+            "Investment"
+        ],
+        "LastSuccess": "2022-11-03T19:59:08.993Z",
+        "LastStatus": null,
+        "_type": "webhook",
+        "OwnerID": "87a3b8d0-71d4-42b6-9e3c-7440983381e8",
+        "FireCount": 133599,
+        "TargetUrl": "https://f825-2806-2f0-9101-93f6-eb10-a86a-2af7-d76e.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3",
+        "CreatedBy": "https://github.com/RallyTechServices/ac-integrations/releases/tag/v1.1.3",
+        "_objectVersion": 27,
+        "Disabled": false,
+        "ErrorCount": 36,
+        "Name": "Portfolio Item InvestmentCategory New",
+        "LastFailure": "2022-11-04T01:30:32.669Z",
+        "AppName": "Reflector",
+        "ObjectUUID": "8071d783-2f50-45e7-b460-5a3098f0e9c3",
+        "CreationDate": "2021-07-08T20:29:32.286Z",
+        "AppUrl": "https://f825-2806-2f0-9101-93f6-eb10-a86a-2af7-d76e.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3"
+    },
+    "Timestamp": "2022-11-04T01:34:21.392Z"
+}
