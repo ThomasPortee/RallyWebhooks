@@ -31,6 +31,9 @@ module.exports.doesRuleApply = (message) => {
     else if (message.action == "Updated" && Object.keys(message.changesByField).includes(fields_updated[0])) {
       result = true;
     }
+    else if (message.action == "Updated" && Object.keys(message.changesByField).includes("Parent")) {
+      result = true;
+    }
   }
   return result;
 }
@@ -79,12 +82,15 @@ module.exports.run = async (message) => {
         log.debug(`items to update: ${JSON.stringify(items_to_update)}`);
 
         // for each item_to_update call rally_utils.UpdateArtifact
-        let update_results = items_to_update.map(async (item) => {
-          return await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], artifact_update);
-        });
-
-        log.debug(`update results: ${JSON.stringify(update_results)}`);
-        return;
+        if (items_to_update.length > 0) {
+          return await Promise.all(items_to_update.map(async (item) => {
+            log.info(`item to update: ${item}`);
+            await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], artifact_update)
+              .then((result) => {
+                log.debug(`Investment category change: ${JSON.stringify(result)}`);
+              });
+          }));
+        }
       }
 
       let parent_response = await rally_utils.getArtifactByRefAsync(parentRef, workspaceRef, ['InvestmentCategory']);
@@ -94,6 +100,7 @@ module.exports.run = async (message) => {
       // if parent InvestmentCategory is different to current InvestmentCategory
       if (parent_investment_category !== current_investment_category) {
         items_to_update.push(message.ref);
+
       }
       // Update all InvestmentCategory from the current change and children to parent InvestmentCategory
       if (children_count > 0) {
@@ -104,6 +111,7 @@ module.exports.run = async (message) => {
           }
         });
       }
+
 
       log.debug(`With parent items to update: ${JSON.stringify(items_to_update)}`);
       let artifact_update = {
