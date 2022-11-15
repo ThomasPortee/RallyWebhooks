@@ -25,7 +25,8 @@ var options = {
     },
     body: {
         AppUrl: targetUrl,
-        TargetUrl: targetUrl
+        TargetUrl: targetUrl,
+        Name: "Portfolio Item InvestmentCategory Updated", // previous name "Update New Portfolio Item Business Value"
     },
     json: true
 };

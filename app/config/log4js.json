@@ -11,6 +11,12 @@
       ],
       "level": "error"
     },
+    "router": {
+      "appenders": [
+        "out"
+      ],
+      "level": "debug"
+    },
     "rally_utils": {
       "appenders": [
         "out"
@@ -21,7 +27,7 @@
       "appenders": [
         "out"
       ],
-      "level": "debug"
+      "level": "error"
     },
     "caibenefit_changed_rule": {
       "appenders": [
@@ -39,13 +45,13 @@
       "appenders": [
         "out"
       ],
-      "level": "debug"
+      "level": "error"
     },
     "strategy_value_changed_rule": {
       "appenders": [
         "out"
       ],
-      "level": "debug"
+      "level": "error"
     }
   }
 }

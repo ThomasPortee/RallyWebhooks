@@ -1,3 +1,5 @@
+const { reject } = require('bluebird');
+
 var log = require('log4js').getLogger("rally_utils");
 
 const rally = require('rally'),
@@ -26,7 +28,7 @@ module.exports.updateArtifact = (ref, workspaceRef, fetch, data) => {
 			}
 		}, function (error, result) {
 			if (error) {
-				log.error(`Error updating ref: ${ref}`, error);
+				log.error(JSON.stringify(error))
 				reject(error);
 			}
 			else {
@@ -39,7 +41,7 @@ module.exports.updateArtifact = (ref, workspaceRef, fetch, data) => {
 
 module.exports.updateArtifactAsync = async (ref, workspaceRef, fetch, data) => {
 	log.info('Updating: ', ref, data);
-	return restApi.update({
+	return await restApi.update({
 		ref: refUtils.getRelative(ref),
 		data: data,
 		fetch: fetch,
@@ -48,7 +50,8 @@ module.exports.updateArtifactAsync = async (ref, workspaceRef, fetch, data) => {
 		}
 	}, function (error, result) {
 		if (error) {
-			log.error(error)
+			log.error(JSON.stringify(error))
+			reject(error)
 		}
 		else {
 			return result
@@ -68,7 +71,8 @@ module.exports.getArtifactByRef = (ref, workspaceRef, fetch) => {
 			limit: Infinity
 		}, function (error, result) {
 			if (error) {
-				log.error(error)
+				log.error(JSON.stringify(error))
+				reject(error)
 			}
 			else {
 				resolve(result)
@@ -87,7 +91,8 @@ module.exports.getArtifactByRefAsync = async (ref, workspaceRef, fetch) => {
 		limit: Infinity
 	}, function (error, result) {
 		if (error) {
-			log.error(error)
+			log.error(JSON.stringify(error))
+			reject(error)
 		}
 		else {
 			return result

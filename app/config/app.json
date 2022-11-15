@@ -1,5 +1,15 @@
 {
 	"webhook_requests": {
+		"Portfolio Item InvestmentCategory New": {
+			"rules": [
+				{
+					"Name": "Portfolio Item InvestmentCategory New",
+					"Path": "./rules/portfolio_item_investmentcategory_rule",
+					"Enabled": true,
+					"Description": "Update new Portfolio Items' Investment Category to match the parent"
+				}
+			]
+		},
 		"Portfolio Item InvestmentCategory Updated": {
 			"rules": [
 				{
@@ -7,6 +17,16 @@
 					"Path": "./rules/portfolio_item_investmentcategory_rule",
 					"Enabled": true,
 					"Description": "Update child Portfolio Items' Investment Category to match the updated parent"
+				}
+			]
+		},
+		"Portfolio Item CAIBenefit New": {
+			"rules": [
+				{
+					"Name": "Portfolio Item CAIBenefit New",
+					"Path": "./rules/portfolio_item_caibenefit_rule",
+					"Enabled": true,
+					"Description": "Update child Portfolio Items' CAIBEnefit to match the updated parent"
 				}
 			]
 		},
@@ -27,16 +47,6 @@
 					"Path": "./rules/defect_close_declined_changed_rule",
 					"Enabled": true,
 					"Description": "Update child Portfolio Items' Business Value to match the updated parent"
-				}
-			]
-		},
-		"Portfolio Item InvestmentCategory New": {
-			"rules": [
-				{
-					"Name": "Portfolio Item InvestmentCategory New",
-					"Path": "./rules/portfolio_item_investmentcategory_rule",
-					"Enabled": true,
-					"Description": "Update new Portfolio Items' Investment Category to match the parent"
 				}
 			]
 		},

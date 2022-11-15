@@ -10,7 +10,7 @@ const targetUrl = utils.getTargetUrl();
 
 // webhook url for TRAINNING
 //https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/2e1492a1-0252-494a-83d0-df85e8b0edf6 
-const wh_ref = "2e1492a1-0252-494a-83d0-df85e8b0edf6";
+const wh_ref = "9ed1aea9-3c87-44f4-b45f-4bddcafc5d1d";
 // This is the webhook _ref or ID for Webhoh Portfolio Investment Category change
 
 const webhookUrl = `https://rally1.rallydev.com/apps/pigeon/api/v2/webhook/${wh_ref}`;
@@ -36,7 +36,7 @@ var options = {
                 "Value": "8fe6f2f2-7a83-43f6-ac30-29cef4f8f1b2"
             }
         ],
-        Name: "New Portfolio Item CAIBenefit Value Changed", // previous name "Update New Portfolio Item Business Value"
+        Name: "Portfolio Item CAIBenefit Updated", // previous name "Update New Portfolio Item Business Value"
         AppUrl: targetUrl,
         TargetUrl: targetUrl
     },

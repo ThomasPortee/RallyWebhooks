@@ -1,7 +1,7 @@
 const get = require('lodash.get');
 const bluebird = require('bluebird');
 
-var log = require('log4js').getLogger("c_CAIBenefit_changed_rule");
+var log = require('log4js').getLogger("caibenefit_changed_rule");
 
 const rally_utils = require('../common/rally_utils');
 
@@ -16,7 +16,7 @@ module.exports.doesRuleApply = (message) => {
 
   // if the object type is not PortfolioItem/Investment (then is Epic or Feature)
   // if get the Parent c_CAIBenefit if it is different to the current:
-  //  update current object tho Parent c_CAIBenefit
+  //  update current object to Parent c_CAIBenefit
   //  if the object has children update the c_CAIBenefit of those children.
   // if does not have parent and object has c_CAIBenefit set
   //  set c_CAIBenefit to null
@@ -49,7 +49,7 @@ module.exports.run = async (message) => {
     let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
     let workspaceRef = `/workspace/${workspaceId}`;
 
-    var current_investment_category = get(message, ['stateByField', 'c_CAIBenefit', 'value', 'value']);;
+    var current_caibenefit = get(message, ['stateByField', 'c_CAIBenefit', 'value']);;
     var parent_investment_category = "";
     // Obtain children:
     let childrenRef = get(message, ['stateByField', 'Children', 'ref']);
@@ -58,8 +58,8 @@ module.exports.run = async (message) => {
 
     let items_to_update = [];
 
-    // if object type is not Investment
-    if (message.object_type == "Feature" || message.object_type == "Epic") {
+    // if object type is feature set the CAI Benefit from Parent
+    if (message.object_type == "Feature") {
       // Obtain parent:
       let parentRef = get(message, ['stateByField', 'Parent', 'value', 'ref']);
       // if parent does not exists must update Investment category to null
@@ -68,13 +68,6 @@ module.exports.run = async (message) => {
         // set artifact_update to c_CAIBenefit = null
         let artifact_update = {
           "c_CAIBenefit": null
-        }
-
-        if (children_count > 0) {
-          let children = await rally_utils.getArtifactByRefAsync(childrenRef, workspaceRef, 'c_CAIBenefit');
-          children.Results.forEach((child) => {
-            items_to_update.push(child._ref);
-          });
         }
 
         items_to_update.push(message.ref);
@@ -87,7 +80,7 @@ module.exports.run = async (message) => {
             log.info(`item to update: ${item}`);
             await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
               .then((result) => {
-                log.debug(`Investment category change: ${JSON.stringify(result)}`);
+                log.debug(`Oprhan Feature CAI Benefit changed: ${JSON.stringify(result)}`);
               });
           }));
         }
@@ -98,7 +91,7 @@ module.exports.run = async (message) => {
       parent_investment_category = parent_values.c_CAIBenefit;
 
       // if parent c_CAIBenefit is different to current c_CAIBenefit
-      if (parent_investment_category !== current_investment_category) {
+      if (parent_investment_category !== current_caibenefit) {
         items_to_update.push(message.ref);
 
       }
@@ -106,7 +99,7 @@ module.exports.run = async (message) => {
       if (children_count > 0) {
         let children = await rally_utils.getArtifactByRefAsync(childrenRef, workspaceRef, 'c_CAIBenefit');
         children.Results.forEach((child) => {
-          if (current_investment_category !== child.c_CAIBenefit) {
+          if (current_caibenefit !== child.c_CAIBenefit) {
             items_to_update.push(child._ref);
           }
         });
@@ -130,28 +123,23 @@ module.exports.run = async (message) => {
 
     }
 
-    // if object type is Investment
-    if (message.object_type == "Investment") {
-      // id children_count is equal to 0 return
-      if (children_count == 0) {
-        // No changes needed
-        log.info("No changes needed");
-        return;
+    if (message.object_type == "Epic") {
+      // Update all c_CAIBenefit from the current change and children to parent c_CAIBenefit
+      if (children_count > 0) {
+        let children = await rally_utils.getArtifactByRefAsync(childrenRef, workspaceRef, 'c_CAIBenefit');
+        children.Results.forEach((child) => {
+          if (current_caibenefit !== child.c_CAIBenefit) {
+            items_to_update.push(child._ref);
+          }
+        });
       }
-      // update chilren c_CAIBenefit to current c_CAIBenefit
-      let children = await rally_utils.getArtifactByRefAsync(childrenRef, workspaceRef, 'c_CAIBenefit');
-      children.Results.forEach((child) => {
-        if (current_investment_category !== child.c_CAIBenefit) {
-          items_to_update.push(child._ref);
-        }
-      });
 
-      log.debug(`From Investment items to update: ${JSON.stringify(items_to_update)}`);
+
+      log.debug(`With EPIC, items to update: ${JSON.stringify(items_to_update)}`);
       let artifact_update = {
-        "c_CAIBenefit": current_investment_category
+        "c_CAIBenefit": current_caibenefit
       }
       // for each item_to_update call rally_utils.UpdateArtifact
-      //if the length of items_to_update is greater than 0
       if (items_to_update.length > 0) {
         return await Promise.all(items_to_update.map(async (item) => {
           log.info(`item to update: ${item}`);
@@ -163,7 +151,6 @@ module.exports.run = async (message) => {
       }
 
     }
-
     return;
 
   } catch (error) {
