@@ -81,6 +81,7 @@ module.exports.run = async (message) => {
             await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
               .then((result) => {
                 log.debug(`Oprhan Feature CAI Benefit changed: ${JSON.stringify(result)}`);
+                return result;
               });
           }));
         }
@@ -117,6 +118,7 @@ module.exports.run = async (message) => {
           await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
             .then((result) => {
               log.debug(`Investment category change: ${JSON.stringify(result)}`);
+              return result;
             });
         }));
       }
@@ -146,6 +148,7 @@ module.exports.run = async (message) => {
           await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
             .then((result) => {
               log.debug(`Investment category change: ${JSON.stringify(result)}`);
+              return result;
             });
         }));
       }

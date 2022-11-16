@@ -28,11 +28,7 @@ module.exports.processMessage = (payload) => {
 			message.changesByField = handler.transformFields(message.changes)
 			message.stateByField = handler.transformFields(message.state)
 
-			var delayExecuted = false;
 
-			//random integer
-			var msTimeout = parseInt(process.env.MSTIMEOUT)
-			var random_wait = utils.randomBetween(150, msTimeout)
 
 			var rule_to_delay = [
 				'Portfolio Item CAIBenefit Updated',
@@ -50,70 +46,28 @@ module.exports.processMessage = (payload) => {
 					return;
 				}
 
-				/*
-				if (rule_to_delay.includes(rules[i].Name) && !delayExecuted) {
-					log.info("Delaying execution of rule: " + rules[i].Name)
-					delayExecuted = true;
-					return setTimeout(function () {
-						return rule.run(message);
-					}, random_wait);
-
-					return
+				if (rule_to_delay.includes(rules[i].Name)) {
+					var result = await rule.run(message)
+					log.debug("Rule result: " + result)
+					return result;
 				}
-				*/
-
-				var result = await rule.run(message)
-				log.debug("Rule result: " + result)
 
 
+				ruleResults.push(rule.run(message));
 
 
-				/*ruleResults.
-					push(await rule.run(message));*/
-				/*
-				else {
-					if (
-						// if rule name is in the list of rules to delay
-						rules[i].Name.indexOf(rule_to_delay) > -1
-						&& delayExecuted === false) {
+				return Promise.all(ruleResults)
+					.then((values) => {
+						foreach(values, value => {
+							log.info('result', value);
+						});
+					})
+					.catch((error) => {
+						log.error(error.message, error.stack)
+					});
 
-						var waitTill = new Date(new Date().getTime() + randomWait);
-						//var waitTill = new Date(new Date().getTime() + 5 * 100); //There was a 5 second delay to not overlap the calls.
-						while (waitTill > new Date()) {
-							ruleResults.push(rule.run(message));
-						}
-						delayExecuted = true;
-						return;
-					}
-
-					ruleResults.push(rule.run(message));
-				}*/
 
 			}
-
-			//return await Promise.all(await ruleResults);
-
-			/*
-			return await Promise.all(ruleResults.map(async (value) => {
-				// try catch to handle errors in the rule
-				try {
-					log.info('result', value);
-					return await value;
-				} catch (err) {
-					log.error('Error in rule', err.message, err.stack);
-					return err;
-				}
-			}));
-			*/
-
-			/*.then((values) => {
-					foreach(values, value => {
-						log.info('result', value);
-					});
-				})
-				.catch((error) => {
-					log.error(error.message, error.stack)
-				});*/
 		})
 
 	return result;

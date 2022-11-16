@@ -88,6 +88,7 @@ module.exports.run = async (message) => {
             await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], artifact_update)
               .then((result) => {
                 log.debug(`Investment category change: ${JSON.stringify(result)}`);
+                return result;
               });
           }));
         }
@@ -124,6 +125,7 @@ module.exports.run = async (message) => {
           await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], artifact_update)
             .then((result) => {
               log.debug(`Investment category change: ${JSON.stringify(result)}`);
+              return result;
             });
         }));
       }
@@ -158,6 +160,7 @@ module.exports.run = async (message) => {
           await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], artifact_update)
             .then((result) => {
               log.debug(`Investment category change: ${JSON.stringify(result)}`);
+              return result;
             });
         }));
       }
