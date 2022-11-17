@@ -40,23 +40,24 @@ module.exports.updateArtifact = (ref, workspaceRef, fetch, data) => {
 }
 
 module.exports.updateArtifactAsync = async (ref, workspaceRef, fetch, data) => {
-	log.info('Updating: ', ref, data);
-	return await restApi.update({
-		ref: refUtils.getRelative(ref),
-		data: data,
-		fetch: fetch,
-		scope: {
-			workspace: refUtils.getRelative(workspaceRef)
-		}
-	}, function (error, result) {
-		if (error) {
-			log.error(JSON.stringify(error))
-			reject(error)
-		}
-		else {
-			return result
-		}
-	});
+	log.info('Start Updating: ', ref, data);
+	try {
+		let result = await restApi.update({
+			ref: refUtils.getRelative(ref),
+			data: data,
+			fetch: fetch,
+			scope: {
+				workspace: refUtils.getRelative(workspaceRef)
+			}
+		});
+		log.info('finished Updating: ', ref, result);
+		return result;
+	} catch (error) {
+		log.error(JSON.stringify(error))
+		log.warn("retrying")
+		setTimeout(async () => { await module.exports.updateArtifactAsync(ref, workspaceRef, fetch, data) }, 500);
+		//reject(error)
+	}
 }
 
 

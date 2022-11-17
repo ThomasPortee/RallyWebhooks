@@ -34,8 +34,7 @@ module.exports.processMessage = (payload) => {
 				'Portfolio Item CAIBenefit Updated',
 				'Portfolio Item CAIBenefit New',
 				'Portfolio Item InvestmentCategory Updated',
-				'Portfolio Item InvestmentCategory New',
-				'Strategy Value Changed Rule'
+				'Portfolio Item InvestmentCategory New'
 			]
 
 			for (var i in rules) {
@@ -48,7 +47,7 @@ module.exports.processMessage = (payload) => {
 
 				if (rule_to_delay.includes(rules[i].Name)) {
 					var result = await rule.run(message)
-					log.debug("Rule result: " + result)
+					log.debug("Rule result: " + JSON.stringify(result))
 					return result;
 				}
 

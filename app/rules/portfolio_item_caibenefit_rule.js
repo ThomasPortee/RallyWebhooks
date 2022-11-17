@@ -31,7 +31,10 @@ module.exports.doesRuleApply = (message) => {
     else if (message.action == "Updated" && Object.keys(message.changesByField).includes(fields_updated[0])) {
       result = true;
     }
-    else if (message.ENCVaction == "Updated" && Object.keys(message.changesByField).includes("Parent")) {
+    else if (message.action == "Updated" && Object.keys(message.changesByField).includes("Parent")) {
+      result = true;
+    }
+    else if (message.action == "Updated" && message.stateByField.Parent.value != null && message.stateByField.c_CAIBenefit.value == null) {
       result = true;
     }
   }
@@ -78,11 +81,15 @@ module.exports.run = async (message) => {
         if (items_to_update.length > 0) {
           return await Promise.all(items_to_update.map(async (item) => {
             log.info(`item to update: ${item}`);
-            await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
-              .then((result) => {
-                log.debug(`Oprhan Feature CAI Benefit changed: ${JSON.stringify(result)}`);
-                return result;
-              });
+            let result = await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
+            log.debug(`Feature CAI Benefit changed: ${JSON.stringify(result)}`);
+            return result;
+            /*
+                .then((result) => {
+                  log.debug(`Investment category change: ${JSON.stringify(result)}`);
+                  return result;
+                });
+              */
           }));
         }
       }
@@ -115,11 +122,15 @@ module.exports.run = async (message) => {
       if (items_to_update.length > 0) {
         return await Promise.all(items_to_update.map(async (item) => {
           log.info(`item to update: ${item}`);
-          await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
+          let result = await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
+          log.debug(`Feature CAI Benefit changed: ${JSON.stringify(result)}`);
+          return result;
+          /*
             .then((result) => {
               log.debug(`Investment category change: ${JSON.stringify(result)}`);
               return result;
             });
+          */
         }));
       }
 
@@ -154,7 +165,7 @@ module.exports.run = async (message) => {
       }
 
     }
-    return;
+    return "No changes needed";
 
   } catch (error) {
 

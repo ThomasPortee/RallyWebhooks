@@ -26,9 +26,9 @@ var options = {
         Expressions: [
             {
                 "AttributeID": "f7be48fa-c502-4f5c-a5d0-646a85a586f1",
-                "AttributeName": "c_CAIBenefit",
-                "Operator": "has",
-                "Value": null
+                //"AttributeName": "c_CAIBenefit",
+                "Operator": "changed",
+                //"Value": null
             },
             {
                 "AttributeName": "Workspace",
