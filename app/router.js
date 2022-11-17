@@ -45,11 +45,12 @@ module.exports.processMessage = (payload) => {
 					return;
 				}
 
+				/*
 				if (rule_to_delay.includes(rules[i].Name)) {
 					var result = await rule.run(message)
 					log.debug("Rule result: " + JSON.stringify(result))
 					return result;
-				}
+				}*/
 
 
 				ruleResults.push(rule.run(message));

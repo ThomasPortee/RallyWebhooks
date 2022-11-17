@@ -79,7 +79,7 @@ module.exports.run = async (message) => {
 
         // for each item_to_update call rally_utils.UpdateArtifact
         if (items_to_update.length > 0) {
-          return await Promise.all(items_to_update.map(async (item) => {
+          return Promise.all(items_to_update.map(async (item) => {
             log.info(`item to update: ${item}`);
             let result = await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
             log.debug(`Feature CAI Benefit changed: ${JSON.stringify(result)}`);
@@ -120,7 +120,7 @@ module.exports.run = async (message) => {
       }
       // for each item_to_update call rally_utils.UpdateArtifact
       if (items_to_update.length > 0) {
-        return await Promise.all(items_to_update.map(async (item) => {
+        return Promise.all(items_to_update.map(async (item) => {
           log.info(`item to update: ${item}`);
           let result = await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
           log.debug(`Feature CAI Benefit changed: ${JSON.stringify(result)}`);
@@ -154,7 +154,7 @@ module.exports.run = async (message) => {
       }
       // for each item_to_update call rally_utils.UpdateArtifact
       if (items_to_update.length > 0) {
-        return await Promise.all(items_to_update.map(async (item) => {
+        return Promise.all(items_to_update.map(async (item) => {
           log.info(`item to update: ${item}`);
           await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
             .then((result) => {
