@@ -31,7 +31,7 @@ module.exports.doesRuleApply = (message) => {
     else if (message.action == "Updated" && Object.keys(message.changesByField).includes(fields_updated[0])) {
       result = true;
     }
-    else if (message.action == "Updated" && Object.keys(message.changesByField).includes("Parent")) {
+    else if (message.ENCVaction == "Updated" && Object.keys(message.changesByField).includes("Parent")) {
       result = true;
     }
   }

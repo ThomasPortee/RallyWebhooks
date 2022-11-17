@@ -1,5 +1,7 @@
 var assert = require('assert');
 
+var global;
+
 const rally = require('rally'),
     restApi = rally({
         apiKey: process.env.WEBHOOK_RALLY_API_KEY,
@@ -13,40 +15,143 @@ const rally = require('rally'),
 const workspaceRef = `/workspace/73024765556`;
 const ref = "https://rally1.rallydev.com/slm/webservice/v2.x/portfolioitem/investment/651165337617"
 
-describe('Creates a New Feature', () => {
-    describe(' Check Investment Category', () => {
-        const response = restApi.query({
-            ref: refUtils.getRelative(ref),
-            fetch: ['PortfolioItemType', 'FormattedID', 'InvestmentCategory', 'c_CAIBenefit'],
-            scope: {
-                workspace: refUtils.getRelative(workspaceRef)
+
+describe('Creates a New Orphaned Feature', () => {
+    describe('Creates a feature with None CAIBenefit and None InvestmentCategory', () => {
+
+        const now = new Date();
+        const uniquenow = now.toISOString().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace(".", "").replace("Z", "");
+
+        const response = restApi.create({
+            type: 'portfolioitem/feature',
+            data: {
+                Name: `Test feature IC "None" and c_CAIBenefit Null ${uniquenow}`,
+                InvestmentCategory: "None",
+                c_CAIBenefit: null,
             },
-            limit: Infinity
+            scope: {
+                workspace: workspaceRef,
+            }
         });
 
-        //console.log(response)
+        //console.log(response);
 
-        it('must be named I330', async () => {
+        it('must be Orphaned feature', async () => {
+            let r = await response
+            //console.log(r['Object']['_ref'])
+            const q = await restApi.get({
+                ref: r['Object']['_ref'],
+                fetch: ['Parent'],
+                scope: {
+                    workspace: workspaceRef,
+                }
+            })
+            //console.log(q)
+            assert.equal(q['Object']['Parent'], null);
+        })
 
+        it('must be have InvestmentCategory as None', async () => {
+            let r = await response
+            const q = await restApi.get({
+                ref: r['Object']['_ref'],
+                fetch: ['InvestmentCategory'],
+                scope: {
+                    workspace: workspaceRef,
+                }
+            })
+            //console.log(q)
+            assert.equal(q['Object']['InvestmentCategory'], 'None');
+        })
+
+        it('must be have c_CAIBenefit as NULL', async () => {
             let r = await response
             //console.log(r)
-            assert.equal(r['FormattedID'], 'I330');
+            const q = await restApi.get({
+                ref: r['Object']['_ref'],
+                fetch: ['c_CAIBenefit'],
+                scope: {
+                    workspace: workspaceRef,
+                }
+            })
+            //console.log(q)
+            assert.equal(q['Object']['c_CAIBenefit'], null);
         })
 
-        it('must be of portfolio type Investment', async () => {
+    })
+
+    describe('Filled CAIBenefit and InvestmentCategory', () => {
+
+        const now = new Date();
+        const uniquenow = now.toISOString().replace("-", "").replace("-", "").replace(":", "").replace(":", "").replace(".", "").replace("Z", "");
+
+        const response = restApi.create({
+            type: 'portfolioitem/feature',
+            data: {
+                Name: `Test feature IC "KTLO" and c_CAIBenefit "Client-specific Requests" ${uniquenow}`,
+                InvestmentCategory: "KTLO",
+                c_CAIBenefit: "Client-specific Requests",
+            },
+            scope: {
+                workspace: workspaceRef,
+            }
+        });
+
+        //console.log(response);
+
+        it('must be Orphaned feature', async () => {
 
             let r = await response
-            //console.log(r)
-            assert.equal(r['PortfolioItemType']['_refObjectName'], 'Investment');
+            console.log(r['Object']['_ref'])
+            const wait = await setTimeout(() => {
+                console.log("Now we call it")
+            }, 2000);
+            const q = await restApi.get({
+                ref: r['Object']['_ref'],
+                fetch: ['Parent'],
+                scope: {
+                    workspace: workspaceRef,
+                }
+            })
+            //console.log(q)
+            assert.equal(q['Object']['Parent'], null);
         })
 
-        it('must have Enhancements as Investment Category', async () => {
-            let r = await response
-            assert.equal(r['InvestmentCategory'], 'Enhancements');
+        it('must be have InvestmentCategory as None', async () => {
+            await setTimeout(async () => {
+                let r = await response
+                console.log(r['Object']['_ref'])
+                const q = await restApi.get({
+                    ref: r['Object']['_ref'],
+                    fetch: ['InvestmentCategory'],
+                    scope: {
+                        workspace: workspaceRef,
+                    }
+                })
+                console.log(`InvestmentCategory ${q['Object']['InvestmentCategory']}`)
+                assert.equal(q['Object']['InvestmentCategory'], 'None');
+            }, 2000);
+
         })
+
+        it('must be have c_CAIBenefit as NULL', async () => {
+            await setTimeout(async () => {
+                let r = await response
+                console.log(r['Object']['_ref'])
+                const q = restApi.get({
+                    ref: r['Object']['_ref'],
+                    fetch: ['c_CAIBenefit'],
+                    scope: {
+                        workspace: workspaceRef,
+                    }
+                })
+                console.log(`CAI Benefit ${q['Object']['c_CAIBenefit']}`)
+                assert.equal(q['Object']['c_CAIBenefit'], null);
+            }, 2000);
+
+        })
+
     })
 })
-
 
 /******************
  *  TEST Suite.

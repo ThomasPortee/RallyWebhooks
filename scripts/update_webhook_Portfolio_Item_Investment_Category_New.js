@@ -31,12 +31,14 @@ var options = {
                 "Operator": "has",
                 //"Value": null
             },
+            /*
             {
                 //"AttributeID": "5f5b1fb22-6c15-44b5-a592-19189fafe5f2", // Version ID must be equal to 2
                 "AttributeName": "VersionId",
                 "Operator": "<=",
                 "Value": 2
             },
+            */
 
             {
                 "AttributeID": null,

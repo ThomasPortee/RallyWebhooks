@@ -51,7 +51,7 @@ case $ENV in
         ;;
     LOCAL)
         # Modify this with the ngrok provided for local development
-        export WEBHOOK_TARGET_URL=https://8c57-2806-2f0-9101-93f6-66d5-9d97-966-73e4.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
+        export WEBHOOK_TARGET_URL=https://8272-2806-2f0-9101-93f6-946c-69ee-cb86-5339.ngrok.io/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
         ;;
     *)
         export WEBHOOK_TARGET_URL=https://pmgy8b70wb.execute-api.us-east-1.amazonaws.com/dev/3277c954-e5fb-11e7-80c1-9a914cz093ae/1.1.3
