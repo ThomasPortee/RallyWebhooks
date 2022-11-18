@@ -42,7 +42,7 @@ module.exports.processMessage = (payload) => {
 
 				if (!rule.doesRuleApply(message)) {
 					log.warn("Rule does not apply")
-					return;
+					continue;
 				}
 
 				/*

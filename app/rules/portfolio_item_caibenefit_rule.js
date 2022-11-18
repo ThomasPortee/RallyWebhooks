@@ -34,7 +34,8 @@ module.exports.doesRuleApply = (message) => {
     else if (message.action == "Updated" && Object.keys(message.changesByField).includes("Parent")) {
       result = true;
     }
-    else if (message.action == "Updated" && message.stateByField.Parent.value != null && message.stateByField.c_CAIBenefit.value == null) {
+    // when is removed from parent but it has caibenefit set
+    else if (message.action == "Updated" && message.stateByField.Parent.value === null && message.stateByField.c_CAIBenefit.value !== null) {
       result = true;
     }
   }
@@ -43,14 +44,28 @@ module.exports.doesRuleApply = (message) => {
 
 
 module.exports.run = async (message) => {
+
+  let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
+  let workspaceRef = `/workspace/${workspaceId}`;
+
+  // if  object type is Feature and parent valus is null
+
+  if (message.object_type == "Feature" && message.stateByField.Parent.value == null) {
+    let artifact_update = {
+      "c_CAIBenefit": null
+    }
+    let result = await rally_utils.updateArtifactAsync(message.ref, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
+    return result;
+  }
+
+
   try {
     log.info("portfolio_item_c_CAIBenefit_rule applies!");
     log.debug(`${message.object_type}  ${message.action}: \n ${JSON.stringify(message.changesByField)}`);
     log.debug(`${message.detail_link}`);
     // Get Parent field values
     // TODO Test UUID - The Workspace.value.ref ends in a UUID, which isn't accepted by lookback. Get the ID from the detail_link
-    let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
-    let workspaceRef = `/workspace/${workspaceId}`;
+
 
     var current_caibenefit = get(message, ['stateByField', 'c_CAIBenefit', 'value']);;
     var parent_investment_category = "";
@@ -132,7 +147,7 @@ module.exports.run = async (message) => {
             });
           */
         }));
-      }
+      } s
 
     }
 
@@ -156,11 +171,7 @@ module.exports.run = async (message) => {
       if (items_to_update.length > 0) {
         return Promise.all(items_to_update.map(async (item) => {
           log.info(`item to update: ${item}`);
-          await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
-            .then((result) => {
-              log.debug(`Investment category change: ${JSON.stringify(result)}`);
-              return result;
-            });
+          return rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
         }));
       }
 

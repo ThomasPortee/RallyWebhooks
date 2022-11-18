@@ -43,25 +43,14 @@ module.exports.doesRuleApply = (message) => {
 
 
 module.exports.run = async (message) => {
-  // Get Parent field values
-  // TODO Test UUID - The Workspace.value.ref ends in a UUID, which isn't accepted by lookback. Get the ID from the detail_link
-  let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
-  let workspaceRef = `/workspace/${workspaceId}`;
-
-  // if  object type is Feature and parent valus is null
-
-  if (message.object_type == "Feature" && message.stateByField.Parent.value == null) {
-    let artifact_update = {
-      "InvestmentCategory": null
-    }
-    let result = await rally_utils.updateArtifactAsync(message.ref, workspaceRef, ['FormattedID', 'Name', 'InvestmentCategory'], artifact_update)
-    return result;
-  }
   try {
     log.info("portfolio_item_investmentcategory_rule applies!");
     log.debug(`${message.object_type}  ${message.action}: \n ${JSON.stringify(message.changesByField)}`);
     log.debug(`${message.detail_link}`);
-
+    // Get Parent field values
+    // TODO Test UUID - The Workspace.value.ref ends in a UUID, which isn't accepted by lookback. Get the ID from the detail_link
+    let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
+    let workspaceRef = `/workspace/${workspaceId}`;
 
     var current_investment_category = get(message, ['stateByField', 'InvestmentCategory', 'value', 'value']);;
     var parent_investment_category = "";

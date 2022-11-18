@@ -27,7 +27,7 @@
       "appenders": [
         "out"
       ],
-      "level": "error"
+      "level": "debug"
     },
     "caibenefit_changed_rule": {
       "appenders": [
