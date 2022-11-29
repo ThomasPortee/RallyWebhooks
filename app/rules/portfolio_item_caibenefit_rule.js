@@ -35,7 +35,7 @@ module.exports.doesRuleApply = (message) => {
       result = true;
     }
     // when is removed from parent but it has caibenefit set
-    else if (message.action == "Updated" && message.stateByField.Parent.value === null && message.stateByField.c_CAIBenefit.value !== null) {
+    else if (message.action == "Updated" && message.stateByField.Parent.value !== null && message.stateByField.c_CAIBenefit.value !== null) {
       result = true;
     }
   }
