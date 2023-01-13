@@ -147,7 +147,7 @@ module.exports.run = async (message) => {
             });
           */
         }));
-      } s
+      }
 
     }
 
