@@ -55,7 +55,7 @@ module.exports.updateArtifactAsync = async (ref, workspaceRef, fetch, data) => {
 	} catch (error) {
 		log.error(JSON.stringify(error))
 		log.warn("retrying")
-		setTimeout(async () => { await module.exports.updateArtifactAsync(+--, workspaceRef, fetch, data) }, 500);
+		setTimeout(async () => { await module.exports.updateArtifactAsync(ref, workspaceRef, fetch, data) }, 500);
 		//reject(error)
 	}
 }
