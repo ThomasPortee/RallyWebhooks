@@ -99,12 +99,7 @@ module.exports.run = async (message) => {
             let result = await rally_utils.updateArtifactAsync(item, workspaceRef, ['FormattedID', 'Name', 'c_CAIBenefit'], artifact_update)
             log.debug(`Feature CAI Benefit changed: ${JSON.stringify(result)}`);
             return result;
-            /*
-                .then((result) => {
-                  log.debug(`Investment category change: ${JSON.stringify(result)}`);
-                  return result;
-                });
-              */
+
           }));
         }
       }
@@ -121,11 +116,13 @@ module.exports.run = async (message) => {
       // Update all c_CAIBenefit from the current change and children to parent c_CAIBenefit
       if (children_count > 0) {
         let children = await rally_utils.getArtifactByRefAsync(childrenRef, workspaceRef, 'c_CAIBenefit');
-        children.Results.forEach((child) => {
-          if (current_caibenefit !== child.c_CAIBenefit) {
-            items_to_update.push(child._ref);
-          }
-        });
+        if (children != null) {
+          children.Results.forEach((child) => {
+            if (current_caibenefit !== child.c_CAIBenefit) {
+              items_to_update.push(child._ref);
+            }
+          });
+        }
       }
 
 
@@ -155,11 +152,13 @@ module.exports.run = async (message) => {
       // Update all c_CAIBenefit from the current change and children to parent c_CAIBenefit
       if (children_count > 0) {
         let children = await rally_utils.getArtifactByRefAsync(childrenRef, workspaceRef, 'c_CAIBenefit');
-        children.Results.forEach((child) => {
-          if (current_caibenefit !== child.c_CAIBenefit) {
-            items_to_update.push(child._ref);
-          }
-        });
+        if (children != null) {
+          children.Results.forEach((child) => {
+            if (current_caibenefit !== child.c_CAIBenefit) {
+              items_to_update.push(child._ref);
+            }
+          });
+        }
       }
 
 

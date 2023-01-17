@@ -83,6 +83,9 @@ module.exports.getArtifactByRef = (ref, workspaceRef, fetch) => {
 }
 
 module.exports.getArtifactByRefAsync = async (ref, workspaceRef, fetch) => {
+	if (!ref) {
+		return null;
+	}
 	return await restApi.query({
 		ref: refUtils.getRelative(ref),
 		fetch: fetch,
@@ -92,6 +95,7 @@ module.exports.getArtifactByRefAsync = async (ref, workspaceRef, fetch) => {
 		limit: Infinity
 	}, function (error, result) {
 		if (error) {
+			log.error(ref)
 			log.error(JSON.stringify(error))
 			reject(error)
 		}
