@@ -262,4 +262,4 @@ See [DEVELOPER_README](./DEVELOPER_README.md) for information regarding:
 
 
 ### ISSUES
-2023-01-16: issue was related to user stories rooted in Features, it was trying to update the field CAIBenefit in US which does not exists
+2023-01-16: issue was related to user stories rooted in Features, it was trying to update the field CAIBenefit in US which does not exists.
