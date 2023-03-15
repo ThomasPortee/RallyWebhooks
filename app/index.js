@@ -32,8 +32,7 @@ app.post(path, (request, response) => {
 
 	//log.info(JSON.stringify(payload))
 	if (process.env.LOG_PAYLOAD === "true") {
-		console.log("PAYLOAD")
-		console.log(JSON.stringify(payload))
+		console.log(payload)
 	}
 
 	log.info('In catcher')
@@ -63,7 +62,7 @@ if (process.env.SERVERLESS) {
 }
 else {
 	// Running as local service
-	const port = process.env.PORT || 8080;
+	const port = process.env.PORT || 3000;
 	const host = process.env.HOST || '0.0.0.0';
 	app.listen(port, host, (err) => {
 		if (err) {
@@ -71,5 +70,6 @@ else {
 		}
 
 		log.info(`server is listening on ${host}:${port}`)
+		console.log(`server is listening on ${host}:${port}`)
 	})
 }

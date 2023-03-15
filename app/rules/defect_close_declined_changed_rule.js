@@ -28,7 +28,7 @@ const rally_utils = require('../common/rally_utils')
 module.exports.doesRuleApply = (message) => {
 
   let result = false;
-  let closedDate = get(message,['stateByField','ClosedDate','value'])
+  let closedDate = get(message, ['stateByField', 'ClosedDate', 'value'])
 
   console.log("Validates if rule applies to this message")
   console.log(message)
@@ -56,49 +56,53 @@ module.exports.run = (message) => {
       let workspaceId = get(message, ['stateByField', 'Workspace', 'value', 'detail_link'], "").split('/').pop();
       let workspaceRef = `/workspace/${workspaceId}`;
 
-      let state = get(message,['stateByField','State','value'])
-      let closedDate = get(message,['stateByField','ClosedDate','value'])
+      let state = get(message, ['stateByField', 'State', 'value'])
+      let closedDate = get(message, ['stateByField', 'ClosedDate', 'value'])
 
       var promise
 
-      console.log("Closed Date:")
-      console.log(closedDate)
+      console.log(`Closed Date: ${closedDate}`)
 
-      if(message.object_type=="Defect" && (closedDate == undefined || closedDate == '' || closedDate == null)){
-        
+
+      if (message.object_type == "Defect" && (closedDate == undefined || closedDate == '' || closedDate == null)) {
+
         // If it's a Defect and does not have a Closed Date:
         console.log("Generating promise to Change state to closed")
-        promise = rally_utils.updateArtifact(message.ref, workspaceRef, ['State'],{
-          State:"Closed"
-        })
-        .then(()=>{
-          console.log("Defect changed to Status:Closed")
-          // Get artifact by referecne to see the update
-          // Is message available here
-          return rally_utils.updateArtifact(message.ref, workspaceRef, ['State'],{
-            State:"Closed Declined"
-          })
-  
-        })
-        .then((result)=>{
-          console.log("Defech changed to Closed Delcined")
-          resolve(result)
-        })
 
-      }else{
+        // change state to closed with rally_utils.updateArtifact
+
+        rally_utils.updateArtifact(message.ref, workspaceRef, ['State'], {
+          State: "Closed"
+        })
+          .then(() => {
+            console.log("Defect changed to Status:Closed")
+            // Get artifact by referecne to see the update
+            // Is message available here
+            return rally_utils.updateArtifact(message.ref, workspaceRef, ['State'], {
+              State: "Closed Declined"
+            })
+
+          })
+          .then((result) => {
+            console.log("Defech changed to Closed Declined")
+            resolve(result)
+          })
+
+      } else {
         // If no object exists return undefined
         console.log("Nothing to do")
-        promise = Promise.resolve(undefined)
+        //promise = Promise.resolve(undefined)
+        reject(undefined)
 
       }
-      
-      
+
+
     }
     else {
       reject("No message in webhook");
     }
   });
-  
+
 
   return result;
 }

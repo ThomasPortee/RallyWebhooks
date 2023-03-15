@@ -12,20 +12,16 @@ var options = {
     "AppName": "Reflector",
     "AppUrl": targetUrl,
     // TODO Constant for the name
-    "Name": "Update New Portfolio Item Investment Category",
+    "Name": "Portfolio Item CAIBenefit New",
     "CreatedBy": utils.getAppId(),
     "TargetUrl": targetUrl,
-    "ObjectTypes": ["Feature", "Epic", "Investment"],
-    "Expressions": [{
-      "AttributeID": "5736cb0d-4ef8-4e83-a086-cb11e9a705e2", // InvestmentCategory
-      "AttributeName": "InvestmentCategory", // InvestmentCategory
-      "Operator": "has"
-    },
-    {
-      "AttributeName": "Workspace",
-      "Operator": "=",
-      "Value": process.env.WEBHOOK_RALLY_WORKSPACE_UUID
-    }
+    "ObjectTypes": ["Feature", "Epic"],
+    "Expressions": [
+      {
+        "AttributeName": "Workspace",
+        "Operator": "=",
+        "Value": process.env.WEBHOOK_RALLY_WORKSPACE_UUID
+      }
     ]
   },
   "json": true
