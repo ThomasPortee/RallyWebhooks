@@ -50,8 +50,8 @@ Test these 2 scenarios with multiple defects in multiple projects.:w
 
 ## Full Deployment Walkthrough
 ### Setup
-1. Download the following files: `cox-webhook-reflector_<version>.zip`
-1. `unzip cox-webhook-reflector_<version>.zip -d cox-webhook-reflector_<version>`
+
+1. Clone the code from this repository `git clone git@ghe.coxautoinc.com:PDO-Tools/cox-webhook-closed-declined.git`
 1. `cd cox-webhook-reflector_<version>`
 1. `npm install yarn`
 1. `./node_modules/.bin/yarn`
